@@ -1,0 +1,143 @@
+body,html{
+    margin: 0;
+}
+
+.mainContainer{
+    display: none;
+}
+
+canvas{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.uiContainer{
+    transition: backdrop-filter 1s linear;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backdrop-filter:blur(0);
+
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.activateUi{
+    display:grid;
+    backdrop-filter:blur(2px);
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.statsContainer{
+    grid-area: 2 / 1 / 4 / 2;
+}
+.itemsContainer{
+    grid-area: 1 / 1 / 2 / 2;
+}
+.mapContainer{
+    grid-area: 1 / 2 / 3 / 3;
+}
+.menuButtonContainer{
+    grid-area: 3 / 2 / 4 / 3;
+}
+.runStatsContainer{
+    grid-area: 2 / 3 / 4 / 4;
+}
+.descriptionContainer{
+    grid-area: 1 / 3 / 2 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.uiContainerGlobal{
+    border: 1px solid #fff;
+    overflow: hidden;
+}
+h1{
+    text-align: center;
+}
+
+.statsListItem{
+    font-size: 1.25rem;
+    margin-top: 5px;
+}
+
+
+.statsList{
+
+}
+
+.invParts{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 50%;
+    position: relative;
+    border: 1px solid #fff;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+
+    
+
+}
+.invParts::-webkit-scrollbar{
+    display: none;  
+    width: 0px;
+}
+.inventoryItem{
+    display: block;
+    margin: 2px;
+    border: 1px solid;
+    width: 40px;
+    height: 40px;
+
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.itemLevel{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 5px;
+    height: 5px;
+}
+
+.descriptionText{
+    text-align: center;
+    height:50%;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #fff;
+    padding: 5px;
+
+}
+
+.weaponStats{
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #fff;
+    list-style-position: outside;
+
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+.weaponStat{
+    margin-right:10px;
+}
+
+#characterContainer{
+    display: none;
+}

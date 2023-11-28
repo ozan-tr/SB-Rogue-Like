@@ -1,0 +1,55 @@
+
+const { app, BrowserWindow ,ipcMain} = require('electron')
+const fs = require("fs/promises");
+const path = require('node:path')
+
+const {glob} = require("glob");
+
+const createWindow = () => {
+  const mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    resizable: false,
+    name: 'motorporno',
+    webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+  })
+
+  mainWindow.loadFile("index.html")
+
+}
+async function getScripts(){
+  return await glob('assets/js/**/*.js', { ignore: 'assets/js/main.js' })
+}
+
+async function getCharacters(){
+  return await glob('assets/img/characters/**/*.png')
+}
+
+async function getMaps(){
+  return await glob('assets/img/maps/**/*.png')
+}
+
+async function getMobs(){
+  return await glob('assets/img/mobs/**/*.png')
+}
+
+
+app.whenReady().then(() => {
+  ipcMain.handle('getScripts', () => getScripts());
+  ipcMain.handle('getCharacters', () => getCharacters());
+  ipcMain.handle('getMaps', () => getMaps());
+  ipcMain.handle('getMobs', () => getMobs());
+  createWindow()
+  app.on('activate', () => {  
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+
+
