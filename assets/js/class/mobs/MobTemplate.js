@@ -102,14 +102,16 @@ class MobTemplate{
     }
     applyDamage(damage) {
         this.health -= damage
+        console.log(this.health,damage)
         if(this.health <= 0) {
-            this.kill()
+            this.kill(true)
         }
 
     }
     shouldRender(){
-        const dx = player.pos.x - this.pos.x;
-        const dy = player.pos.y - this.pos.y;
+        const truePos = player.getTruePos()
+        const dx = truePos.x - this.pos.x;
+        const dy = truePos.y - this.pos.y;
         const distance = Math.hypot(dx, dy);
 
         if(this.render){
@@ -122,8 +124,7 @@ class MobTemplate{
             if(inactiveTime > 5000){
                 this.kill()
             }else if(distance <= c.width*3){ 
-
-                
+                this.render=true
             }
         }
     }

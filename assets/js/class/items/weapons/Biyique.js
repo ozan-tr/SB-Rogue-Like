@@ -79,21 +79,21 @@ class Biyique extends WeaponBase {
                 clearInterval(attackAnimation);
             }
 
+            /*
 
-   
-
-
-            ctx.clearRect(-playerPos.x,-playerPos.y,c.width,c.height);
             ctx.strokeRect(0, hitBox.h/2, hitBox.x , hitBox.h)
             ctx.strokeRect(0, hitBox.h/2, -hitBox.x , hitBox.h)
             ctx.strokeStyle="#3A200F"
             ctx.lineCap = "round"
             ctx.lineWidth = 5
+            */
+            ctx.clearRect(-playerPos.x,-playerPos.y,c.width,c.height);
 
             const truePos = player.getTruePos()
 
             this.checkHit({x:truePos.x-hitBox.x,y:truePos.y-hitBox.h/2,w:hitBox.x,h:hitBox.h})
 
+            ctx.fillStyle="#3A200F"
             
             dots.forEach((dot,i)=>{
                 ctx.beginPath()

@@ -69,6 +69,7 @@ class WeaponBase extends ItemBase{
                 const mobPos={x:mob.pos.x,y:mob.pos.y,w:mob.size.width,h:mob.size.height}
                 if(doesCollide(hitbox,mobPos)){
                     console.log("Hit")
+                    mob.applyDamage(parseFloat(this.stats[this.level].damage))
                 }
             }
 

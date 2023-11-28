@@ -204,9 +204,6 @@ function gameLoop(){
     ctx.arc(c.width/2, c.height/2,10,0,Math.PI*2)
     ctx.fill()
 
-
-
-
     ctx.setTransform(1,0,0,1,c.width/2,c.height/2)
     if(player.angle){ctx.rotate(player.angle)}
     ctx.drawImage(player.img,-player.size.width/2,-player.size.height/2, player.size.width,player.size.height)
