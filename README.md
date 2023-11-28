@@ -11,6 +11,8 @@
    3. git clone https://github.com/ozan-tr/SB-Rogue-Like.git
    5. npm init
 6. npm test  <-- bidahakine sadece bunu gircen ama dosyaya girmen lzm
+
+
 olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs code](https://code.visualstudio.com/download) tarzı bişi indirip ana dosyayı vs codela aç. vs codeun terminalini açrsan cmd yerine kullanabilrsin
 
 
