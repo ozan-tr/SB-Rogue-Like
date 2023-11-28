@@ -12,6 +12,4 @@ class BookBat extends MobTemplate{
             100
         )
     }
-
-    
 }

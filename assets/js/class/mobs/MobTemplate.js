@@ -24,10 +24,7 @@ class MobTemplate{
 
         this.lastRender = new Date()
 
-        allMobs.push(this)
-
-        this.xpValue = 1
-        
+        allMobs.push(this)        
     }
     animation(){
         const timePassed = new Date()-this.lastFrame
@@ -36,20 +33,20 @@ class MobTemplate{
             this.frame = !this.frame
             if(this.frame){
                 switch(this.dir.x){
-                    case -1:
+                    case 1:
                         this.img = this.images[0]
                         break;
-                    case 1:
-                        this.img = this.images[3]
+                    case -1:
+                        this.img = this.images[2]
                         break;
                 }
             }else{
                 switch(this.dir.x){
-                    case -1:
+                    case 1:
                         this.img = this.images[1]
                         break;
-                    case 1:
-                        this.img = this.images[2]
+                    case -1:
+                        this.img = this.images[3]
                         break;
                 }
             }
@@ -133,9 +130,8 @@ class MobTemplate{
     kill(giveExp){
         const index = allMobs.indexOf(this)
         if(giveExp){
-            new Experience(this.pos,this.xpValue)
+            new Experience(this.pos,this.value)
         }
-        console.log(index)
         allMobs.splice(index, 1)
 
     }

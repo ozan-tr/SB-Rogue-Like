@@ -66,7 +66,6 @@ class Biyique extends WeaponBase {
                 curveHeight *= 0.5;
             }else{
                 phase = true;
-                console.log(phase)
             }
         }else{
             if(hitBox.x > 0){
