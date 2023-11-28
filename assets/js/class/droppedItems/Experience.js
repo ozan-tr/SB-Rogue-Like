@@ -14,6 +14,16 @@ class Experience {
         player.inventory.addXp(this.value)
         allItems.splice(allItems.indexOf(this),1)
     }
+    startSucking(){
+        const playerPos=player.getTruePos()
+        const dx = playerPos.x - this.pos.x;
+        const dy = playerPos.y - this.pos.y;
+
+        const distance = Math.hypot(dx, dy);
+        
+        this.attraction = true
+        this.speed = distance / 10
+    }
     update(ctx){
         const playerPos=player.getTruePos()
         const dx = playerPos.x - this.pos.x;
@@ -22,8 +32,7 @@ class Experience {
         const distance = Math.hypot(dx, dy);
 
         if(distance < player.stats.pickup_range && !this.attraction){
-            this.attraction = true
-            this.speed = distance / 10
+            this.startSucking()
         }
 
         if(this.attraction){

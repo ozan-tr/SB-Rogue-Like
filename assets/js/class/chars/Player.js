@@ -25,6 +25,13 @@ class Player{
         console.log(this.getStats())
 
     }
+    suckXp(){
+        allItems.forEach((item)=>{
+            if(item.vaccumable){
+                item.startSucking()
+            }
+        })
+    }
     attackTick(ctx){
         this.inventory.data.weapons.forEach(weapon=>{
             if(new Date() - weapon.lastAttack > 2000){

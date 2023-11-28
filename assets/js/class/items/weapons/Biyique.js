@@ -91,7 +91,7 @@ class Biyique extends WeaponBase {
 
             const truePos = player.getTruePos()
 
-            this.checkHit({x:truePos.x-hitBox.x,y:truePos.y-hitBox.h/2,w:hitBox.x,h:hitBox.h})
+            this.checkHit({x:truePos.x-hitBox.x,y:truePos.y+hitBox.h/2,w:hitBox.x*2,h:hitBox.h})
 
             ctx.fillStyle="#3A200F"
             

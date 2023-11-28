@@ -1,101 +1,6 @@
 
-var loadedScripts = 0;
-
-const characterContainer = document.getElementById('characterContainer');
-
-loader.characters().then(chars=>{
-        var sortedCharPaths = {}
-        chars.forEach(char => {
-            
-            charName = char.toString().split("\\")[3]
-            console.log(charName)
-            if(!sortedCharPaths[charName]){
-                sortedCharPaths[charName] = [char]
-            }else{
-                sortedCharPaths[charName].push(char)
-            }
-        });
-
-        console.log(sortedCharPaths)
-
-        for(const charName of Object.keys(sortedCharPaths)){
-            console.log(charName)
-            const imgContainer = document.createElement("div")
-            imgContainer.id=charName
-            imgContainer.style.display="none"
-    
-            sortedCharPaths[charName].forEach((char) => {
-                const img = document.createElement("img")
-                img.id = char.split("\\")[4].split(".")[0]
-                img.src = char
-                imgContainer.appendChild(img)
-            })
-    
-            characterContainer.appendChild(imgContainer)
-        }
-})
-
-const mapsContainer = document.getElementById("mapsContainer")
-
-loader.maps().then((maps) => {
-    maps.forEach((map) =>{
-        const element = document.createElement("img")
-        element.style.display = "none"
-        
-        element.src=map
-        const seperated = map.split("\\")
-        element.id=seperated[seperated.length-1].split(".")[0]
-        mapsContainer.appendChild(element)
-    })
-
-})
-
-const mobsContainer = document.getElementById("mobsContainer")
-
-loader.mobs().then(mobs => {
-    var sortedMobPaths = {}
-    mobs.forEach(mob => {
-        mobName = mob.toString().split("\\")[3]
-        if(!sortedMobPaths[mobName]){
-            sortedMobPaths[mobName] = [mob]
-        }else{
-            sortedMobPaths[mobName].push(mob)
-        }
-    });
 
 
-    for(const mobName of Object.keys(sortedMobPaths)){
-        const imgContainer = document.createElement("div")
-        imgContainer.id=mobName
-        imgContainer.style.display="none"
-
-        sortedMobPaths[mobName].forEach((mob) => {
-            const img = document.createElement("img")
-            img.id = mob.split("\\")[4].split(".")[0]
-            img.src=mob
-            imgContainer.appendChild(img)
-        })
-
-        mobsContainer.appendChild(imgContainer)
-    }
-})
-
-
-loader.scripts().then(paths => {
-    paths.forEach(path => {
-        var script = document.createElement('script')
-        script.src = path
-        document.body.appendChild(script)
-        script.addEventListener('load', () => {
-            loadedScripts++;
-            if(loadedScripts==paths.length){
-                setTimeout(() => {
-                    startGame()
-                }, 100);
-            }
-        })
-    });
-})
 
 
 
@@ -169,9 +74,9 @@ function dummyWave(size){
     for(var i=0;i<360;i+=incr){
         const deg = i*Math.PI/180
         new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y}).y
-        new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y}).y
-        new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y}).y
-        new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y}).y
+        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y}).y
+        //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y}).y
+        //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y}).y
 
         
     }

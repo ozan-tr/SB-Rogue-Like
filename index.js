@@ -20,7 +20,7 @@ const createWindow = () => {
 
 }
 async function getScripts(){
-  return await glob('assets/js/**/*.js', { ignore: 'assets/js/main.js' })
+  return await glob('assets/js/**/*.js', { ignore: 'assets/js/loader.js' })
 }
 
 async function getCharacters(){
