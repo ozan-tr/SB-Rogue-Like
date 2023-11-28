@@ -1,26 +1,38 @@
 
 var loadedScripts = 0;
 
-const ozanContainer = document.getElementById('ozanerdal');
-const neslihanContainer = document.getElementById('neslihanbeyaz');
-const rogenContainer = document.getElementById('christopherrogenbuke');
-const hilalContainer = document.getElementById('hilalunlusu');
-const alpegeContainer = document.getElementById('alpegekurtulus');
+const characterContainer = document.getElementById('characterContainer');
 
-loader.characters().then(imgs=>{
-    imgs.forEach(img=>{
-        img=img.toString();
-        const element = document.createElement('img');
-        element.src=img
-        element.id= isNaN(img[img.length-6] +""+ img[img.length-5]) ? img[img.length-5] : parseInt(img[img.length-6] +""+ img[img.length-5])
+loader.characters().then(chars=>{
+        var sortedCharPaths = {}
+        chars.forEach(char => {
+            
+            charName = char.toString().split("\\")[3]
+            console.log(charName)
+            if(!sortedCharPaths[charName]){
+                sortedCharPaths[charName] = [char]
+            }else{
+                sortedCharPaths[charName].push(char)
+            }
+        });
 
+        console.log(sortedCharPaths)
 
-        if(img.includes("ozan")){ozanContainer.appendChild(element)}
-        else if(img.includes("neslihan")){neslihanContainer.appendChild(element)}
-        else if(img.includes("rogen")){rogenContainer.appendChild(element)}
-        else if(img.includes("hilal")){hilalContainer.appendChild(element)}
-        else if(img.includes("alpege")){alpegeContainer.appendChild(element)}
-    })
+        for(const charName of Object.keys(sortedCharPaths)){
+            console.log(charName)
+            const imgContainer = document.createElement("div")
+            imgContainer.id=charName
+            imgContainer.style.display="none"
+    
+            sortedCharPaths[charName].forEach((char) => {
+                const img = document.createElement("img")
+                img.id = char.split("\\")[4].split(".")[0]
+                img.src = char
+                imgContainer.appendChild(img)
+            })
+    
+            characterContainer.appendChild(imgContainer)
+        }
 })
 
 const mapsContainer = document.getElementById("mapsContainer")
@@ -44,7 +56,6 @@ loader.mobs().then(mobs => {
     var sortedMobPaths = {}
     mobs.forEach(mob => {
         mobName = mob.toString().split("\\")[3]
-        console.log(mobName)
         if(!sortedMobPaths[mobName]){
             sortedMobPaths[mobName] = [mob]
         }else{
@@ -52,7 +63,6 @@ loader.mobs().then(mobs => {
         }
     });
 
-    console.log(sortedMobPaths)
 
     for(const mobName of Object.keys(sortedMobPaths)){
         const imgContainer = document.createElement("div")
