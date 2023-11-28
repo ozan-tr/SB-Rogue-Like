@@ -7,6 +7,7 @@
 3. github hesabın yoksa aç ve ismini bana yaz
 4. pc de biyerde bi dosya aç
 5. cmd aç ve alttaki komutları sırasıyla gir
+
   1. cd <dosyanın konumu> **veya** dosya konumunu gösteren yere tıklayıp cmd yaz **açtığın dosyanın içinde index.html,index.js,preload.js ve bikaç dosya daha olcak** 
   2. git clone https://github.com/ozan-tr/SB-Rogue-Like.git
   3. npm init
