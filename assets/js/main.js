@@ -48,17 +48,6 @@ function keyUp(e) {
     player.setDirection(true);
 }
 
-function startGame(){
-    mainContainer.style.display = "block"
-
-    player = new OzanErdal()
-    map = new TestMap(player)
-
-    document.addEventListener("keydown", keyDown)
-    document.addEventListener("keyup", keyUp)
-
-    requestAnimationFrame(gameLoop)
-}
 
 function dummyWave(size){
     const playerPos = player.getCenterPos()

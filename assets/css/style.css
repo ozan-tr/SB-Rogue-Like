@@ -1,5 +1,12 @@
+:root{
+    --borderColor: #fff;
+
+}
+
+
 body,html{
     margin: 0;
+    overflow: hidden;
 }
 
 .mainContainer{
@@ -56,7 +63,7 @@ canvas{
 }
 
 .uiContainerGlobal{
-    border: 1px solid #fff;
+    border: 1px solid var(--borderColor);
     overflow: hidden;
 }
 h1{
@@ -80,7 +87,7 @@ h1{
     padding: 0;
     height: 50%;
     position: relative;
-    border: 1px solid #fff;
+    border: 1px solid var(--borderColor);
 
     flex-direction: row;
     flex-wrap: wrap;
@@ -117,7 +124,7 @@ h1{
     height:50%;
     width: 100%;
     margin: 0;
-    border: 1px solid #fff;
+    border: 1px solid var(--borderColor);
     padding: 5px;
 
 }
@@ -126,7 +133,7 @@ h1{
     height: 50%;
     width: 100%;
     margin: 0;
-    border: 1px solid #fff;
+    border: 1px solid var(--borderColor);
     list-style-position: outside;
 
     display:flex;
@@ -140,4 +147,69 @@ h1{
 
 #characterContainer{
     display: none;
+}
+
+
+
+
+.mainMenuButtonGlobal{
+    border: 1px solid black;
+    background-color: gray ;
+    width: calc(100%-15px);
+    height: 100%;
+
+    border-radius: 10px;
+
+    transition: 0.5s;
+
+    box-shadow: none;
+
+    font-size: 2rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+.mainMenuButtonGlobal:hover{
+    opacity: 0.8;
+    
+}
+
+.mainMenu {
+    
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    top:15px;
+    left: 15px;
+    grid-template-columns: repeat(2, 0.5fr) 1fr 2fr repeat(2, 1fr);
+    grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+
+.startGame { grid-area: 2 / 4 / 3 / 5; 
+
+}
+.unlocks { grid-area: 3 / 4 / 4 / 5; 
+
+}
+.quit { grid-area: 4 / 4 / 5 / 5; 
+
+}
+.settings { grid-area: 4 / 3 / 5 / 4; 
+    background-image: url(../img/UI/Settings.png);
+    background-size:80px;
+}
+.runHistory { grid-area: 4 / 5 / 5 / 6; 
+
+}
+.github { grid-area: 1 / 1 / 2 / 2; 
+    background-image: url(../img/UI/Github.png);
+    background-size:60px;
+}
+.credits { grid-area: 1 / 2 / 2 / 3; 
+
 }

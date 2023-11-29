@@ -72,7 +72,6 @@ function updateLoadingProgress(ctx,canvas) {
     if (loadedScripts === totalScripts) {
         setTimeout(() => {
             mainContainer.removeChild(canvas);
-            startGame();
         }, 500);
     }
 }

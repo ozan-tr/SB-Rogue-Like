@@ -1,5 +1,6 @@
 const uiContainer = document.querySelector('.uiContainer');
 let uiActive = false;
+let gameActive = false;
 
 const statsList = document.getElementById('statsList');
 
@@ -15,8 +16,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 function activateUI() {
-    uiContainer.classList.add('activateUi');
-    updateStats();
+    if(gameActive){
+        uiContainer.classList.add('activateUi');
+        updateStats();
+    }
 }
 
 function deactivateUI() {
@@ -38,7 +41,7 @@ function updateStats() {
             const statElement = document.createElement('li');
             statElement.innerHTML = `<b>${formattedStatName}:</b> ${value}`;
             statElement.classList.add('statsListItem');
-            statElement.style.listStyleImage = `url(assets/img/statIcon/${stat}.png)`;
+            statElement.style.listStyleImage = `url(assets/img/UI/statIcon/${stat}.png)`;
             statsList.appendChild(statElement);
         }
     }
