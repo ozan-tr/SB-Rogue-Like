@@ -1,13 +1,5 @@
 
 
-
-
-
-
-
-
-const mainContainer = document.getElementsByClassName('mainContainer')[0]
-
 const c = document.getElementById('c')
 const ctx = c.getContext("2d")
 
@@ -73,10 +65,10 @@ function dummyWave(size){
     var incr = 360/size
     for(var i=0;i<360;i+=incr){
         const deg = i*Math.PI/180
-        new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y}).y
-        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y}).y
-        //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y}).y
-        //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y}).y
+        new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y})
+        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
+        //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
+        //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
 
         
     }

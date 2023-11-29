@@ -1,147 +1,108 @@
-var loadedScripts = 0;
-
 const characterContainer = document.getElementById('characterContainer');
+const mapsContainer = document.getElementById('mapsContainer');
+const mobsContainer = document.getElementById('mobsContainer');
+const mainContainer = document.querySelector('.mainContainer');
 
-loader.characters().then(chars=>{
-        var sortedCharPaths = {}
-        chars.forEach(char => {
-            
-            charName = char.toString().split("\\")[3]
-            console.log(charName)
-            if(!sortedCharPaths[charName]){
-                sortedCharPaths[charName] = [char]
-            }else{
-                sortedCharPaths[charName].push(char)
-            }
-        });
+function createImageElement(id, src) {
+    const element = document.createElement('img');
+    element.style.display = 'none';
+    element.src = src;
+    element.id = id;
+    return element;
+}
 
-        console.log(sortedCharPaths)
+function createDivContainer(id) {
+    const container = document.createElement('div');
+    container.id = id;
+    container.style.display = 'none';
+    return container;
+}
 
-        for(const charName of Object.keys(sortedCharPaths)){
-            console.log(charName)
-            const imgContainer = document.createElement("div")
-            imgContainer.id=charName
-            imgContainer.style.display="none"
-    
-            sortedCharPaths[charName].forEach((char) => {
-                const img = document.createElement("img")
-                img.id = char.split("\\")[4].split(".")[0]
-                img.src = char
-                imgContainer.appendChild(img)
-            })
-    
-            characterContainer.appendChild(imgContainer)
+function loadImages(container, paths) {
+    paths.forEach((path) => {
+        const separated = path.split('\\');
+        const id = separated[separated.length - 1].split('.')[0];
+        const img = createImageElement(id, path);
+        container.appendChild(img);
+    });
+}
+
+function sortAndLoad(container, paths) {
+    const sortedPaths = {};
+    paths.forEach((item) => {
+        const itemName = item.toString().split('\\')[3];
+        if (!sortedPaths[itemName]) {
+            sortedPaths[itemName] = [item];
+        } else {
+            sortedPaths[itemName].push(item);
         }
-})
+    });
 
-const mapsContainer = document.getElementById("mapsContainer")
+    for (const itemName of Object.keys(sortedPaths)) {
+        const imgContainer = createDivContainer(itemName);
+        loadImages(imgContainer, sortedPaths[itemName]);
+        container.appendChild(imgContainer);
+    }
+}
 
-loader.maps().then((maps) => {
-    maps.forEach((map) =>{
-        const element = document.createElement("img")
-        element.style.display = "none"
-        
-        element.src=map
-        const seperated = map.split("\\")
-        element.id=seperated[seperated.length-1].split(".")[0]
-        mapsContainer.appendChild(element)
-    })
+var loadedScripts = 0;
+var totalScripts = 0;
 
-})
+function drawLoadingBar(ctx, startAngle, endAngle,canvas) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-const mobsContainer = document.getElementById("mobsContainer")
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 5, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#932921';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 5, startAngle, endAngle);
+    ctx.strokeStyle = '#3498db';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+}
+
+function updateLoadingProgress(ctx,canvas) {
+    loadedScripts++;
+    endAngle = (loadedScripts / totalScripts) * 2 * Math.PI;
+    drawLoadingBar(ctx, 0, endAngle,canvas);
+
+    if (loadedScripts === totalScripts) {
+        setTimeout(() => {
+            mainContainer.removeChild(canvas);
+            startGame();
+        }, 500);
+    }
+}
+
+// Your existing code...
+
+loader.characters().then(chars => {
+    sortAndLoad(characterContainer, chars);
+});
+
+loader.maps().then(maps => {
+    loadImages(mapsContainer, maps);
+});
 
 loader.mobs().then(mobs => {
-    var sortedMobPaths = {}
-    mobs.forEach(mob => {
-        mobName = mob.toString().split("\\")[3]
-        if(!sortedMobPaths[mobName]){
-            sortedMobPaths[mobName] = [mob]
-        }else{
-            sortedMobPaths[mobName].push(mob)
-        }
-    });
-
-
-    for(const mobName of Object.keys(sortedMobPaths)){
-        const imgContainer = document.createElement("div")
-        imgContainer.id=mobName
-        imgContainer.style.display="none"
-
-        sortedMobPaths[mobName].forEach((mob) => {
-            const img = document.createElement("img")
-            img.id = mob.split("\\")[4].split(".")[0]
-            img.src=mob
-            imgContainer.appendChild(img)
-        })
-
-        mobsContainer.appendChild(imgContainer)
-    }
-})
-
+    sortAndLoad(mobsContainer, mobs);
+});
 
 loader.scripts().then(paths => {
-    var mainContainer = document.querySelector(".mainContainer");
-    var canvas = document.createElement('canvas');
+    totalScripts=paths.length;
+    const canvas = document.createElement('canvas');
     mainContainer.appendChild(canvas);
-
-    // Set canvas dimensions
-    canvas.width = 1400;
-    canvas.height = 1000;
-
-    // Get the 2d context of the canvas
-    var ctx = canvas.getContext('2d');
-
-    // Variables for loading animation
-    var loadedScripts = 0;
-    var totalScripts = paths.length;
-    var startAngle = 0;
-    var endAngle = 0;
-
-    // Function to draw the loading bar
-    function drawLoadingBar() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw the loading bar background
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 5, 0, 2 * Math.PI);
-        ctx.strokeStyle = '#932921';
-        ctx.lineWidth = 10;
-        ctx.stroke();
-
-        // Draw the loading bar progress
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 5, startAngle, endAngle);
-        ctx.strokeStyle = '#3498db'; // You can change the color as needed
-        ctx.lineWidth = 10;
-        ctx.stroke();
-    }
-
-
+    
+    canvas.width = 700;
+    canvas.height = 500;
+    const ctx = canvas.getContext('2d');
     paths.forEach(path => {
-        var script = document.createElement('script');
+        const script = document.createElement('script');
         script.src = path;
         document.body.appendChild(script);
-
-        script.addEventListener('load', updateLoadingProgress);
+        script.addEventListener('load', updateLoadingProgress(ctx,canvas));
     });
-    // Function to update the loading bar progress
-
-
-    function updateLoadingProgress() {
-        loadedScripts++;
-        endAngle = (loadedScripts / totalScripts) * 2 * Math.PI;
-        drawLoadingBar();
-
-        // Check if all scripts are loaded
-        if (loadedScripts === totalScripts) {
-            setTimeout(() => {
-                // Remove the canvas once all scripts are loaded
-                mainContainer.removeChild(canvas);
-
-                // Call the startGame function
-                startGame();
-            }, 500);
-        }
-    }
-})
+});

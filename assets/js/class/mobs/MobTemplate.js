@@ -8,6 +8,8 @@ class MobTemplate{
         this.stats = stats;
         this.value = value;
 
+        this.invincibiltyFrame=250
+
         this.dir = {x:0,y:0};
 
         this.health=this.stats.maxHealth
@@ -23,6 +25,8 @@ class MobTemplate{
         this.render = true
 
         this.lastRender = new Date()
+
+        this.lastDamage = new Date()
 
         allMobs.push(this)        
     }
@@ -70,7 +74,6 @@ class MobTemplate{
     
             this.dir = {x: xStep > 0 ? 1 : -1, y: yStep > 0 ? 1 : -1}
     
-            // Check collision with other mobs
             for (const mob of allMobs) {
                 if (mob !== this && !mob.immovable && mob.render) {
                     const mobDx = mob.pos.x - this.pos.x;
@@ -80,7 +83,6 @@ class MobTemplate{
                     const minDistance = (Math.hypot(this.size.width + this.size.height) + Math.hypot(mob.size.width + mob.size.height))/4  // Assuming mobs have a size property
     
                     if (mobDistance < minDistance) {
-                        // Collision detected, push mobs away from each other
                         const pushFactor = (minDistance - mobDistance) / mobDistance;
     
                         const pushX = mobDx * pushFactor;
@@ -101,11 +103,17 @@ class MobTemplate{
         }
     }
     applyDamage(damage) {
-        this.health -= damage
-        console.log(this.health,damage)
-        if(this.health <= 0) {
-            this.kill(true)
+        console.log(new Date() - this.lastDamage,this.invincibiltyFrame)
+        if(new Date()-this.lastDamage > this.invincibiltyFrame){
+            this.health -= damage
+            this.lastDamage=new Date()
+            console.log(this.health,damage,this.invincibiltyFrame)
+            if(this.health <= 0) {
+                this.kill(true)
+            }
+
         }
+
 
     }
     shouldRender(){
