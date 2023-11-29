@@ -10,7 +10,7 @@ class AlpEgeKurtulus extends Player{
 
         this.size = {width:40,height:120 }
 
-        this.images = Array.from(document.getElementById('alpegekurtulus').children)
+        this.images = Array.from(document.getElementById('AlpEgeKurtulus').children)
         this.images.sort((a,b) => a.id-b.id)
         this.img = this.images[0]
 

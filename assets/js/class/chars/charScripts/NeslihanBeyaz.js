@@ -12,7 +12,7 @@ class NeslihanBeyaz extends Player{
 
         this.angle = 0;
 
-        startingWepon = "ProductionOrale"
+        this.startingWeapon = "ProductionOrale"
 
         this.inventory = new Inventory(this)
 

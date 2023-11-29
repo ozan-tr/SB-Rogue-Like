@@ -13,26 +13,43 @@ setTimeout(()=>{
 
     characters.forEach((character)=>{
         const name = character.id
-        const container = document.createElement("div")
         const element = document.createElement("div")
-        container.className="characterSelectorContainer"
         element.className = "characterSelector"
+
         const img = document.createElement("img")
         img.src=`assets/img/characters/${name}/0.png`
+
+        img.className="charImg"
     
         var tempPlayer = eval("new "+name+"()")
-        console.log(tempPlayer.startingWeapon)
-       
+        console.log(tempPlayer.startingWeapon) 
+
+        img.width = tempPlayer.size.width
+        img.height = tempPlayer.size.height
     
         const startingItem = document.createElement("img")
-        startingItem.src=`assets/img/weapons/${tempPlayer.startingWeapon}`
+        startingItem.src=`assets/img/weapons/${tempPlayer.startingWeapon}.png`
+        startingItem.className="charItemImg"
+
+        startingItem.width=40
+        startingItem.height=40
+        
         tempPlayer=undefined
+        
+        element.onclick = function(){
+            const preSel = document.querySelector(`.selectedChar`)
+            if(preSel){
+                preSel.classList.remove("selectedChar");
+            }
+            selectedCharacter=name;
+            element.classList.add("selectedChar")
+            console.log(selectedCharacter)
+        }
         element.appendChild(img)
-        element.onclick = function(){selectedCharacter = name}
+        element.appendChild(startingItem)
+
     
-        container.appendChild(element)
-    
-        characterSelectorMenu.appendChild(container)
+        characterSelectorMenu.appendChild(element)
     })
     
     const maps = Array.from(mapsContainer.children)
@@ -42,7 +59,21 @@ setTimeout(()=>{
     
         const element = document.createElement("div")
         element.className = "mapSelector"
-        element.onclick = function(){selectedMap = name}
+        element.style.backgroundImage = `url(assets/img/maps/${name}.png)`
+
+        const mapName = document.createElement("span")
+        mapName.className = "mapName"
+        mapName.innerHTML = separateStringByCapital(name)
+
+        element.onclick = function(){
+            const preSel = document.querySelector(`.selectedMap`)
+            if(preSel){
+                preSel.classList.remove("selectedMap");
+            }
+            selectedMap=name;
+            element.classList.add("selectedMap")
+            console.log(selectedMap)
+        }
         
         mapSelectorMenu.appendChild(element)
     })
@@ -61,6 +92,9 @@ function mainMenu(){
     currentMenu = "main"
 
 }
+
+const separateStringByCapital = str => (matches => matches ? matches.join(' ') : str)(str.match(/[A-Z][a-z]*/g));
+
 
 function characterSelector() {
     selectedCharacter = undefined;
@@ -85,7 +119,7 @@ function next(){
         mapSelector()
     }
     if(currentMenu == "map"){
-        if(map!=undefined){
+        if(selectedMap!=undefined){
             startGame(selectedCharacter, selectedMap)
         }
     }

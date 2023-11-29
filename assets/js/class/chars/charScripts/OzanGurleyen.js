@@ -13,7 +13,7 @@ class OzanGurleyen extends Player {
         this.images.sort((a,b) => a.id-b.id)
         this.img = this.images[0]
 
-        this.size={width:40,heigth:60}
+        this.size={width:60,height:80}
 
         this.headOffset = {x: 20, y: 20}
 

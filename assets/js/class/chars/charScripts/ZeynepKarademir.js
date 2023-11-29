@@ -39,7 +39,7 @@ class ZeynepKarademir extends Player {
     }
     animate(){
         const timePassed = new Date()-this.lastFrame
-        const animationDelay = 100/this.stats.speed
+        const animationDelay = 1000/this.stats.speed
 
         if(timePassed >= animationDelay){
             this.frame = !this.frame
@@ -48,10 +48,10 @@ class ZeynepKarademir extends Player {
                     case 0:
                         this.img = this.images[8]
                         break;
-                    case -1:
+                    case 1:
                         this.img = this.images[4]
                         break;
-                    case 1:
+                    case -1:
                         this.img = this.images[6]
                         break;
                 }
@@ -61,10 +61,10 @@ class ZeynepKarademir extends Player {
                     case 0:
                         this.img = this.images[9]
                         break;
-                    case -1:
+                    case 1:
                         this.img = this.images[5]
                         break;
-                    case 1:
+                    case -1:
                         this.img = this.images[7]
                         break;
                 }
