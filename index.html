@@ -8,14 +8,37 @@
 </head>
 <body>
     <div class="mainMenu">
-        <button class="mainMenuButtonGlobal startGame">Start Game</button>
+
+        <button class="mainMenuButtonGlobal startGame" onclick="characterSelector()">Start Game</button>
         <button class="mainMenuButtonGlobal unlocks">Unlocks</button>
         <button class="mainMenuButtonGlobal quit" onclick="window.close()">Quit</button>
         <button class="mainMenuButtonGlobal settings"></button>
         <button class="mainMenuButtonGlobal runHistory"></button>
         <a target="_blank" href="https://github.com/ozan-tr/SB-Rogue-Like" class="mainMenuButtonGlobal github"></a>
         <button class="mainMenuButtonGlobal credits"></button>
+
     </div>
+
+    <div class="selectorUiHolder">
+        <div class="selectorChoiceBox selectorUiGlobal">
+            <div class="characterSelectorMenu">
+
+            </div>
+            <div class="mapSelectorMenu">
+
+            </div>
+        </div>
+        <button class="backButton" onclick="back()">
+            back
+        </button>
+
+
+        <button class="nextMenu" onclick="next()">
+            Select
+        </button>
+    </div>
+
+
     <div class="uiContainer">
         <div class="statsContainer uiContainerGlobal">
             <h1>Stats</h1>

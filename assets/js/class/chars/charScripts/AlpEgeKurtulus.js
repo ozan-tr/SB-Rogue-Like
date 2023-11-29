@@ -1,4 +1,4 @@
-class AlpEgeKurtulus extends Allah{
+class AlpEgeKurtulus extends Player{
     constructor(){
         super()
         this.stats={

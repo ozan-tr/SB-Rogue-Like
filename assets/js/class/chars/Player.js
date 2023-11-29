@@ -10,10 +10,16 @@ class Player {
             pickUpRange: 50,
         };
 
+        this.images = Array.from(document.getElementById(this.constructor.name).children)
+        this.images.sort((a,b) => a.id-b.id)
+        this.img = this.images[0]
+
         this.size = { width: 40, height: 60 };
         this.dir = { x: 0, y: 0 };
         this.angle = 0;
         this.heldDirKeys = [];
+
+        this.startingWeapon = "TestSword"
 
         console.log(this.getStats());
     }

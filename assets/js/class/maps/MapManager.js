@@ -1,6 +1,6 @@
 class MapManager {
-    constructor(player) {
-        this.player = player;
+    constructor() {
+
         this.dimensions = { width: 1400, height: 1000 };
         this.mapPositions = [];
         this.indices = { x: 213123, y: 12412 };
@@ -51,8 +51,8 @@ class MapManager {
     }
 
     calculateIndices() {
-        const playerOffset = this.player.getCenterPos();
-        const playerPos = this.player.pos;
+        const playerOffset = player.getCenterPos();
+        const playerPos = player.pos;
 
         const xIndex = -Math.floor((playerPos.x + playerOffset.x) / this.dimensions.width);
         const yIndex = -Math.floor((playerPos.y + playerOffset.y) / this.dimensions.height);

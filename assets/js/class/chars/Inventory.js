@@ -14,7 +14,7 @@ const rarity = [
 
 
 class Inventory{
-    constructor(player,defaultItem) {
+    constructor(player) {
         this.player = player
         this.data = {
             weapons:[
@@ -26,7 +26,7 @@ class Inventory{
             xp:0,
             currency:0
         }
-        this.addWeapon(defaultItem)
+        this.addWeapon(player.startingWeapon)
     }
     addXp(amnt){
         this.data.xp += amnt

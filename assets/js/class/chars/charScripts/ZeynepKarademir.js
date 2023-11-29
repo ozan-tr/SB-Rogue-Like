@@ -1,4 +1,4 @@
-class OzanErdal extends Player {
+class ZeynepKarademir extends Player {
     constructor(){
         super()
         this.stats={
@@ -9,12 +9,13 @@ class OzanErdal extends Player {
             attack_speed: 1,
             pickup_range: 50,
         }
+        this.images = Array.from(document.getElementById('ZeynepKarademir').children)
+        this.images.sort((a,b) => a.id-b.id)
+        this.img = this.images[0]
 
         this.headOffset = {x: 20, y: 20}
 
         console.log(this.images)
-
-        this.startingWeapon = "Biyique"
 
         this.inventory = new Inventory(this)
 

@@ -10,13 +10,11 @@ class NeslihanBeyaz extends Player{
 
         this.size = {width:120,height:120}
 
-        this.images = Array.from(document.getElementById('neslihanbeyaz').children)
-        this.images.sort((a,b) => a.id-b.id)
-        this.img = this.images[0]
-
         this.angle = 0;
 
-        this.inventory = new Inventory(this,"ProductionOrale")
+        startingWepon = "ProductionOrale"
+
+        this.inventory = new Inventory(this)
 
         this.headOffset = {x:60,y:60}
 
