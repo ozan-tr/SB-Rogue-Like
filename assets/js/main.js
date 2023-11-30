@@ -20,6 +20,10 @@ var allItems = []
 
 var isMoving = false
 
+var isShiftDown = false
+
+
+
 function keyDown(e) {
     if (e.code === "ArrowLeft" || e.code === "KeyA") {
         heldDirKeys.left = true;

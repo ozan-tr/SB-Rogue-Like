@@ -141,6 +141,7 @@ function startGame(playerName,mapName){
     gameActive=true
 
     mainContainer.style.display = "block"
+    mainMenuDiv.style.display = 'none';
     characterSelectorMenu.style.display = 'none'
     mapSelectorMenu.style.display = 'none' 
     selectorUiHolder.style.display = "none";   
@@ -153,3 +154,9 @@ function startGame(playerName,mapName){
 
     requestAnimationFrame(gameLoop)
 }
+
+setTimeout(()=>{
+    startGame("OzanErdal","BioLab")
+},100)
+
+//!DEBUG

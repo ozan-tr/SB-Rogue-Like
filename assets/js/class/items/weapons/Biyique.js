@@ -1,7 +1,7 @@
 class Biyique extends WeaponBase {
     constructor() {
         super(
-            "Bıyıque",
+            "Biyique",
             "The greatest moustache in the world",
             "Whip",
             5,

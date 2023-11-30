@@ -32,7 +32,6 @@ class Inventory{
             if(w.constructor.name === weapon){
                 exists = true
                 w.levelUp()
-                document.getElementById(weapon.constructor.name+"Level").innerHTML = w.level
             }
         })
         if(!exists){
@@ -57,35 +56,37 @@ class Inventory{
             descriptionText.classList.add('descriptionText')
             descriptionText.innerHTML = weaponObj.description
 
+            slot.tabIndex = 0
 
-            slot.addEventListener('mousemove', (e) => {
-                descriptionBox.innerHTML = ""
-                descriptionBox.appendChild(descriptionText)
+            this.statsToDisplay = weaponObj.getStats()
 
-                const weaponStats = document.createElement('ul')                                    
-                weaponStats.classList.add('weaponStats')
-
-                const statsToDisplay = e.shiftKey ? weaponObj.improvementInfo() : weaponObj.getStats()
-
-                for(const stat in statsToDisplay) {                                         
-                    const value = statsToDisplay[stat]
-
-                    const statElement = document.createElement('div')
-                    const statSymbol = document.createElement('img')
-                    const statValue = document.createElement('span')
-
-                    statElement.classList.add('weaponStat')
-
-
-                    statSymbol.src=`assets/img/UI/statIcon/${stat.replace(" ","_")}.png`
-                    statValue.innerHTML = value
-
-                    statElement.appendChild(statSymbol)
-                    statElement.appendChild(statValue)
-
-                    weaponStats.appendChild(statElement)
+            slot.addEventListener('keydown', (e)=>{
+                if(e.code === "ShiftLeft"){
+                    descriptionBox.innerHTML = ""
+                    this.statsToDisplay = weaponObj.improvementInfo()
+                    descriptionBox.appendChild(descriptionText)
+                    this.createStatPanel()
+                    this.createLevelPanel(weaponObj,true)
                 }
-                descriptionBox.appendChild(weaponStats)
+            })
+            
+            slot.addEventListener('keyup', (e)=>{
+                if(e.code === "ShiftLeft"){
+                    descriptionBox.innerHTML = ""
+                    this.statsToDisplay = weaponObj.getStats()
+                    descriptionBox.appendChild(descriptionText)
+                    this.createStatPanel()
+                    this.createLevelPanel(weaponObj,false)
+                }
+            })
+
+            slot.addEventListener('mouseenter', (e) => {
+                slot.focus()            
+                descriptionBox.innerHTML = ""
+                this.statsToDisplay = weaponObj.getStats()
+                descriptionBox.appendChild(descriptionText)
+                this.createStatPanel()
+                this.createLevelPanel(weaponObj,false)
             })
             slot.addEventListener('mouseleave', (e) => {
                 descriptionBox.innerHTML = "Hover over an item to see its description."
@@ -93,6 +94,46 @@ class Inventory{
 
             weaponsInv.appendChild(slot)
         }
+    
+    }
+    createLevelPanel(weapon,nextLevel){
+        var levelInfo;
+
+        if(nextLevel){
+            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span>\n<span>Level ${weapon.level+2} / ${weapon.maxLevel+1}</span>`
+        }else{
+            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span>\n<span>Level ${weapon.level+1} / ${weapon.maxLevel+1}</span>`
+        }
+        const levelPanel = document.createElement('div')
+        levelPanel.classList.add('weaponLevel')
+        levelPanel.innerHTML = levelInfo
+        descriptionBox.appendChild(levelPanel)
+    }
+    createStatPanel(){
+        const weaponStats = document.createElement('div')                                    
+        weaponStats.classList.add('weaponStats')
+
+        for(const stat in this.statsToDisplay) {                                         
+            const value = this.statsToDisplay[stat]
+
+            const statElement = document.createElement('div')
+            const statSymbol = document.createElement('img')
+            const statValue = document.createElement('span')
+
+            statElement.classList.add('weaponStat')
+
+
+            statSymbol.src=`assets/img/UI/statIcon/${stat.replace(" ","_")}.png`
+            statValue.innerHTML = value
+
+            statElement.appendChild(statSymbol)
+            statElement.appendChild(statValue)
+
+            weaponStats.appendChild(statElement)
+        }
+
+
+        descriptionBox.appendChild(weaponStats)
     }
 
 

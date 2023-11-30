@@ -41,7 +41,7 @@ class OzanGurleyen extends Player {
     }
     animate(){
         const timePassed = new Date()-this.lastFrame
-        const animationDelay = 100/this.stats.speed
+        const animationDelay = 1000/this.stats.speed
 
         if(timePassed >= animationDelay){
             this.frame = !this.frame
