@@ -1,0 +1,65 @@
+
+
+
+.mainMenuButtonGlobal{
+    height: 100%;
+    transition: 0.5s;
+
+    font-size: 3rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-image: url(../img/UI/ButtonBackground.png);
+    background-size:contain;
+
+    border-style: none;
+
+    background-color: transparent;
+
+}
+
+.mainMenuButtonGlobal:hover{
+    opacity: 0.8;
+    
+}
+
+.mainMenu {
+    
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    top:15px;
+    left: 15px;
+    grid-template-columns: repeat(2, 0.5fr) 1fr 2fr repeat(2, 1fr);
+    grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+
+.startGame { grid-area: 2 / 4 / 3 / 5; 
+
+}
+.unlocks { grid-area: 3 / 4 / 4 / 5; 
+
+}
+.quit { grid-area: 4 / 4 / 5 / 5; 
+
+}
+.settings { grid-area: 4 / 3 / 5 / 4; 
+    background-image:  url(../img/UI/Settings.png), url(../img/UI/ButtonBackgroundSquare.png);
+    background-size: 80px,contain;
+}
+.runHistory { grid-area: 4 / 5 / 5 / 6; 
+    background-image: url(../img/UI/RunHistory.png), url(../img/UI/ButtonBackgroundSquare.png);
+    background-size: 60px,contain;
+}
+.github { grid-area: 1 / 1 / 2 / 2; 
+    background-image:url(../img/UI/Github.png), url(../img/UI/ButtonBackgroundSquare.png);
+    background-size: 40px,contain;
+}
+.credits { grid-area: 1 / 2 / 2 / 3; 
+    background-image: url(../img/UI/Credits.png), url(../img/UI/ButtonBackgroundSquare.png);
+    background-size: 80px,contain;
+}

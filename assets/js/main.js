@@ -66,11 +66,6 @@ function dummyWave(size){
 
 
 function gameLoop(){
-    const playerPos = player.getCenterPos()
-    const playerHeadPos = player.getHeadPos()
-    const playerAimingPos = player.getAimingPos()
-
-
     ctx.fillStyle="black"
     ctx.clearRect(0, 0, c.width,c.height)
 
@@ -83,8 +78,6 @@ function gameLoop(){
     allMobs.forEach((mob)=>{
         mob.update(ctx)
     })
-
-
 
     ctx.beginPath()
     ctx.arc(c.width/2, c.height/2,10,0,Math.PI*2)
@@ -101,13 +94,7 @@ function gameLoop(){
         if(heldDirKeys[dir]){shouldMove = true}
     }
     if(shouldMove){player.move()}else{player.setIdle()}
-    
-    /*
-    ctx.setTransform(1,0,0,1,playerHeadPos.x,playerHeadPos.y)
-    ctx.beginPath()
-    ctx.arc(0,0,10,0,Math.PI*2)
-    ctx.fill(   )
-    */
+
 
     requestAnimationFrame(gameLoop)
 }

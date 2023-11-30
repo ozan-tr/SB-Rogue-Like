@@ -40,15 +40,11 @@ class Inventory{
 
             var weaponObj = this.data.weapons[this.data.weapons.length-1]
 
-            console.log(weaponObj)
-
             const slot = document.createElement('div')
             slot.id = weapon
             slot.classList.add('inventoryItem')
             slot.style.borderColor = rarity[weaponObj.rarity].color
             slot.style.backgroundImage = weaponObj.img//`url(assets/img/weapons/${weaponObj.name}.png)`
-
-            console.log(weaponObj.img)
 
             const itemlevel = document.createElement('div')
             itemlevel.id = weapon+"Level"
@@ -81,7 +77,7 @@ class Inventory{
                     statElement.classList.add('weaponStat')
 
 
-                    statSymbol.src=`assets/img/statIcon/${stat.replace(" ","_")}.png`
+                    statSymbol.src=`assets/img/UI/statIcon/${stat.replace(" ","_")}.png`
                     statValue.innerHTML = value
 
                     statElement.appendChild(statSymbol)

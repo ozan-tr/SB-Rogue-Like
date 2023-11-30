@@ -1,0 +1,128 @@
+
+.characterSelectorMenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: rgb(77, 77, 77);
+    gap:10px;
+    padding: 10px 0 0 10px;
+    align-content: flex-start;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+
+.characterSelector {
+    width: calc(25% - 10px);
+    height: 33.3%;
+    padding: 5px;
+
+    text-align: center;
+    box-sizing: border-box;
+    background-color: gray;
+    border-style: solid;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+    position: relative;
+
+    border-radius: 10px;
+}
+
+.charImg {
+    position: absolute;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    bottom:50px;
+}
+
+.charItemImg {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom:5px;
+    border-radius: 8px;
+}
+.selectedChar{
+    opacity: 0.5;
+}
+
+.selectedMap{
+    opacity: 0.5;
+}
+
+.characterSelector:hover {
+    opacity: 0.5;
+}
+
+.mapSelectorMenu{
+    width: 100%;
+    height: 100%;
+    display: none;
+    position:absolute;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    row-gap:10px;
+    background-color:rgb(77, 77, 77);
+}
+
+.mapSelector {
+    width: 95%;
+    height: 20vh;
+    box-sizing: border-box;
+    margin: 2.5%;
+    border-style: solid;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.5s;
+    background-position: center;
+    background-size: contain;
+
+}
+
+.mapSelector:hover {
+    opacity: 0.5;
+}
+
+.mapName{
+    font-size: 4rem;
+}
+
+.selectorUiHolder {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+}
+
+.selectorUiGlobal{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+    
+    .selectorChoiceBox { grid-area: 1 / 2 / 5 / 5; }
+    .backButton { grid-area: 1 / 1 / 2 / 2;
+    
+    }
+    .mainMenuStatHolder { grid-area: 2 / 1 / 6 / 2; 
+    
+    }
+    .div4 { grid-area: 5 / 2 / 6 / 5;
+     }
+    .nextMenu { grid-area: 5 / 5 / 6 / 6; 
+    
+    }
+    .div6 { grid-area: 1 / 5 / 5 / 6; }

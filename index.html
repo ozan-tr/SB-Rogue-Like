@@ -5,59 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/mainmenu.css">
+    <link rel="stylesheet" href="assets/css/selector.css">
+    <link rel="stylesheet" href="assets/css/ui.css">
 </head>
 <body>
-    <div class="mainMenu">
+    <div class="parentContainer">
+        <div class="mainMenu">
 
-        <button class="mainMenuButtonGlobal startGame" onclick="characterSelector()">Start Game</button>
-        <button class="mainMenuButtonGlobal unlocks">Unlocks</button>
-        <button class="mainMenuButtonGlobal quit" onclick="window.close()">Quit</button>
-        <button class="mainMenuButtonGlobal settings"></button>
-        <button class="mainMenuButtonGlobal runHistory"></button>
-        <a target="_blank" href="https://github.com/ozan-tr/SB-Rogue-Like" class="mainMenuButtonGlobal github"></a>
-        <button class="mainMenuButtonGlobal credits"></button>
-
-    </div>
-
-    <div class="selectorUiHolder">
-        <div class="selectorChoiceBox selectorUiGlobal">
-            <div class="characterSelectorMenu">
-
+            <button class="mainMenuButtonGlobal startGame" onclick="characterSelector()">Start Game</button>
+            <button class="mainMenuButtonGlobal unlocks">Unlocks</button>
+            <button class="mainMenuButtonGlobal quit" onclick="window.close()">Quit</button>
+            <button class="mainMenuButtonGlobal settings"></button>
+            <button class="mainMenuButtonGlobal runHistory"></button>
+            <a target="_blank" href="https://github.com/ozan-tr/SB-Rogue-Like" class="mainMenuButtonGlobal github"></a>
+            <button class="mainMenuButtonGlobal credits"></button>
+    
+        </div>
+    
+        <div class="selectorUiHolder">
+            <div class="selectorChoiceBox selectorUiGlobal">
+                <div class="characterSelectorMenu">
+    
+                </div>
+                <div class="mapSelectorMenu">
+    
+                </div>
             </div>
-            <div class="mapSelectorMenu">
-
+            <button class="uiButton backButton" onclick="back()">
+                Back
+            </button>
+    
+    
+            <button class="uiButton nextMenu" onclick="next()">
+                Select
+            </button>
+        </div>
+    
+    
+        <div class="uiContainer">
+            <div class="statsContainer uiContainerGlobal">
+                <h1>Stats</h1>
+                <ul class="statsList" id="statsList">
+    
+                </ul>
+            </div>
+            <div class="itemsContainer uiContainerGlobal">
+                <div class="invParts" id="weaponsInv"></div>
+                <div class="invParts" id="itemsInv"></div>
+            </div>
+            <div class="mapContainer uiContainerGlobal"></div>
+            <div class="menuButtonContainer uiContainerGlobal"></div>
+            <div class="runStatsContainer uiContainerGlobal"></div>
+            <div class="descriptionContainer uiContainerGlobal">
+                Hover over an item to see its description.
             </div>
         </div>
-        <button class="backButton" onclick="back()">
-            back
-        </button>
+    
 
-
-        <button class="nextMenu" onclick="next()">
-            Select
-        </button>
     </div>
-
-
-    <div class="uiContainer">
-        <div class="statsContainer uiContainerGlobal">
-            <h1>Stats</h1>
-            <ul class="statsList" id="statsList">
-
-            </ul>
-        </div>
-        <div class="itemsContainer uiContainerGlobal">
-            <div class="invParts" id="weaponsInv"></div>
-            <div class="invParts" id="itemsInv"></div>
-        </div>
-        <div class="mapContainer uiContainerGlobal"></div>
-        <div class="menuButtonContainer uiContainerGlobal"></div>
-        <div class="runStatsContainer uiContainerGlobal"></div>
-        <div class="descriptionContainer uiContainerGlobal">
-            Hover over an item to see its description.
-        </div>
-    </div>
-    <div class="mainContainer">
+     <div class="mainContainer">
         <canvas id="c"></canvas>
     </div>
     <div id="characterContainer">

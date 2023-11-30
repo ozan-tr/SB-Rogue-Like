@@ -4,7 +4,7 @@ class LOignon extends MobTemplate {
         var side = Math.random() > 0.5
         super(
             "L'Oignon",
-            {x: side ? playerPos.x: player.pos.x + c.width,y:playerPos.y+player.size.height/2},
+            {x: side ? playerPos.x - c.width: player.pos.x + c.width,y:playerPos.y+player.size.height/2},
             {width:128,height:128},
             {
                 speed:10,
