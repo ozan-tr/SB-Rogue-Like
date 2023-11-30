@@ -4,7 +4,7 @@
 }
 
 @font-face {
-    font-family: 'Big Apple 3PM';
+    font-family: 'PixelFont';
     src: url('../font/BigApple3PM.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -12,7 +12,7 @@
 }
 
 *{
-    font-family: 'Big Apple 3PM';
+    font-family: 'PixelFont';
 }
 
 

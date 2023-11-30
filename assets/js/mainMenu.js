@@ -155,8 +155,6 @@ function startGame(playerName,mapName){
     requestAnimationFrame(gameLoop)
 }
 
-setTimeout(()=>{
-    startGame("OzanErdal","BioLab")
-},100)
+
 
 //!DEBUG

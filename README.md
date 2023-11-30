@@ -17,3 +17,9 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
 
 
 ### ily hehe <3
+
+
+##Credits:
+https://paperhatlizard.itch.io/cryos-mini-gui certain UI assets
+zeynep
+ozan

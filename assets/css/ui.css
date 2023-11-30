@@ -107,7 +107,6 @@ h1{
     text-align: center;
     width: 100%;
     margin: 0;
-    border: 1px solid var(--borderColor);
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
@@ -116,7 +115,6 @@ h1{
 .wepaonLevel{
     width: 100%;
     margin: 0;
-    border: 1px solid var(--borderColor);
     flex: 0 1 auto;
     padding: 5px;
 
@@ -131,7 +129,6 @@ h1{
 .weaponStats{
     width: 100%;
     margin: 0;
-    border: 1px solid var(--borderColor);
     flex: 0 1 auto;
     padding: 5px;
 

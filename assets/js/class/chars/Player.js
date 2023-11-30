@@ -10,6 +10,10 @@ class Player {
             pickUpRange: 50,
         };
 
+        this.level=1
+
+        this.levelUpReq = 10;
+
         this.images = Array.from(document.getElementById(this.constructor.name).children)
         this.images.sort((a,b) => a.id-b.id)
         this.img = this.images[0]
@@ -30,6 +34,11 @@ class Player {
                 item.startSucking();
             }
         });
+    }
+
+    levelUp(){
+        this.level+=1
+        this.levelUpReq *= 2
     }
 
     attackTick(ctx) {

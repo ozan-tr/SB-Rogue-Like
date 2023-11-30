@@ -22,6 +22,10 @@ class Inventory{
     }
     addXp(amnt){
         this.data.xp += amnt
+        if(this.data.xp >= this.player.levelUpReq){
+            this.data.xp = 0
+            this.player.levelUp()
+        }
     }
     addCurrency(amnt){
         this.data.currency += amnt
@@ -34,7 +38,10 @@ class Inventory{
                 w.levelUp()
             }
         })
-        if(!exists){
+        if(exists){
+               document.getElementById(weapon+"Level").innerHTML = this.data.weapons[this.data.weapons.length-1].level+1
+        }
+        else{
             this.data.weapons.push(eval(`new ${weapon}()`))
 
             var weaponObj = this.data.weapons[this.data.weapons.length-1]
@@ -100,9 +107,9 @@ class Inventory{
         var levelInfo;
 
         if(nextLevel){
-            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span>\n<span>Level ${weapon.level+2} / ${weapon.maxLevel+1}</span>`
+            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span><br><span>Level ${weapon.level+2} / ${weapon.maxLevel+1}</span>`
         }else{
-            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span>\n<span>Level ${weapon.level+1} / ${weapon.maxLevel+1}</span>`
+            levelInfo = `<span style="color:${rarity[weapon.rarity].color}">${rarity[weapon.rarity].name}</span><br><span>Level ${weapon.level+1} / ${weapon.maxLevel+1}</span>`
         }
         const levelPanel = document.createElement('div')
         levelPanel.classList.add('weaponLevel')

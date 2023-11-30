@@ -22,8 +22,6 @@ var isMoving = false
 
 var isShiftDown = false
 
-
-
 function keyDown(e) {
     if (e.code === "ArrowLeft" || e.code === "KeyA") {
         heldDirKeys.left = true;
@@ -59,11 +57,9 @@ function dummyWave(size){
     for(var i=0;i<360;i+=incr){
         const deg = i*Math.PI/180
         new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y})
-        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
-        //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
-        //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
-
-        
+        new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
+        new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
+        new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
     }
 
 }
@@ -92,6 +88,17 @@ function gameLoop(){
     ctx.drawImage(player.img,-player.size.width/2,-player.size.height/2, player.size.width,player.size.height)
     player.attackTick(ctx)
 
+    ctx.setTransform(1,0,0,1,0,0)
+
+    ctx.fillStyle="darkgray"
+    ctx.fillRect(10,10,c.width-20,25)
+    ctx.fillStyle="blue"
+    ctx.fillRect(10,10,(c.width-20)*(player.inventory.data.xp/player.levelUpReq),25)
+    ctx.strokeRect(10,10,c.width-20,25)
+    ctx.fillStyle="black"
+    ctx.font="20px PixelFont"
+    ctx.textAlign="center"
+    ctx.fillText(`Level: ${player.level} XP: ${player.inventory.data.xp}/${player.levelUpReq}`,c.width/2,30)
 
     var shouldMove = false
     for(var dir in heldDirKeys){
