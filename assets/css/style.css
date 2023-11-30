@@ -3,6 +3,17 @@
 
 }
 
+@font-face {
+    font-family: 'Big Apple 3PM';
+    src: url('../font/BigApple3PM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    font-family: 'Big Apple 3PM';
+}
 
 body,html{
     margin: 0;
@@ -252,15 +263,18 @@ h1{
     width: 40px;
     height: 40px;
     margin-bottom: 5px;
-    border-style: solid;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 .selectedChar{
-    opacity: 0.8;
+    opacity: 0.5;
 }
-.selectedMap{
-    opacity: 0.8;
 
+.selectedMap{
+    opacity: 0.5;
+}
+
+.characterSelector:hover {
+    opacity: 0.5;
 }
 
 .mapSelectorMenu{
@@ -288,6 +302,14 @@ h1{
     background-position: center;
     background-size: contain;
 
+}
+
+.mapSelector:hover {
+    opacity: 0.5;
+}
+
+.mapName{
+    font-size: 4rem;
 }
 
 .selectorUiHolder {

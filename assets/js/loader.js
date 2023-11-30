@@ -76,6 +76,9 @@ function updateLoadingProgress(ctx,canvas) {
     }
 }
 
+document.addEventListener("drag",(e)=>{e.preventDefault();});
+
+
 // Your existing code...
 
 loader.characters().then(chars => {

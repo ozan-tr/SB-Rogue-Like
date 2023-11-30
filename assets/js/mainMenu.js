@@ -8,6 +8,8 @@ var selectedCharacter=undefined;
 
 var currentMenu = "main"
 
+
+
 setTimeout(()=>{
     const characters = Array.from(characterContainer.children)
 
@@ -20,16 +22,16 @@ setTimeout(()=>{
         img.src=`assets/img/characters/${name}/0.png`
 
         img.className="charImg"
-    
-        var tempPlayer = eval("new "+name+"()")
-        console.log(tempPlayer.startingWeapon) 
 
-        img.width = tempPlayer.size.width
-        img.height = tempPlayer.size.height
+        const weapon = startingWeapons[name] ? startingWeapons[name] : "TestSword"
+
     
         const startingItem = document.createElement("img")
-        startingItem.src=`assets/img/weapons/${tempPlayer.startingWeapon}.png`
+        startingItem.src=`assets/img/weapons/${weapon}.png`
         startingItem.className="charItemImg"
+
+        startingItem.style.backgroundImage="url(assets/img/UI/ItemBorder.png"
+        startingItem.style.backgroundColor=rarity[0].color
 
         startingItem.width=40
         startingItem.height=40
@@ -74,7 +76,7 @@ setTimeout(()=>{
             element.classList.add("selectedMap")
             console.log(selectedMap)
         }
-        
+        element.appendChild(mapName)
         mapSelectorMenu.appendChild(element)
     })
     
@@ -136,6 +138,8 @@ function back(){
 
 
 function startGame(playerName,mapName){
+    gameActive=true
+
     mainContainer.style.display = "block"
     characterSelectorMenu.style.display = 'none'
     mapSelectorMenu.style.display = 'none' 

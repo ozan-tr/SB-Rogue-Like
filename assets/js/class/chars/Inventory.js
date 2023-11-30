@@ -2,15 +2,7 @@ const weaponsInv = document.getElementById("weaponsInv");
 const itemsInv = document.getElementById("itemsInv")
 const descriptionBox = document.getElementsByClassName("descriptionContainer")[0];
 
-const rarity = [
-    {name:"Common",color:"gray"},
-    {name:"Uncommon",color:"green"},
-    {name:"Rare",color:"blue"},
-    {name:"Epic",color:"purple"},
-    {name:"Legendry",color:"gold"},
-    {name:"Mythical",color:"hotpink"},
-    {name:"Special",color:"red"},
-]
+
 
 
 class Inventory{
