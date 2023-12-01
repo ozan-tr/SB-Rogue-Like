@@ -52,7 +52,7 @@ class Player {
                             clearInterval(multiFire);
                             return;
                         }
-                        weapon.attack(ctx);
+                        weapon.attack();
                         n++;
                     }, 100);
                 }

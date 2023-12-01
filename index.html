@@ -8,19 +8,64 @@
     <link rel="stylesheet" href="assets/css/mainmenu.css">
     <link rel="stylesheet" href="assets/css/selector.css">
     <link rel="stylesheet" href="assets/css/ui.css">
+    <link rel="stylesheet" href="assets/css/settings.css">
 </head>
 <body>
     <div class="parentContainer">
-        <div class="mainMenu">
 
+        <div class="settingsContainer">
+            <div class="settingsMenu">
+                <button class="closeSettings" onclick="closeSettings()">X</button>
+                <div class="settingsMenuHeader">
+                    <h1>Settings</h1>
+                </div>
+                <div class="settingsMenuBody">
+                    <div class="settingsMenuBodyItem">
+                        <h2>Music</h2>
+                        <div class="settingsMenuBodyItemContent">
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Music Volume</h3>
+                                <input type="range" min="0" max="100" value="100" class="slider" id="musicVolume">
+                            </div>
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Sound Volume</h3>
+                                <input type="range" min="0" max="100" value="100" class="slider" id="soundVolume">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settingsMenuBodyItem">
+                        <h2>Controls</h2>
+                        <div class="settingsMenuBodyItemContent">
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Move Up</h3>
+                                <input type="text" class="keybindInput" id="moveUp">
+                            </div>
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Move Down</h3>
+                                <input type="text" class="keybindInput" id="moveDown">
+                            </div>
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Move Left</h3>
+                                <input type="text" class="keybindInput" id="moveLeft">
+                            </div>
+                            <div class="settingsMenuBodyItemContentItem">
+                                <h3>Move Right</h3>
+                                <input type="text" class="keybindInput" id="moveRight">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainMenu">
             <button class="mainMenuButtonGlobal startGame" onclick="characterSelector()">Start Game</button>
             <button class="mainMenuButtonGlobal unlocks">Unlocks</button>
             <button class="mainMenuButtonGlobal quit" onclick="window.close()">Quit</button>
-            <button class="mainMenuButtonGlobal settings"></button>
+            <button class="mainMenuButtonGlobal settings" onclick="openSettings()"></button>
             <button class="mainMenuButtonGlobal runHistory"></button>
             <a target="_blank" href="https://github.com/ozan-tr/SB-Rogue-Like" class="mainMenuButtonGlobal github"></a>
             <button class="mainMenuButtonGlobal credits"></button>
-    
         </div>
     
         <div class="selectorUiHolder">
@@ -35,13 +80,10 @@
             <button class="uiButton backButton" onclick="back()">
                 Back
             </button>
-    
-    
             <button class="uiButton nextMenu" onclick="next()">
                 Select
             </button>
         </div>
-    
     
         <div class="uiContainer">
             <div class="statsContainer uiContainerGlobal">
@@ -55,26 +97,31 @@
                 <div class="invParts" id="itemsInv"></div>
             </div>
             <div class="mapContainer uiContainerGlobal"></div>
-            <div class="menuButtonContainer uiContainerGlobal"></div>
+            <div class="menuButtonContainer uiContainerGlobal">
+                <button class="uiSubButton">End Run</button>
+                <button class="uiSubButton" onclick="openSettings()">Settings</button>
+                <button class="uiSubButton">Evolutions<br>(WIP)</button>
+            </div>
             <div class="runStatsContainer uiContainerGlobal"></div>
             <div class="descriptionContainer uiContainerGlobal">
                 Hover over an item to see its description.
             </div>
         </div>
-    
-
     </div>
+
+
+
      <div class="mainContainer">
         <canvas id="c"></canvas>
     </div>
-    <div id="characterContainer">
 
+
+
+    <div id="characterContainer">
     </div>
     <div id="mapsContainer">
-        
     </div>
     <div id="mobsContainer">
-        
     </div>
 </body>
 <script src="assets/js/loader.js"></script>

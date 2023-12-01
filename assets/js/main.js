@@ -1,5 +1,5 @@
 
-
+window.scroll(0,0)
 const c = document.getElementById('c')
 const ctx = c.getContext("2d")
 
@@ -23,13 +23,13 @@ var isMoving = false
 var isShiftDown = false
 
 function keyDown(e) {
-    if (e.code === "ArrowLeft" || e.code === "KeyA") {
+    if (e.code === currentBinds.moveLeft) {
         heldDirKeys.left = true;
-    } else if (e.code === "ArrowRight" || e.code === "KeyD") {
+    } else if (e.code === currentBinds.moveRight) {
         heldDirKeys.right = true;
-    } else if (e.code === "ArrowUp" || e.code === "KeyW") {
+    } else if (e.code === currentBinds.moveUp) {
         heldDirKeys.up = true;
-    } else if (e.code === "ArrowDown" || e.code === "KeyS") {
+    } else if (e.code === currentBinds.moveDown) {
         heldDirKeys.down = true;
     }
 
@@ -37,13 +37,13 @@ function keyDown(e) {
 }
 
 function keyUp(e) {
-    if (e.code === "ArrowLeft" || e.code === "KeyA") {
+    if (e.code === currentBinds.moveLeft) {
         heldDirKeys.left = false;
-    } else if (e.code === "ArrowRight" || e.code === "KeyD") {
+    } else if (e.code === currentBinds.moveRight) {
         heldDirKeys.right = false;
-    } else if (e.code === "ArrowUp" || e.code === "KeyW") {
+    } else if (e.code === currentBinds.moveUp) {
         heldDirKeys.up = false;
-    } else if (e.code === "ArrowDown" || e.code === "KeyS") {
+    } else if (e.code === currentBinds.moveDown) {
         heldDirKeys.down = false;
     }
 

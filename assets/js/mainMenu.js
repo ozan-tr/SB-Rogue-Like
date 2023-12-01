@@ -61,7 +61,7 @@ setTimeout(()=>{
     
         const element = document.createElement("div")
         element.className = "mapSelector"
-        element.style.backgroundImage = `url(assets/img/maps/${name}.png)`
+        element.style.backgroundImage = `url(assets/img/maps/${name})`
 
         const mapName = document.createElement("span")
         mapName.className = "mapName"
@@ -72,7 +72,7 @@ setTimeout(()=>{
             if(preSel){
                 preSel.classList.remove("selectedMap");
             }
-            selectedMap=name;
+            selectedMap=name.split(".")[0];
             element.classList.add("selectedMap")
             console.log(selectedMap)
         }
@@ -155,6 +155,11 @@ function startGame(playerName,mapName){
     requestAnimationFrame(gameLoop)
 }
 
-
+function openSettings(){
+    document.getElementsByClassName("settingsContainer")[0].style.display = "block"
+}
 
 //!DEBUG
+setTimeout(()=>{
+    startGame("OzanGurleyen","BioLab")
+},1000)
