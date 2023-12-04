@@ -195,3 +195,116 @@ h1{
     
 }
 
+
+.levelUpMenu{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter:blur(2px);
+    position: absolute;
+    z-index: 3;
+}
+
+.levelUpMenuHeader{
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+}
+.levelUpMenuBody{
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    height: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px;
+    row-gap: 5px;
+}
+.levelUpMenuFooter{
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.levelUpMenuItem{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border-style: solid;
+    border-radius: 5px;
+
+    background-color: rgba(128, 128, 128, 0.682);
+}
+
+.levelUpMenuItemThumbnail{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border-style: solid;
+
+}
+.levelUpMenuItemImg{
+    border-style: solid;
+}
+.levelUpMenuItemName{
+    font-size: 1rem;
+
+}
+
+.levelUpMenuItemInfo{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-style: solid;
+}
+
+.levelUpMenuItemDescription{
+    flex-grow: 4;
+    width: 100%;
+    padding-left: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.levelUpMenuItemStats{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+
+}
+

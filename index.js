@@ -35,12 +35,17 @@ async function getMobs(){
   return await glob('assets/img/mobs/**/*.png')
 }
 
+async function getProjectiles(){
+  return await glob('assets/img/projectiles/**/*.png')
+}
+
 
 app.whenReady().then(() => {
   ipcMain.handle('getScripts', () => getScripts());
   ipcMain.handle('getCharacters', () => getCharacters());
   ipcMain.handle('getMaps', () => getMaps());
   ipcMain.handle('getMobs', () => getMobs());
+  ipcMain.handle('getProjectiles', () => getProjectiles());
   createWindow()
   app.on('activate', () => {  
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

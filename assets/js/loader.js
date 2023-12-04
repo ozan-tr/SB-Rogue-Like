@@ -1,6 +1,7 @@
 const characterContainer = document.getElementById('characterContainer');
 const mapsContainer = document.getElementById('mapsContainer');
 const mobsContainer = document.getElementById('mobsContainer');
+const projectilesContainer = document.getElementById('projectilesContainer');
 const mainContainer = document.querySelector('.mainContainer');
 
 const loadingCanvas = document.createElement('canvas');
@@ -56,7 +57,7 @@ function sortAndLoad(container, paths) {
     }
 }
 
-var loadedScripts=0;
+var loadedScripts = 0;
 
 function drawLoadingBar(endAngle) {
     loadingCtx.clearRect(0, 0, loadingCanvas.width, loadingCanvas.height);
@@ -68,15 +69,15 @@ function drawLoadingBar(endAngle) {
     loadingCtx.stroke();
 
     loadingCtx.beginPath();
-    loadingCtx.arc(loadingCanvas.width / 2, loadingCanvas.height / 2, loadingCanvas.width / 5, Math.PI/2, endAngle);
+    loadingCtx.arc(loadingCanvas.width / 2, loadingCanvas.height / 2, loadingCanvas.width / 5, Math.PI / 2, endAngle);
     loadingCtx.strokeStyle = 'aqua';
     loadingCtx.lineWidth = 10;
     loadingCtx.stroke();
 }
 
-function updateLoadingProgress() {
+function updateLoadingProgress(paths) {
     loadedScripts++;
-    endAngle = scale(loadedScripts, 1, totalScripts, Math.PI/2, 2 * Math.PI + Math.PI/2)
+    endAngle = scale(loadedScripts, 1, totalScripts, Math.PI / 2, 2 * Math.PI + Math.PI / 2)
     drawLoadingBar(endAngle);
 
     console.log(loadedScripts, totalScripts);
@@ -85,56 +86,65 @@ function updateLoadingProgress() {
         setTimeout(() => {
             loadingCanvas.style.display = 'none';
             mainMenu()
-        },10);
+            loadItemsData(paths.filter((path) => path.includes("weapons")))
+        }, 100);
     }
 }
 
-document.addEventListener("drag",(e)=>{e.preventDefault();});
+document.addEventListener("drag", (e) => { e.preventDefault(); });
 
+var ItemsDict = []
 
-// Your existing code...
-
-
+function loadItemsData(paths) {
+    paths.forEach((path) => {
+        fetch(path)
+        .then(response => response.text())
+        .then((data) => {
+            const regex = /(?<=class )\w+/g;
+            const weapons = data.match(regex); 
+            console.log(weapons); 
+            weapons.forEach((weapon) => {
+                const weaponClass = eval(weapon);
+                const weaponObj = new weaponClass();
+                ItemsDict.push(weaponObj)
+            })
+        });
+    })
+}
 
 loader.scripts().then(paths => {
-
     totalScripts = paths.length;
-
     loader.characters().then(chars => {
-        totalScripts += chars.length;
-        setTimeout(() => {
-            sortAndLoad(characterContainer, chars);
-        }, 50);
+
+        sortAndLoad(characterContainer, chars);
+
     });
-    
     loader.maps().then(maps => {
-        totalScripts += maps.length;
-        setTimeout(() => {
-            sortAndLoad(mapsContainer, maps);
-        }, 50);
+
+        sortAndLoad(mapsContainer, maps);
+
     });
-    
     loader.mobs().then(mobs => {
-        totalScripts += mobs.length;
-        setTimeout(() => {
-            sortAndLoad(mobsContainer, mobs);
-        }, 50);
+
+        sortAndLoad(mobsContainer, mobs);
+
     });
 
-    setTimeout(() => {
-        paths.forEach(path => {
-            const script = document.createElement('script');
-            script.src = path;
-            script.defer = true;
-            document.body.appendChild(script);
-            updateLoadingProgress();
-        });
-        
-    }, 50);
+    loader.projectiles().then(projectiles => {
+        sortAndLoad(projectilesContainer, projectiles);
+    });
+
+    paths.forEach(path => {
+        const script = document.createElement('script');
+        script.src = path;
+        script.defer = true;
+        document.body.appendChild(script);
+        updateLoadingProgress(paths);
+    });
 
 });
 
 
-function scale (number, inMin, inMax, outMin, outMax) {
+function scale(number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }

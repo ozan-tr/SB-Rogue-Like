@@ -1,3 +1,4 @@
+
 class ItemBase {
     constructor(name, description, rarity) {
         this.name = name;
@@ -52,10 +53,10 @@ class WeaponBase extends ItemBase {
         this.level = level;
         this.maxLevel = maxLevel;
         this.lastAttack = new Date();
+        this.previousTimeStamp = 0;
         this.baseCooldown = 2000;
         this.type = type;
-        this.hitBox = { x: 0, y: 0, r: 0 };
-        this.img = `url(assets/img/weapons/${this.name.replace(" ", "_")}.png)`;
+        this.img = `url(assets/img/weapons/${this.name.replace(" ", "")}.png)`;
     }
 
     attack() {
@@ -65,12 +66,13 @@ class WeaponBase extends ItemBase {
     checkHit(hitbox) {
         const truePos = player.getTruePos();
 
+
         allMobs.forEach((mob) => {
             const dx = truePos.x - mob.pos.x;
             const dy = truePos.y - mob.pos.y;
             const distance = Math.hypot(dx, dy);
-
-            if (distance < hitbox.w) {
+            
+            if (distance < 500) {
                 const mobPos = { x: mob.pos.x, y: mob.pos.y, w: mob.size.width, h: mob.size.height };
                 if (doesCollide(hitbox, mobPos)) {
                     console.log("Hit");
@@ -89,3 +91,7 @@ function doesCollide(hitbox, mob) {
         (hitbox.x > mob.x + mob.w)
     );
 }
+const testCanvas = document.createElement("canvas");
+const testContext = testCanvas.getContext("2d");
+
+document.body.appendChild(testCanvas);

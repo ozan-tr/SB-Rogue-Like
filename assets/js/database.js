@@ -12,3 +12,4 @@ const rarity = [
     {name:"Mythical",color:"hotpink"},
     {name:"Special",color:"red"},
 ]
+

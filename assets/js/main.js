@@ -57,15 +57,23 @@ function dummyWave(size){
     for(var i=0;i<360;i+=incr){
         const deg = i*Math.PI/180
         new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y})
-        new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
-        new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
-        new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
+        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
+        //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
+        //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
     }
 
 }
 
+let start,previousTimeStamp;
 
-function gameLoop(){
+function gameLoop(timeStamp){
+
+    if (previousTimeStamp === undefined) {
+      previousTimeStamp = timeStamp;
+    }
+    
+    const elapsed = timeStamp - previousTimeStamp;
+      
     ctx.fillStyle="black"
     ctx.clearRect(0, 0, c.width,c.height)
 
@@ -104,8 +112,9 @@ function gameLoop(){
     for(var dir in heldDirKeys){
         if(heldDirKeys[dir]){shouldMove = true}
     }
-    if(shouldMove){player.move()}else{player.setIdle()}
+    if(shouldMove){player.move(elapsed)}else{player.setIdle()}
 
+    previousTimeStamp = timeStamp;
 
     requestAnimationFrame(gameLoop)
 }

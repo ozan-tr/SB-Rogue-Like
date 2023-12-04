@@ -25,6 +25,8 @@ class Player {
 
         this.startingWeapon = "TestSword"
 
+        this.levelUpQueue = 0
+
         console.log(this.getStats());
     }
 
@@ -39,10 +41,17 @@ class Player {
     levelUp(){
         this.level+=1
         this.levelUpReq *= 2
+        this.levelUpQueue+=1
+        console.log(this.levelUpQueue)
+        if(this.levelUpQueue == 1){
+            console.log("elö")
+            openLevelUpMenu()
+        }
     }
 
-    attackTick(ctx) {
+    attackTick() {
         this.inventory.data.weapons.forEach((weapon) => {
+        if(weapon.type != "Area"){
             if (new Date() - weapon.lastAttack > 2000) {
                 const howMany = weapon.getStat("amount") || 1;
                 if (howMany) {
@@ -58,8 +67,10 @@ class Player {
                 }
                 weapon.lastAttack = new Date();
             }
-        });
+        }
+        })
     }
+    
 
     getStats() {
         const ret = {};
@@ -112,14 +123,17 @@ class Player {
  
     }
 
-    move() {
+    move(elapsed) {
+
+        console.log(elapsed)
+
         if (uiActive) return;
 
         const angle = Math.atan2(this.dir.y, this.dir.x);
         const playerPos = this.getCenterPos();
 
-        const nextPosX = this.pos.x + Math.cos(angle) * this.stats.speed;
-        const nextPosY = this.pos.y + Math.sin(angle) * this.stats.speed;
+        const nextPosX = this.pos.x + Math.cos(angle) * this.stats.speed * elapsed;
+        const nextPosY = this.pos.y + Math.sin(angle) * this.stats.speed * elapsed;
 
         const p = {
             x: playerPos.x - nextPosX,

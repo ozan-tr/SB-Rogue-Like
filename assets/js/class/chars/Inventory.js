@@ -100,6 +100,12 @@ class Inventory{
             })
 
             weaponsInv.appendChild(slot)
+
+            if(weaponObj.type === "Area"){
+                setTimeout(() => {
+                    weaponObj.attack()
+                }, 1000);
+            }
         }
     
     }
@@ -142,6 +148,14 @@ class Inventory{
 
         descriptionBox.appendChild(weaponStats)
     }
-
-
+    getAvailableItems(){
+        var ret = []
+        ItemsDict.forEach((item) => {
+            const isMax = this.data.weapons[item] ? this.data.weapons[item].level === this.data.weapons[item].maxLevel : false
+            if(!isMax){
+                ret.push(item)
+            }
+        })
+        return ret
+    }
 }

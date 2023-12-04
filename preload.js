@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld("loader", {
     characters: () => ipcRenderer.invoke('getCharacters'),
     maps: () => ipcRenderer.invoke('getMaps'),
     mobs: () => ipcRenderer.invoke('getMobs'),
+    projectiles: () => ipcRenderer.invoke('getProjectiles'),
 });
 
 

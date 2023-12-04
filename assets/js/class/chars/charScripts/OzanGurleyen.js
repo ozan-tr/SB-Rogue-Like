@@ -2,7 +2,7 @@ class OzanGurleyen extends Player {
     constructor(){
         super()
         this.stats={
-            speed: 5,
+            speed: 0.5,
             strength: 1,
             defence: 1,
             luck: 1.5,
@@ -15,7 +15,9 @@ class OzanGurleyen extends Player {
 
         this.size={width:60,height:80}
 
-        this.headOffset = {x: 20, y: 20}
+        this.headOffset = {x: 30, y: 15}
+
+        this.startingWeapon = "BBB"
 
         console.log(this.images)
 
@@ -41,7 +43,7 @@ class OzanGurleyen extends Player {
     }
     animate(){
         const timePassed = new Date()-this.lastFrame
-        const animationDelay = 1000/this.stats.speed
+        const animationDelay = 100/this.stats.speed
 
         if(timePassed >= animationDelay){
             this.frame = !this.frame

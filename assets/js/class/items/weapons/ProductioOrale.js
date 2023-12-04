@@ -1,7 +1,7 @@
 class ProductionOrale extends WeaponBase {
     constructor() {
         super(
-            "ProductionOrale",
+            "Production Orale",
             "u e e e e e e e ",
             "Magic",
             2,
