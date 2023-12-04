@@ -36,6 +36,6 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
 ### ily hehe <3
 
 
-##Credits:
+## Credits:
 Art design: zeynep
 Scripting: ozan
