@@ -17,15 +17,15 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
 
 
 #TO-DO:
-*. resim isimlerinde aynı formatı kullandır
-*. base classları daha universal yap
-*. hit-reg geliştir
+* resim isimlerinde aynı formatı kullandır
+* base classları daha universal yap
+* hit-reg geliştir
 
-  *. hit-reg için daha az kasan bi alg bul
-  *. hit-reg için kare dışında şekillerde kullanabilme ekle
-    *. production orale attack düzelt
-*. css düzenle
-*. menüler vb. için bir color palette bul
+  * hit-reg için daha az kasan bi alg bul
+  * hit-reg için kare dışında şekillerde kullanabilme ekle
+    * production orale attack düzelt
+* css düzenle
+* menüler vb. için bir color palette bul
 
   *. css renklerini rootun içinde var olarak yap
 *. script yüklenme sırasını düzelt
