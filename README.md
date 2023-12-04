@@ -27,8 +27,8 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
 * css düzenle
 * menüler vb. için bir color palette bul
 
-  *. css renklerini rootun içinde var olarak yap
-*. script yüklenme sırasını düzelt
+  * css renklerini rootun içinde var olarak yap
+* script yüklenme sırasını düzelt
 
 
 ### ily hehe <3
