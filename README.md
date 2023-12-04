@@ -32,10 +32,6 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
     
 * script yüklenme sırasını düzelt
 
-
-### ily hehe <3
-
-
 ## Credits:
 Art design: zeynep
 Scripting: ozan
