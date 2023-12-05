@@ -13,26 +13,26 @@
 
 ## TO-DO
 
-* ~~resim isimlerinde aynı formatı kullandır~~
+- [x] resim isimlerinde aynı formatı kullandır
   
-* base classları daha universal yap
+- [ ] base classları daha universal yap
   
-* hit-reg geliştir
-  * hit-reg için daha az kasan bi alg bul
-  * hit-reg için kare dışında şekillerde kullanabilme ekle
-    * production orale attack düzelt
+- [ ] hit-reg geliştir
+- [ ] hit-reg için daha az kasan bi alg bul
+  - [ ] hit-reg için kare dışında şekillerde kullanabilme ekle
+  - [ ] production orale attack düzelt
 
-* css düzenle
-  * menüler vb. için bir color palette bul **Z**
-  * css renklerini rootun içinde var olarak yap
+- [ ] css düzenle
+  - [ ] menüler vb. için bir color palette bul **Z**
+  - [ ] css renklerini rootun içinde var olarak yap
 
-* ~~script yüklenme sırasını düzelt~~
+- [x] script yüklenme sırasını düzelt
 
-* assetler **Z**
-  * statlar için ikon yap **Z**
-  * map **Z**
-  * xp **Z**
-  * para **Z**
+- [ ] assetler **Z**
+  - [ ] statlar için ikon yap **Z**
+  - [ ] map **Z**
+  - [ ] xp **Z**
+  - [ ] para **Z**
 
 ## Credits
 
