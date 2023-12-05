@@ -161,5 +161,5 @@ function openSettings(){
 
 //!DEBUG
 setTimeout(()=>{
-    startGame("OzanGurleyen","BioLab")
+    //startGame("OzanGurleyen","BioLab")
 },1000)

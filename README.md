@@ -30,7 +30,7 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
   * menüler vb. için bir color palette bul
   * css renklerini rootun içinde var olarak yap
     
-* script yüklenme sırasını düzelt
+* **script yüklenme sırasını düzelt**
 
 ## Credits:
 Art design: zeynep
