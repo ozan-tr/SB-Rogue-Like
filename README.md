@@ -26,10 +26,16 @@ olmuş olması lzm ama sikinti olursa yazarsın kodla elleşmek istiosan [vs cod
     * production orale attack düzelt
 
 * css düzenle
-  * menüler vb. için bir color palette bul
+  * menüler vb. için bir color palette bul **Z**
   * css renklerini rootun içinde var olarak yap
 
 * ~~script yüklenme sırasını düzelt~~
+
+* assetler **Z**
+  * statlar için ikon yap **Z**
+  * map **Z**
+  * xp **Z**
+  * para **Z**
 
 ## Credits
 
