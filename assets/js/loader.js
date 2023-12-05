@@ -101,12 +101,11 @@ function loadItemsData(paths) {
         .then(response => response.text())
         .then((data) => {
             const regex = /(?<=class )\w+/g;
-            const weapons = data.match(regex); 
-            console.log(weapons); 
-            weapons.forEach((weapon) => {
-                const weaponClass = eval(weapon);
-                const weaponObj = new weaponClass();
-                ItemsDict.push(weaponObj)
+            const items = data.match(regex); 
+            items.forEach((item) => {
+                const itemClass = eval(item);
+                const itemObj = new itemClass();
+                ItemsDict.push(itemObj)
             })
         });
     })

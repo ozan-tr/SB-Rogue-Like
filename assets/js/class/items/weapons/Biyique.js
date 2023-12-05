@@ -11,22 +11,22 @@ class Biyique extends WeaponBase {
         this.stats = [
             {
                 damage: 5,
-                attack_speed: 1,
+                attackSpeed: 1,
                 area: 2
             },
             {
                 damage: 10,
-                attack_speed: 1,
+                attackSpeed: 1,
                 area: 2
             },
             {
                 damage: 15,
-                attack_speed: 1.5,
+                attackSpeed: 1.5,
                 area: 2
             },
             {
                 damage: 15,
-                attack_speed: 1.5,
+                attackSpeed: 1.5,
                 area: 3
             }
         ];
@@ -56,7 +56,7 @@ class Biyique extends WeaponBase {
         const attackAnimation = setInterval(() => {
             if (!phase) {
                 if (hitBox.x < hitBox.r) {
-                    hitBox.x += stats.attack_speed * 5;
+                    hitBox.x += stats.attackSpeed * 5;
                     dots.push({
                         x: hitBox.x,
                         y: hitBox.h / 3 + Math.sin(hitBox.x) - curveHeight + 10
@@ -67,7 +67,7 @@ class Biyique extends WeaponBase {
                 }
             } else {
                 if (hitBox.x > 0) {
-                    hitBox.x -= stats.attack_speed * 10;
+                    hitBox.x -= stats.attackSpeed * 10;
                 } else {
                     dots.pop();
                 }

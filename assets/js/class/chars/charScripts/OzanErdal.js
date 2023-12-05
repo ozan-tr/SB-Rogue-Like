@@ -6,8 +6,8 @@ class OzanErdal extends Player {
             strength: 1,
             defence: 1,
             luck: 1.5,
-            attack_speed: 1,
-            pickup_range: 50,
+            attackSpeed: 1,
+            pickupRange: 50,
         }
 
         this.headOffset = {x: 20, y: 20}

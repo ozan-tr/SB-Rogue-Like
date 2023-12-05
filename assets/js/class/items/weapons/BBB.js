@@ -12,25 +12,27 @@ class BBB extends WeaponBase {
         this.stats = [
             {
                 damage: 10,
-                attack_speed: 1,
+                attackSpeed: 1,
                 area: 2,
-                amount: 3
+                amount: 3,
+                critDamage:10,
+                critChance:0.1,
             },
             {
                 damage: 10,
-                attack_speed: 1,
+                attackSpeed: 1,
                 area: 2,
                 amount: 4
             },
             {
                 damage: 15,
-                attack_speed: 1.5,
+                attackSpeed: 1.5,
                 area: 3,
                 amount: 5
             },
             {
                 damage: 15,
-                attack_speed: 1.5,
+                attackSpeed: 1.5,
                 area: 3,
                 amount: 6
             }
@@ -85,7 +87,7 @@ class BBB extends WeaponBase {
             }
 
           
-            rad += 0.01 * stats.attack_speed;
+            rad += 0.01 * stats.attackSpeed;
         }, 10);
     }
     

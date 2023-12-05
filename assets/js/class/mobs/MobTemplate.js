@@ -1,4 +1,4 @@
-
+var allDamageTexts = []
 
 class MobTemplate{
     constructor(name,pos,size,stats,value){
@@ -103,18 +103,14 @@ class MobTemplate{
         }
     }
     applyDamage(damage) {
-        console.log(new Date() - this.lastDamage,this.invincibiltyFrame)
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
-            this.health -= damage
+            new DamageText(this,damage)
+            this.health -= damage.damage
             this.lastDamage=new Date()
-            console.log(this.health,damage,this.invincibiltyFrame)
             if(this.health <= 0) {
                 this.kill(true)
             }
-
         }
-
-
     }
     shouldRender(){
         const truePos = player.getTruePos()
@@ -143,6 +139,42 @@ class MobTemplate{
         }
         allMobs.splice(index, 1)
 
+    }
+}
+
+
+class DamageText {
+    constructor(mob,damage){
+        this.mob = mob
+        this.damage = damage
+        this.pos = {x: mob.pos.x, y: mob.pos.y}
+        this.render = true
+        this.font = "30px PixelFont"
+        this.lifeTime = 1000
+        this.birthTime = new Date()
+        this.speed = 0.1
+        this.opacity = 1
+        allDamageTexts.push(this)
+    }
+    update(ctx){
+        const timePassed = new Date() - this.birthTime
+        if(timePassed >= this.lifeTime){
+            const index = allDamageTexts.indexOf(this)
+            allDamageTexts.splice(index,1)
+        }else{
+            this.pos.y -= this.speed
+            this.opacity = 1 - (timePassed/this.lifeTime)
+        }
+        
+        ctx.font = this.font
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = this.damage.isCrit ? "red" : "white"
+        ctx.lineWidth = 2
+
+        ctx.globalAlpha = this.opacity
+        ctx.fillText(this.damage.damage,this.pos.x,this.pos.y)
+        ctx.strokeText(this.damage.damage,this.pos.x,this.pos.y)
+        ctx.globalAlpha = 1
     }
 }
 

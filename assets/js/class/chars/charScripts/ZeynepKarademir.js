@@ -6,8 +6,8 @@ class ZeynepKarademir extends Player {
             strength: 1,
             defence: 1,
             luck: 1.5,
-            attack_speed: 1,
-            pickup_range: 50,
+            attackSpeed: 1,
+            pickupRange: 50,
         }
         this.images = Array.from(document.getElementById('ZeynepKarademir').children)
         this.images.sort((a,b) => a.id-b.id)

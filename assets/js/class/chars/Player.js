@@ -6,8 +6,10 @@ class Player {
             strength: 1,
             defence: 1,
             luck: 1.5,
-            attack_speed: 1,
+            attackSpeed: 1,
             pickUpRange: 50,
+            critChance: 0.1,
+            critDamage: 0.5,
         };
 
         this.level=1
@@ -44,16 +46,15 @@ class Player {
         this.levelUpQueue+=1
         console.log(this.levelUpQueue)
         if(this.levelUpQueue == 1){
-            console.log("elö")
             openLevelUpMenu()
         }
     }
 
     attackTick() {
-        this.inventory.data.weapons.forEach((weapon) => {
-        if(weapon.type != "Area"){
-            if (new Date() - weapon.lastAttack > 2000) {
-                const howMany = weapon.getStat("amount") || 1;
+        this.inventory.data.items.forEach((item) => {
+        if(item.type != "Area"){
+            if (new Date() - item.lastAttack > 2000) {
+                const howMany = item.getStat("amount") || 1;
                 if (howMany) {
                     let n = 0;
                     const multiFire = setInterval(() => {
@@ -61,17 +62,25 @@ class Player {
                             clearInterval(multiFire);
                             return;
                         }
-                        weapon.attack();
+                        item.attack();
                         n++;
                     }, 100);
                 }
-                weapon.lastAttack = new Date();
+                item.lastAttack = new Date();
             }
         }
         })
     }
-    
 
+    getDamage(weapon){
+        const damage = weapon.getStat("damage") * this.stats.strength
+        const critChance = weapon.getStat("critChance") + this.stats.critChance
+        const critDamage = weapon.getStat("critDamage") + this.stats.critDamage
+        const crit = Math.random() < critChance
+        const multiplier = crit ? critDamage : 1
+        return {damage:damage * multiplier,isCrit:crit}
+    }
+    
     getStats() {
         const ret = {};
 
@@ -124,8 +133,6 @@ class Player {
     }
 
     move(elapsed) {
-
-        console.log(elapsed)
 
         if (uiActive) return;
 

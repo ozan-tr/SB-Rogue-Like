@@ -10,12 +10,12 @@ class ProductionOrale extends WeaponBase {
         );
         this.stats = [
             {
-                attack_speed: 5,
+                attackSpeed: 5,
                 area: 5,
                 amount: 5
             },
             {
-                attack_speed: 5,
+                attackSpeed: 5,
                 area: 5,
                 amount: 10
             }
@@ -23,7 +23,6 @@ class ProductionOrale extends WeaponBase {
     }
 
     attack(ctx) {
-        console.log("attacked");
 
         const animationCanvas = document.createElement("canvas");
         animationCanvas.width = c.width;
@@ -33,7 +32,6 @@ class ProductionOrale extends WeaponBase {
         ctx = animationCanvas.getContext("2d");
 
         const playerPos = player.getHeadPos();
-        console.log(playerPos);
         ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
         const stats = this.stats[this.level];

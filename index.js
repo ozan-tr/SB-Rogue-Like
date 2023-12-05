@@ -10,7 +10,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     resizable: false,
-    name: 'motorporno',
+    name: 'SBRogueLıke',
+    autoHideMenuBar: true,
     webPreferences: {
         preload: path.join(__dirname, 'preload.js')
       }

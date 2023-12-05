@@ -9,12 +9,9 @@ class Inventory{
     constructor(player) {
         this.player = player
         this.data = {
-            weapons:[
+            items:[
 
             ],
-            items:{
-
-            },
             xp:0,
             currency:0
         }
@@ -30,80 +27,85 @@ class Inventory{
     addCurrency(amnt){
         this.data.currency += amnt
     }
-    addWeapon(weapon){
+    addWeapon(item){
         var exists = false
-        this.data.weapons.forEach((w) => {
-            if(w.constructor.name === weapon){
+        this.data.items.forEach((w) => {
+            if(w.constructor.name === item){
                 exists = true
                 w.levelUp()
             }
         })
         if(exists){
-               document.getElementById(weapon+"Level").innerHTML = this.data.weapons[this.data.weapons.length-1].level+1
+               document.getElementById(item+"Level").innerHTML = this.data.items[this.data.items.length-1].level+1
         }
         else{
-            this.data.weapons.push(eval(`new ${weapon}()`))
+            this.data.items.push(eval(`new ${item}()`))
 
-            var weaponObj = this.data.weapons[this.data.weapons.length-1]
+            var itemObj = this.data.items[this.data.items.length-1]
 
             const slot = document.createElement('div')
-            slot.id = weapon
+            slot.id = item
             slot.classList.add('inventoryItem')
-            slot.style.borderColor = rarity[weaponObj.rarity].color
-            slot.style.backgroundImage = weaponObj.img//`url(assets/img/weapons/${weaponObj.name}.png)`
+            slot.style.borderColor = rarity[itemObj.rarity].color
+            slot.style.backgroundImage = itemObj.img//`url(assets/img/weapons/${weaponObj.name}.png)`
 
             const itemlevel = document.createElement('div')
-            itemlevel.id = weapon+"Level"
+            itemlevel.id = item+"Level"
             itemlevel.classList.add('itemlevel')
-            itemlevel.innerHTML = weaponObj.level+1
+            itemlevel.innerHTML = itemObj.level+1
 
             slot.appendChild(itemlevel)
 
             const descriptionText = document.createElement('div')
             descriptionText.classList.add('descriptionText')
-            descriptionText.innerHTML = weaponObj.description
+            descriptionText.innerHTML = itemObj.description
 
             slot.tabIndex = 0
 
-            this.statsToDisplay = weaponObj.getStats()
+            this.statsToDisplay = itemObj.getStats()
 
             slot.addEventListener('keydown', (e)=>{
                 if(e.code === "ShiftLeft"){
                     descriptionBox.innerHTML = ""
-                    this.statsToDisplay = weaponObj.improvementInfo()
+                    this.statsToDisplay = itemObj.improvementInfo()
                     descriptionBox.appendChild(descriptionText)
                     this.createStatPanel()
-                    this.createLevelPanel(weaponObj,true)
+                    this.createLevelPanel(itemObj,true)
                 }
             })
             
             slot.addEventListener('keyup', (e)=>{
                 if(e.code === "ShiftLeft"){
                     descriptionBox.innerHTML = ""
-                    this.statsToDisplay = weaponObj.getStats()
+                    this.statsToDisplay = itemObj.getStats()
                     descriptionBox.appendChild(descriptionText)
                     this.createStatPanel()
-                    this.createLevelPanel(weaponObj,false)
+                    this.createLevelPanel(itemObj,false)
                 }
             })
 
             slot.addEventListener('mouseenter', (e) => {
                 slot.focus()            
                 descriptionBox.innerHTML = ""
-                this.statsToDisplay = weaponObj.getStats()
+                this.statsToDisplay = itemObj.getStats()
                 descriptionBox.appendChild(descriptionText)
                 this.createStatPanel()
-                this.createLevelPanel(weaponObj,false)
+                this.createLevelPanel(itemObj,false)
             })
             slot.addEventListener('mouseleave', (e) => {
                 descriptionBox.innerHTML = "Hover over an item to see its description."
             })
 
-            weaponsInv.appendChild(slot)
+            if(itemObj.type === "Passive"){
+                itemsInv.appendChild(slot)
+            }else{
+                weaponsInv.appendChild(slot)
+            }
 
-            if(weaponObj.type === "Area"){
+
+            if(itemObj.type === "Area"){
                 setTimeout(() => {
-                    weaponObj.attack()
+                    itemObj.attack()
                 }, 1000);
             }
         }
@@ -136,7 +138,7 @@ class Inventory{
             statElement.classList.add('weaponStat')
 
 
-            statSymbol.src=`assets/img/UI/statIcon/${stat.replace(" ","_")}.png`
+            statSymbol.src=`assets/img/UI/statIcon/${stat}.png`
             statValue.innerHTML = value
 
             statElement.appendChild(statSymbol)
@@ -151,7 +153,7 @@ class Inventory{
     getAvailableItems(){
         var ret = []
         ItemsDict.forEach((item) => {
-            const isMax = this.data.weapons[item] ? this.data.weapons[item].level === this.data.weapons[item].maxLevel : false
+            const isMax = this.data.items[item] ? this.data.items[item].level === this.data.items[item].maxLevel : false
             if(!isMax){
                 ret.push(item)
             }

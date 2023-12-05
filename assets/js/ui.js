@@ -89,7 +89,7 @@ function createItemSelector(item) {
     itemDiv.appendChild(itemInfo);
 
     itemDiv.onclick = () => {
-        player.inventory.addWeapon(item.name.replace(" ",""))
+        player.inventory.addWeapon(item.constructor.name)
         closeLevelUpMenu()
         updateStats();
     };
@@ -130,7 +130,7 @@ function getRandomItems(arr, count) {
   }
 
   function existsInInventory(item){
-        return !player.inventory.data.weapons.some((w) => w.name === item.name)
+        return !player.inventory.data.items.some((w) => w.name === item.name)
     }
 
   function getItemStats(item){
@@ -146,7 +146,7 @@ function getRandomItems(arr, count) {
 
           statElement.classList.add('levelUpMenuItemStats')
 
-          statSymbol.src=`assets/img/UI/statIcon/${stat.replace(" ","_")}.png`
+          statSymbol.src=`assets/img/UI/statIcon/${stat}.png`
           statValue.innerHTML = value
 
           statElement.appendChild(statSymbol)

@@ -64,40 +64,17 @@ function dummyWave(size){
 
 }
 
-let start,previousTimeStamp;
-
-function gameLoop(timeStamp){
-
-    if (previousTimeStamp === undefined) {
-      previousTimeStamp = timeStamp;
-    }
-    
-    const elapsed = timeStamp - previousTimeStamp;
-      
-    ctx.fillStyle="black"
-    ctx.clearRect(0, 0, c.width,c.height)
-
-    ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
-    map.drawMap(ctx)
-
-    allItems.forEach((item)=>{
-        item.update(ctx)
-    })
-    allMobs.forEach((mob)=>{
-        mob.update(ctx)
-    })
-
-    ctx.beginPath()
-    ctx.arc(c.width/2, c.height/2,10,0,Math.PI*2)
-    ctx.fill()
-
+function drawPlayer(){
     ctx.setTransform(1,0,0,1,c.width/2,c.height/2)
     if(player.angle){ctx.rotate(player.angle)}
     ctx.drawImage(player.img,-player.size.width/2,-player.size.height/2, player.size.width,player.size.height)
     player.attackTick(ctx)
+}
 
+let start,previousTimeStamp;
+
+function drawXpBar(){
     ctx.setTransform(1,0,0,1,0,0)
-
     ctx.fillStyle="darkgray"
     ctx.fillRect(10,10,c.width-20,25)
     ctx.fillStyle="blue"
@@ -107,6 +84,35 @@ function gameLoop(timeStamp){
     ctx.font="20px PixelFont"
     ctx.textAlign="center"
     ctx.fillText(`Level: ${player.level} XP: ${player.inventory.data.xp}/${player.levelUpReq}`,c.width/2,30)
+}
+
+function gameLoop(timeStamp){
+
+    if (previousTimeStamp === undefined) {
+      previousTimeStamp = timeStamp;
+    }
+    const elapsed = timeStamp - previousTimeStamp;
+      
+    ctx.fillStyle="black"
+    ctx.clearRect(0, 0, c.width,c.height)
+
+    ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
+
+    map.drawMap(ctx)
+
+    allItems.forEach((item)=>{
+        item.update(ctx)
+    })
+    allMobs.forEach((mob)=>{
+        mob.update(ctx)
+    })
+    allDamageTexts.forEach((text)=>{
+        text.update(ctx)
+    })
+
+    drawPlayer()
+
+    drawXpBar()
 
     var shouldMove = false
     for(var dir in heldDirKeys){

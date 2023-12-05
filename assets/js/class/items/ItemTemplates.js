@@ -66,7 +66,6 @@ class WeaponBase extends ItemBase {
     checkHit(hitbox) {
         const truePos = player.getTruePos();
 
-
         allMobs.forEach((mob) => {
             const dx = truePos.x - mob.pos.x;
             const dy = truePos.y - mob.pos.y;
@@ -75,8 +74,7 @@ class WeaponBase extends ItemBase {
             if (distance < 500) {
                 const mobPos = { x: mob.pos.x, y: mob.pos.y, w: mob.size.width, h: mob.size.height };
                 if (doesCollide(hitbox, mobPos)) {
-                    console.log("Hit");
-                    mob.applyDamage(parseFloat(this.stats[this.level].damage));
+                    mob.applyDamage(player.getDamage(this));
                 }
             }
         });

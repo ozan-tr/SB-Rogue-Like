@@ -31,7 +31,7 @@ class Experience {
 
         const distance = Math.hypot(dx, dy);
 
-        if(distance < player.stats.pickup_range && !this.attraction){
+        if(distance < player.stats.pickupRange && !this.attraction){
             this.startSucking()
         }
 
