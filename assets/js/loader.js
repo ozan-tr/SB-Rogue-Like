@@ -80,8 +80,6 @@ function updateLoadingProgress(paths) {
     endAngle = scale(loadedScripts, 1, totalScripts, Math.PI / 2, 2 * Math.PI + Math.PI / 2)
     drawLoadingBar(endAngle);
 
-    console.log(loadedScripts, totalScripts);
-
     if (loadedScripts === totalScripts) {
         setTimeout(() => {
             loadingCanvas.style.display = 'none';
@@ -102,10 +100,10 @@ function loadItemsData(paths) {
         .then((data) => {
             const regex = /(?<=class )\w+/g;
             const items = data.match(regex); 
-            items.forEach((item) => {
-                const itemClass = eval(item);
-                const itemObj = new itemClass();
-                ItemsDict.push(itemObj)
+            items.forEach((weapon) => {
+                const weaponClass = eval(weapon);
+                const weaponObj = new weaponClass();
+                ItemsDict.push(weaponObj)
             })
         });
     })
@@ -114,24 +112,30 @@ function loadItemsData(paths) {
 loader.scripts().then(paths => {
     totalScripts = paths.length;
     loader.characters().then(chars => {
-
         sortAndLoad(characterContainer, chars);
-
     });
     loader.maps().then(maps => {
-
         sortAndLoad(mapsContainer, maps);
-
     });
     loader.mobs().then(mobs => {
-
         sortAndLoad(mobsContainer, mobs);
-
     });
-
     loader.projectiles().then(projectiles => {
         sortAndLoad(projectilesContainer, projectiles);
     });
+
+    const firstLoad = paths.filter(path=>path.includes("templateClasses"))
+
+    firstLoad.forEach(path => {
+        const script = document.createElement('script');
+        script.src = path;
+        script.defer = true;
+        document.body.appendChild(script);
+        updateLoadingProgress(paths);
+    });
+
+    paths = paths.filter(path=>!path.includes("templateClasses"))
+
 
     paths.forEach(path => {
         const script = document.createElement('script');
