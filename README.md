@@ -31,6 +31,8 @@ setTimeout(()=>{
 
 ```
 
+**Note:** if the game doesn't load properly hit ctrl+r to refresh it until it does (working on fixing it)
+
 ### Creating Content
 
 Creating new characters, passive items and mobs is a simple task. Active items, enemies that don't attack with contact damage and characters/enemies that move in a different way require some scripting.
@@ -158,4 +160,5 @@ class YourMobName extends MobTemplate {
 ## Credits
 
 Art design: zeynep
+
 Scripting: ozan
