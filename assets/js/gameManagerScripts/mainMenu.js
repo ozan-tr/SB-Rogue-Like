@@ -160,7 +160,3 @@ function openSettings(){
     document.getElementsByClassName("settingsContainer")[0].style.display = "block"
 }
 
-//!DEBUG
-setTimeout(()=>{
-    startGame("OzanGurleyen","BioLab")
-},1000)
