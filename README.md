@@ -117,8 +117,10 @@ class YourMobName extends MobTemplate {
 </details>
 
 ## TO-DO
+
 <details>
 <summary>Click To Expand</summary>
+
 - [x] resim isimlerinde aynı formatı kullandır
   
 - [ ] base classları daha universal yap
