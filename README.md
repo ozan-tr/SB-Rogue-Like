@@ -2,16 +2,16 @@
 
 ## Content
 
-- [Devlopement](#dev-section)
-  - [Setup](#inst)
-  - [Creating Content](#content)
-    - [Enemies](#mobs-guide)
-- [TO-DO](#todo)
+- [Devlopement](#development)
+  - [Setup](#setup)
+  - [Creating Content](#creating-content)
+    - [Enemies](#enemies)
+- [TO-DO](#to-do)
 - [Credits](#credits)
 
-## Development {#dev-section}
+## Development
 
-### Setup {#inst}
+### Setup
 
 1. Download and install [Node.js](https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi) and [Git](https://github.com/git-for-windows/git/releases/download/v2.43.0.windows.1/Git-2.43.0-64-bit.exe) (Optinal) [VS Code](https://code.visualstudio.com/download)
 
@@ -20,11 +20,11 @@
    2. npm install
    3. npm start
 
-### Creating Content {#content}
+### Creating Content
 
 Creating new characters, passive items and mobs is a simple task. Active items, enemies that don't attack with contact damage and characters/enemies that move in a different way require some scripting.
 
-#### Enemies {#mobs-guide}
+#### Enemies
 
 <details>
 <summary>Click To Expand</summary>
@@ -116,7 +116,7 @@ class YourMobName extends MobTemplate {
 
 </details>
 
-## [TO-DO](#todo)
+## TO-DO
 
 - [x] resim isimlerinde aynı formatı kullandır
   
@@ -139,7 +139,7 @@ class YourMobName extends MobTemplate {
   - [ ] xp **Z**
   - [ ] para **Z**
 
-## Credits {#credits}
+## Credits
 
 Art design: zeynep
 Scripting: ozan
