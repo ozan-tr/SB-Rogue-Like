@@ -15,22 +15,22 @@ class Raket extends WeaponBase {
             },
             {
                 damage: 5,
-                attackSpeed: 1,
+                attackSpeed: 1.1,
                 duration: 1,
-                piercing:2
+                piercing:4
             },
             {
-                damage: 5,
-                attackSpeed: 5,
-                area: 5,
-                amount: 2
+                damage: 7,
+                attackSpeed: 1.2,
+                duration: 1,
+                piercing:6
             },
             {
-                damage: 5,
-                attackSpeed: 5,
-                area: 5,
-                amount: 2
-            }
+                damage: 10,
+                attackSpeed: 1.3,
+                duration: 1,
+                piercing:8
+            },
         ];
 
         this.howManyHits = 0;
