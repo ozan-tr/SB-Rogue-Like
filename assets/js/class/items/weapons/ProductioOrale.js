@@ -25,17 +25,16 @@ class ProductionOrale extends WeaponBase {
 
     }
 
-    attack(ctx) {
-
+    attack() {
         const animationCanvas = document.createElement("canvas");
         animationCanvas.width = c.width;
         animationCanvas.height = c.height;
 
         document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        ctx = animationCanvas.getContext("2d");
+        const anim = animationCanvas.getContext("2d");
 
         const playerPos = player.getHeadPos();
-        ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
+        anim.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
         const stats = this.stats[this.level];
 
@@ -52,15 +51,15 @@ class ProductionOrale extends WeaponBase {
         const attackAnimation = setInterval(() => {
             r+=stats.attackSpeed;
 
-            ctx.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
+            anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
 
-            ctx.beginPath();
-            ctx.strokeStyle = "white";
-            ctx.lineWidth = 5;
-            ctx.lineCap = "round";
-            ctx.arc(0, 0, r, angle + Math.PI / 4, angle - Math.PI / 4, true);
+            anim.beginPath();
+            anim.strokeStyle = "white";
+            anim.lineWidth = 5;
+            anim.lineCap = "round";
+            anim.arc(0, 0, r, angle + Math.PI / 4, angle - Math.PI / 4, true);
 
-            ctx.stroke();
+            anim.stroke();
 
             const lineLength =  r*2 / Math.sqrt(2)
 

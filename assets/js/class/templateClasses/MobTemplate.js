@@ -110,7 +110,9 @@ class MobTemplate{
             if(this.health <= 0) {
                 this.kill(true)
             }
+            return true
         }
+        return false
     }
     shouldRender(){
         const truePos = player.getTruePos()
