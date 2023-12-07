@@ -1,6 +1,6 @@
 # SB-Rogue-Like
 
-## Content
+## Table of Contents
 
 - [Devlopement](#development)
   - [Setup](#setup)
@@ -117,7 +117,8 @@ class YourMobName extends MobTemplate {
 </details>
 
 ## TO-DO
-
+<details>
+<summary>Click To Expand</summary>
 - [x] resim isimlerinde aynı formatı kullandır
   
 - [ ] base classları daha universal yap
@@ -138,6 +139,8 @@ class YourMobName extends MobTemplate {
   - [ ] map **Z**
   - [ ] xp **Z**
   - [ ] para **Z**
+
+<details>
 
 ## Credits
 
