@@ -15,6 +15,13 @@ class BioLabWaves extends WavesManager{
                 ]
             },
             {
+                duration: 30000,
+                mobs: [
+                    this.simpleEncerlement(fodderMob1, 50,400),
+                    this.simpleEncerlement(fodderMob2, 50,300),
+                ]
+            },
+            {
                 duration: 15000,
                 mobs: [
                     this.simpleEncerlement(fodderMob2, 50,400),
