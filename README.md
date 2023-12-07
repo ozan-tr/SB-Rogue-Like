@@ -116,7 +116,7 @@ class YourMobName extends MobTemplate {
 
 </details>
 
-## TO-DO {#todo}
+## [TO-DO](#todo)
 
 - [x] resim isimlerinde aynı formatı kullandır
   
