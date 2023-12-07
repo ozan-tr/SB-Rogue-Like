@@ -20,6 +20,17 @@
    2. npm install
    3. npm start
 
+**Important:** delete this part in [mainMenu.js](assets/js/gameManagerScripts/mainMenu.js) to avoid skipping the menu
+
+```js
+
+//!DEBUG
+setTimeout(()=>{
+    startGame("OzanGurleyen","BioLab")
+},1000)
+
+```
+
 ### Creating Content
 
 Creating new characters, passive items and mobs is a simple task. Active items, enemies that don't attack with contact damage and characters/enemies that move in a different way require some scripting.
