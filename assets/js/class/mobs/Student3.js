@@ -8,7 +8,7 @@ class Student3 extends MobTemplate {
                 speed:1,
                 maxHealth:60
             },
-            10
+            4
         )
     }
 }

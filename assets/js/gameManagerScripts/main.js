@@ -15,6 +15,7 @@ c.height= 500
 
 var player;
 var map;
+var wave
 var allMobs = []
 var allItems = []
 
@@ -109,9 +110,12 @@ function gameLoop(timeStamp){
       
           drawPlayer()
       
-          drawXpBar()      
-
+          drawXpBar()    
+          
+          wave.drawTimer(ctx)
+          
     }
+    
     if (previousTimeStamp === undefined) {
         previousTimeStamp = timeStamp;
       }

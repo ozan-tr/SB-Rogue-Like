@@ -148,6 +148,7 @@ function startGame(playerName,mapName){
 
     player = eval(`new ${playerName}()`)
     map = eval(`new ${mapName}()`)
+    wave = eval(`new ${mapName}Waves()`)
 
     document.addEventListener("keydown", keyDown)
     document.addEventListener("keyup", keyUp)

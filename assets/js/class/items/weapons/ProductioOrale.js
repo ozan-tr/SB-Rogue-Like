@@ -8,9 +8,11 @@ class ProductionOrale extends WeaponBase {
         );
         this.stats = [
             {
-                attackSpeed: 5,
-                area: 5,
-                amount: 5
+                damage: 5,
+                attackSpeed: 1,
+                area: 0.5,
+                amount: 1,
+                duration: 1
             },
             {
                 attackSpeed: 5,
@@ -36,18 +38,19 @@ class ProductionOrale extends WeaponBase {
         ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
         const stats = this.stats[this.level];
-        const baseHeight = 10;
-        const baseReach = 60;
 
         const timeOut = new Date();
-        const lifeSpan = 3000;
+        const lifeSpan = 3000 * stats.duration;
 
-        let r = 0;
+        let r = 10*stats.area;
 
+        const currentDir = player.dir
 
+        const angle = Math.atan2(-currentDir.y, -currentDir.x)
 
+        
         const attackAnimation = setInterval(() => {
-            r++;
+            r+=stats.attackSpeed;
 
             ctx.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
 
@@ -63,18 +66,23 @@ class ProductionOrale extends WeaponBase {
 
             //console.log(Math.cos(angle), Math.sin(angle))
 
-            var hitbox = {
-                x: Math.cos(angle) - lineLength/2,
-                y: Math.sin(angle) - lineLength/2,
-                w: lineLength,
-                h: lineLength
-            };
+            if(currentDir.y != 0)
+                var hitbox = {
+                    x: -lineLength/2,
+                    y: (-currentDir.y)*lineLength/2,
+                    w: lineLength,
+                    h: (currentDir.y*(r-lineLength)) * 0.75
+                };   
+            else{
+                var hitbox = {
+                    x: (-currentDir.x)*lineLength/2,
+                    y: -lineLength/2,
+                    w: (currentDir.x*(r-lineLength)) * 0.75,
+                    h: lineLength
+                };   
+            } 
 
             const truePos = player.getTruePos();
-
-            ctx.strokeStyle = "red";
-            ctx.lineWidth = 2;
-            ctx.strokeRect(hitbox.x, hitbox.y, hitbox.w, hitbox.h);
             
             this.checkHit({
                 x: truePos.x + hitbox.x,
