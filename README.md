@@ -142,7 +142,7 @@ class YourMobName extends MobTemplate {
   - [ ] xp **Z**
   - [ ] para **Z**
 
-<details>
+</details>
 
 ## Credits
 
