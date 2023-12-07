@@ -48,15 +48,16 @@ class ItemBase {
 }
 
 class WeaponBase extends ItemBase {
-    constructor(name, description, type, rarity, level, maxLevel) {
+    constructor(name, description, type, rarity) {
         super(name, description, rarity);
-        this.level = level;
-        this.maxLevel = maxLevel;
+        this.level = 0;
         this.lastAttack = new Date();
         this.previousTimeStamp = 0;
         this.baseCooldown = 2000;
         this.type = type;
         this.img = `url(assets/img/weapons/${this.name.replace(" ", "")}.png)`;
+        this.imgElement = new Image(40,40)
+        this.imgElement.src = `assets/img/weapons/${this.name.replace(" ", "")}.png`
     }
 
     attack() {

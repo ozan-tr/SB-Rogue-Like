@@ -80,7 +80,7 @@ class MobTemplate{
                     const mobDy = mob.pos.y - this.pos.y;
                     const mobDistance = Math.hypot(mobDx, mobDy);
                     
-                    const minDistance = (Math.hypot(this.size.width + this.size.height) + Math.hypot(mob.size.width + mob.size.height))/4  // Assuming mobs have a size property
+                    const minDistance = (this.size.width + mob.size.width) / 2;
     
                     if (mobDistance < minDistance) {
                         const pushFactor = (minDistance - mobDistance) / mobDistance;

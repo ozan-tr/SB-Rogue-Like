@@ -4,9 +4,7 @@ class ProductionOrale extends WeaponBase {
             "Production Orale",
             "u e e e e e e e ",
             "Magic",
-            2,
-            0,
-            9
+            2
         );
         this.stats = [
             {
@@ -20,6 +18,9 @@ class ProductionOrale extends WeaponBase {
                 amount: 10
             }
         ];
+
+        this.maxLevel = this.stats.length - 1;
+
     }
 
     attack(ctx) {
@@ -43,14 +44,7 @@ class ProductionOrale extends WeaponBase {
 
         let r = 0;
 
-        const angle = Math.atan2(-player.dir.y, -player.dir.x);
 
-        let hitbox = {
-            x: 0,
-            y: 0,
-            w: 0,
-            h: 0
-        };
 
         const attackAnimation = setInterval(() => {
             r++;
@@ -65,32 +59,28 @@ class ProductionOrale extends WeaponBase {
 
             ctx.stroke();
 
-            hitbox = {
-                x: r * Math.cos(angle + Math.PI / 2),
-                y: r * Math.sin(angle + Math.PI / 2),
-                w: 2 * r * Math.cos(Math.PI / 2),
-                h: r
-            };
+            const lineLength =  r*2 / Math.sqrt(2)
 
-            const rotatedHitbox = {
-                x: hitbox.x * Math.cos(player.angle) - hitbox.y * Math.sin(player.angle),
-                y: hitbox.x * Math.sin(player.angle) + hitbox.y * Math.cos(player.angle),
-                w: hitbox.w,
-                h: hitbox.h
-            };
+            //console.log(Math.cos(angle), Math.sin(angle))
 
+            var hitbox = {
+                x: Math.cos(angle) - lineLength/2,
+                y: Math.sin(angle) - lineLength/2,
+                w: lineLength,
+                h: lineLength
+            };
 
             const truePos = player.getTruePos();
 
             ctx.strokeStyle = "red";
             ctx.lineWidth = 2;
-            ctx.strokeRect(rotatedHitbox.x, rotatedHitbox.y, rotatedHitbox.w, rotatedHitbox.h);
+            ctx.strokeRect(hitbox.x, hitbox.y, hitbox.w, hitbox.h);
             
             this.checkHit({
-                x: truePos.x + rotatedHitbox.x,
-                y: truePos.y + rotatedHitbox.y,
-                w: rotatedHitbox.w,
-                h: rotatedHitbox.h
+                x: truePos.x + hitbox.x,
+                y: truePos.y + hitbox.y,
+                w: hitbox.w,
+                h: hitbox.h
             });
 
             if (new Date() - timeOut > lifeSpan) {

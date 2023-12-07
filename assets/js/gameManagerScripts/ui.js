@@ -38,6 +38,11 @@ function updateStats() {
     const stats = player.getStats();
     statsList.innerHTML = '';
 
+    player.inventory.data.items.forEach((item) => {
+        console.log(item)
+        document.getElementById(item.name.replace(" ","")+"Level").innerHTML = item.level + 1
+    })
+
     for (const stat in stats) {
         if (stats.hasOwnProperty(stat)) {
             const value = stats[stat];
@@ -52,6 +57,9 @@ function updateStats() {
 }
 
 function createItemSelector(item) {
+
+    const stats = getItemStats(item)
+
     const itemDiv = document.createElement('div');
     itemDiv.className = 'levelUpMenuItem';
 
@@ -79,7 +87,13 @@ function createItemSelector(item) {
 
     const itemStats = document.createElement('div');
     itemStats.className = 'levelUpMenuItemStats';
-    itemStats.innerHTML = getItemStats(item);
+    itemStats.innerHTML = stats[0];
+
+    if(stats[1]){
+        itemDiv.classList.add('newItem')
+    }else{
+        itemDiv.classList.add('existingItem')
+    }
 
 
     itemInfo.appendChild(itemDescription);
@@ -89,7 +103,7 @@ function createItemSelector(item) {
     itemDiv.appendChild(itemInfo);
 
     itemDiv.onclick = () => {
-        player.inventory.addWeapon(item.constructor.name)
+        player.inventory.addItem(item.constructor.name)
         closeLevelUpMenu()
         updateStats();
     };
@@ -108,7 +122,6 @@ function closeLevelUpMenu(){
 }
 
 function openLevelUpMenu() {
-
     uiActive = true;
     levelUpMenu.style.display = 'flex';
     levelUpMenuBody.innerHTML = '';
@@ -131,7 +144,7 @@ function getRandomItems(arr, count) {
 
   function existsInInventory(item){
         return !player.inventory.data.items.some((w) => w.name === item.name)
-    }
+   }
 
   function getItemStats(item){
       let weaponStats = document.createElement('div')
@@ -154,5 +167,5 @@ function getRandomItems(arr, count) {
 
           weaponStats.appendChild(statElement)
       }
-      return weaponStats.innerHTML
+      return [weaponStats.innerHTML,existsInInventory(item)]
   }

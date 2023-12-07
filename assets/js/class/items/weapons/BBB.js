@@ -5,9 +5,7 @@ class BBB extends WeaponBase {
             "BBB",
             "Büyük Beyaz Bok",
             "Area",
-            5,
-            0,
-            9
+            5
         );
         this.stats = [
             {
@@ -15,6 +13,7 @@ class BBB extends WeaponBase {
                 attackSpeed: 1,
                 area: 2,
                 amount: 3,
+                size: 1,
                 critDamage:10,
                 critChance:0.1,
             },
@@ -22,12 +21,14 @@ class BBB extends WeaponBase {
                 damage: 10,
                 attackSpeed: 1,
                 area: 2,
+                size: 1.5,
                 amount: 4
             },
             {
                 damage: 15,
                 attackSpeed: 1.5,
                 area: 3,
+                size: 2,
                 amount: 5
             },
             {
@@ -37,6 +38,7 @@ class BBB extends WeaponBase {
                 amount: 6
             }
         ];
+        this.maxLevel = this.stats.length - 1;
     }
 
     attack() {
@@ -72,16 +74,16 @@ class BBB extends WeaponBase {
 
                 const degOffset = rad + offset*i
 
-                const x = Math.cos(degOffset) * area -sprite.height/2;
-                const y = Math.sin(degOffset) * area -sprite.width/2;
+                const x = Math.cos(degOffset) * area-sprite.height/2*stats.size;
+                const y = Math.sin(degOffset) * area-sprite.width/2*stats.size;
     
-                ctx.drawImage(sprite, x, y, sprite.width, sprite.height);
+                ctx.drawImage(sprite, x, y, sprite.width*stats.size, sprite.height*stats.size);
     
                 this.checkHit({
                     x: truePos.x+x,
                     y: truePos.y+y,
-                    w: sprite.width,
-                    h: sprite.height,
+                    w: sprite.width*stats.size,
+                    h: sprite.height*stats.size,
                 })
 
             }

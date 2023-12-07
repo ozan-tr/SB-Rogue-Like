@@ -3,6 +3,7 @@ const mapsContainer = document.getElementById('mapsContainer');
 const mobsContainer = document.getElementById('mobsContainer');
 const projectilesContainer = document.getElementById('projectilesContainer');
 const mainContainer = document.querySelector('.mainContainer');
+const dropsContainer = document.querySelector('.dropsContainer');
 
 const loadingCanvas = document.createElement('canvas');
 document.body.appendChild(loadingCanvas);
@@ -30,7 +31,6 @@ function createDivContainer(id) {
 
 function loadImages(container, paths) {
     paths.forEach((path) => {
-
         const separated = path.split('\\');
         const id = separated[separated.length - 1].split('.')[0];
         const img = createImageElement(id, path);
@@ -82,7 +82,7 @@ function updateLoadingProgress(paths) {
 
     if (loadedScripts === totalScripts) {
         setTimeout(() => {
-            loadingCanvas.style.display = 'none';
+            loadingCanvas.remove()
             mainMenu()
             loadItemsData(paths.filter((path) => path.includes("weapons")))
         }, 100);
@@ -122,6 +122,10 @@ loader.scripts().then(paths => {
     });
     loader.projectiles().then(projectiles => {
         sortAndLoad(projectilesContainer, projectiles);
+    });
+
+    loader.drops().then(drops => {
+        sortAndLoad(dropsContainer, drops);
     });
 
     const firstLoad = paths.filter(path=>path.includes("templateClasses"))

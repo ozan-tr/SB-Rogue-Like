@@ -5,9 +5,7 @@ class TestSword extends WeaponBase{
             "Test Sword",
             "Deneme amaçlı kılıç amk elöelöelöelöelöeleöleö",
             "Sword",
-            6,
-            0,
-            9
+            6
         )
         
         this.stats = [
@@ -46,5 +44,6 @@ class TestSword extends WeaponBase{
                 area:5
             }
         ]
+        this.maxLevel = this.stats.length - 1;
     }
 }

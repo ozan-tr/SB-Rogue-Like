@@ -15,7 +15,7 @@ class Inventory{
             xp:0,
             currency:0
         }
-        this.addWeapon(player.startingWeapon)
+        this.addItem(player.startingWeapon)
     }
     addXp(amnt){
         this.data.xp += amnt
@@ -27,7 +27,7 @@ class Inventory{
     addCurrency(amnt){
         this.data.currency += amnt
     }
-    addWeapon(item){
+    addItem(item){
         var exists = false
         this.data.items.forEach((w) => {
             if(w.constructor.name === item){

@@ -20,6 +20,7 @@ var allItems = []
 
 var isMoving = false
 
+
 var isShiftDown = false
 
 function keyDown(e) {
@@ -56,8 +57,8 @@ function dummyWave(size){
     var incr = 360/size
     for(var i=0;i<360;i+=incr){
         const deg = i*Math.PI/180
-        new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y})
-        //new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
+        //new BookBat({x:Math.cos(deg)*500 + playerPos.x,y:Math.sin(deg)*500 + playerPos.y})
+        new Student1({x:Math.cos(deg)*400 + playerPos.x,y:Math.sin(deg)*400 + playerPos.y})
         //new Student2({x:Math.cos(deg)*300 + playerPos.x,y:Math.sin(deg)*300 + playerPos.y})
         //new Student3({x:Math.cos(deg)*200 + playerPos.x,y:Math.sin(deg)*200 + playerPos.y})
     }
@@ -88,32 +89,34 @@ function drawXpBar(){
 
 function gameLoop(timeStamp){
 
-    if (previousTimeStamp === undefined) {
-      previousTimeStamp = timeStamp;
-    }
-    const elapsed = timeStamp - previousTimeStamp;
+    if(gameActive){
+          ctx.fillStyle="black"
+          ctx.clearRect(0, 0, c.width,c.height)
       
-    ctx.fillStyle="black"
-    ctx.clearRect(0, 0, c.width,c.height)
+          ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
+      
+          map.drawMap(ctx)
+      
+          allItems.forEach((item)=>{
+              item.update(ctx)
+          })
+          allMobs.forEach((mob)=>{
+              mob.update(ctx)
+          })
+          allDamageTexts.forEach((text)=>{
+              text.update(ctx)
+          })
+      
+          drawPlayer()
+      
+          drawXpBar()      
 
-    ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
+    }
+    if (previousTimeStamp === undefined) {
+        previousTimeStamp = timeStamp;
+      }
 
-    map.drawMap(ctx)
-
-    allItems.forEach((item)=>{
-        item.update(ctx)
-    })
-    allMobs.forEach((mob)=>{
-        mob.update(ctx)
-    })
-    allDamageTexts.forEach((text)=>{
-        text.update(ctx)
-    })
-
-    drawPlayer()
-
-    drawXpBar()
-
+    const elapsed = timeStamp - previousTimeStamp;
     var shouldMove = false
     for(var dir in heldDirKeys){
         if(heldDirKeys[dir]){shouldMove = true}

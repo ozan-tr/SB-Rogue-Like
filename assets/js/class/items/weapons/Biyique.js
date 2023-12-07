@@ -4,9 +4,7 @@ class Biyique extends WeaponBase {
             "Biyique",
             "The greatest moustache in the world",
             "Whip",
-            5,
-            0,
-            9
+            5
         );
         this.stats = [
             {
@@ -30,6 +28,8 @@ class Biyique extends WeaponBase {
                 area: 3
             }
         ];
+        this.maxLevel = this.stats.length - 1;
+
     }
 
     attack() {

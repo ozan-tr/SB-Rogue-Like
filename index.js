@@ -5,6 +5,8 @@ const path = require('node:path')
 
 const {glob} = require("glob");
 
+// Process the CSS content with PostCSS plugins
+
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -39,6 +41,9 @@ async function getMobs(){
 async function getProjectiles(){
   return await glob('assets/img/projectiles/**/*.png')
 }
+async function getDrops(){
+  return await glob('assets/img/drops/**/*.png')
+}
 
 
 app.whenReady().then(() => {
@@ -47,6 +52,7 @@ app.whenReady().then(() => {
   ipcMain.handle('getMaps', () => getMaps());
   ipcMain.handle('getMobs', () => getMobs());
   ipcMain.handle('getProjectiles', () => getProjectiles());
+  ipcMain.handle('getDrops', () => getDrops());
   createWindow()
   app.on('activate', () => {  
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

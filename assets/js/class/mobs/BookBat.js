@@ -9,7 +9,7 @@ class BookBat extends MobTemplate{
                 damage:10,
                 maxHealth:5 ,
             },
-            100
+            1
         )
     }
 }

@@ -1,4 +1,5 @@
 
+
 .uiContainer{
     transition: backdrop-filter 1s linear;
     z-index: 2;
@@ -252,12 +253,53 @@ h1{
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    border-style: solid;
-    border-radius: 5px;
-
-    background-color: rgba(128, 128, 128, 0.682);
+    box-sizing: border-box;
 }
+
+.existingItem{
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-width: 5px;
+    background-color: white;
+    border-color: gray;
+}
+
+@keyframes spin {
+    from {transform: translate(-50%, -50%) rotate(0);}
+    to   {transform: translate(-50%, -50%) rotate(360deg);}
+  }
+  .newItem {
+    --border-size: 0.25rem;
+    --border-bg: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+    
+    position: relative;
+    overflow: hidden;
+    font-size: 2rem;
+    padding: 5px;
+    border-radius: 0.5rem;
+  }
+    
+    .newItem::before {
+      content: '';
+      background: var(--border-bg);
+      width: calc(100% * 1.41421356237);
+      padding-bottom: calc(100% * 1.41421356237);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 100%;
+      z-index: -2;
+      animation: spin 5s linear infinite;
+    }
+    .newItem::after{
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: white;
+      z-index: -1;
+      border-radius: 0.25rem;
+    }
 
 .levelUpMenuItemThumbnail{
     width: 20%;
@@ -267,7 +309,7 @@ h1{
     justify-content: space-evenly;
     align-items: center;
 
-    border-style: solid;
+    border-style: none;
 
 }
 .levelUpMenuItemImg{
@@ -275,7 +317,6 @@ h1{
 }
 .levelUpMenuItemName{
     font-size: 1rem;
-
 }
 
 .levelUpMenuItemInfo{
@@ -285,7 +326,9 @@ h1{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border-style: solid;
+    border-style: none;
+    border-left: solid;
+    border-color: gray;
 }
 
 .levelUpMenuItemDescription{
@@ -308,3 +351,45 @@ h1{
 
 }
 
+.chestUI{
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter:blur(2px);
+    position: absolute;
+    z-index: 3;
+}
+
+
+.confirmButton{
+    transition: 0.5s;
+
+    font-size: 1.5rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-image: url(../img/UI/ButtonBackground.png);
+    background-size:contain;
+
+    background-color: transparent;
+
+    border-style: none;
+
+    width: 100px;
+    height: 50px;
+
+    position: absolute;
+
+    top: 80%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+  
