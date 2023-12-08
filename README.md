@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 -->
 # SB-Rogue-Like
 
 ## Table of Contents

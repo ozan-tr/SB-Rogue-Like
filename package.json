@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "electron ."
+    "test": "node debug.js",
+    "start": "electron . --inspect=5858"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^27.1.2",
-    "glob": "^10.3.10"
+    "electron": "^28.0.0",
+    "glob": "^10.3.10",
+    "puppeteer": "^21.6.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"

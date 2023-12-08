@@ -2,7 +2,7 @@ class ZeynepKarademir extends Player {
     constructor(){
         super()
         this.stats={
-            speed: 5,
+            speed: 0.5,
             strength: 1,
             defence: 1,
             luck: 1.5,

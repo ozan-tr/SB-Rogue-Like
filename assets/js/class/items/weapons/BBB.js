@@ -9,13 +9,14 @@ class BBB extends WeaponBase {
         );
         this.stats = [
             {
-                damage: 10,
+                damage: 1,
                 attackSpeed: 1,
                 area: 2,
                 amount: 3,
                 size: 1,
-                critDamage:10,
+                critDamage:2,
                 critChance:0.1,
+                knockBack: 10,
             },
             {
                 damage: 10,

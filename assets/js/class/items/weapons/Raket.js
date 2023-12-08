@@ -11,29 +11,35 @@ class Raket extends WeaponBase {
                 damage: 5,
                 attackSpeed: 1,
                 duration: 1,
-                piercing:2
+                piercing:2,
+                critChange:0.05,
+                critDamage: 3
             },
             {
                 damage: 5,
                 attackSpeed: 1.1,
                 duration: 1,
-                piercing:4
+                piercing:4,
+                critChange:0.05,
+                critDamage: 3
             },
             {
                 damage: 7,
                 attackSpeed: 1.2,
                 duration: 1,
-                piercing:6
+                piercing:6,
+                critChange:0.05,
+                critDamage: 3
             },
             {
                 damage: 10,
                 attackSpeed: 1.3,
                 duration: 1,
-                piercing:8
+                piercing:8,
+                critChange:0.05,
+                critDamage: 3
             },
         ];
-
-        this.howManyHits = 0;
 
         this.maxLevel = this.stats.length - 1;
     }
@@ -62,35 +68,44 @@ class Raket extends WeaponBase {
         const angle = Math.atan2(-currentDir.y, -currentDir.x)
 
         var pos = { x: 0, y: 0 }
+
+        var howManyHits = 0;
         
         const attackAnimation = setInterval(() => {
 
+            pos.x += Math.cos(angle) * stats.attackSpeed *2;
+            pos.y += Math.sin(angle) * stats.attackSpeed * 2;
 
-            pos.x += Math.cos(angle) * stats.attackSpeed;
-            pos.y += Math.sin(angle) * stats.attackSpeed;
+            const x = pos.x - sprite.width/2;
+            const y = pos.y - sprite.height/2;
 
             anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
 
             anim.save()
 
-            anim.translate(pos.x - sprite.width/2, pos.y - sprite.height/2)
+            anim.translate(x, y)
             anim.rotate(angle + Math.PI/2)
 
-            if(this.howManyHits >= stats.piercing/2){
-                anim.drawImage(sprite, 0,0, sprite.width, sprite.height);
-            }else{
+            if(howManyHits >= stats.piercing/2){
                 anim.drawImage(damagedSprite, 0,0, sprite.width, sprite.height);
+            }else{
+                anim.drawImage(sprite, 0,0, sprite.width, sprite.height);
             }
 
             anim.restore()
 
             const truePos = player.getTruePos();
 
-            const hitbox = { x:truePos.x-pos.x - sprite.width/2, y:truePos.y- pos.y - sprite.height/2, w: sprite.width, h: sprite.height };
+            const hitbox = { 
+                x:truePos.x + x, 
+                y:truePos.y + y, 
+                w: sprite.width, 
+                h: sprite.height
+            };
 
-            this.howManyHits += this.checkHit(hitbox);
+            howManyHits += this.checkHit(hitbox);
 
-            if (this.howManyHits >= stats.piercing) {
+            if (howManyHits >= stats.piercing) {
                 clearInterval(attackAnimation);
                 document.getElementsByClassName("mainContainer")[0].removeChild(animationCanvas);
             }

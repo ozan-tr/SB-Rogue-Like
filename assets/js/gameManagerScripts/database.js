@@ -1,6 +1,8 @@
 const startingWeapons = {
     "OzanErdal" : "Biyique",
     "NeslihanBeyaz" : "ProductionOrale",
+    "AlpEgeKurtulus" : "Raket",
+    "OzanGurleyen" : "BBB",
 }
 
 const rarity = [

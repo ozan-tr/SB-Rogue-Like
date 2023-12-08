@@ -2,7 +2,7 @@ class NeslihanBeyaz extends Player{
     constructor(){
         super()
         this.stats={
-            speed: 1,
+            speed: 0.2,
             strength: 1,
             defence: 2,
             luck: 1.5,

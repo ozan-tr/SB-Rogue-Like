@@ -10,7 +10,12 @@ class Player {
             pickUpRange: 50,
             critChance: 0.1,
             critDamage: 0.5,
+            knockBack: 0.5,
         };
+
+        this.maxHealth = 100;
+        this.health = 100;
+
 
         this.level=1
 
@@ -76,9 +81,34 @@ class Player {
         const damage = weapon.getStat("damage") * this.stats.strength
         const critChance = weapon.getStat("critChance") + this.stats.critChance
         const critDamage = weapon.getStat("critDamage") + this.stats.critDamage
+        const knockBack = weapon.getStat("knockBack") + this.stats.knockBack
         const crit = Math.random() < critChance
         const multiplier = crit ? critDamage : 1
-        return {damage:damage * multiplier,isCrit:crit}
+        return {damage:damage * multiplier,isCrit:crit,knockBack:knockBack}
+    }
+
+    drawHealthBar(ctx) {
+        const barWidth = 100;
+        const healthPercentage = this.health / this.maxHealth;
+        const foregroundWidth = barWidth * healthPercentage;
+
+    
+        ctx.fillStyle = 'gray';
+        ctx.fillRect(-50,this.size.height/1.5, barWidth, 10);
+    
+        // Calculate color
+        let color;
+        if (healthPercentage > 0.5) {
+            color = 'green';
+        } else if (healthPercentage > 0.2) {
+            color = 'yellow';
+        } else {
+            color = 'red';
+        }
+    
+        // Draw foreground
+        ctx.fillStyle = color;
+        ctx.fillRect(-50,this.size.height/1.5, foregroundWidth, 10);
     }
     
     getStats() {

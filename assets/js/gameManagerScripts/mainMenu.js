@@ -160,3 +160,9 @@ function openSettings(){
     document.getElementsByClassName("settingsContainer")[0].style.display = "block"
 }
 
+if(localStorage.getItem("DebugMode")=="true"){
+    setTimeout(()=>{
+        startGame("OzanGurleyen","BioLab")
+
+    },100)
+}

@@ -103,9 +103,15 @@ class MobTemplate{
         }
     }
     applyDamage(damage) {
+
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
             new DamageText(this,damage)
             this.health -= damage.damage
+
+            const dirToPlayer = Math.atan2(player.pos.y-this.pos.y,player.pos.x-this.pos.x)
+            const knockBack = {x:Math.cos(dirToPlayer)*damage.knockBack,y:Math.sin(dirToPlayer)*damage.knockBack}
+            this.pos.x += knockBack.x
+            this.pos.y += knockBack.y
             this.lastDamage=new Date()
             if(this.health <= 0) {
                 this.kill(true)
