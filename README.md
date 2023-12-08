@@ -21,18 +21,15 @@
    2. npm install
    3. npm start
 
-**Important:** delete this part in [mainMenu.js](assets/js/gameManagerScripts/mainMenu.js) to avoid skipping the menu
+### Debug Mode
 
-```js
+Press `Ctrl+Shift+I` to open the console.
 
-//!DEBUG
-setTimeout(()=>{
-    startGame("OzanGurleyen","BioLab")
-},1000)
+To enable debug mode type `enableDebug()` into the console. To disable it type `disableDebug()`.
 
-```
+To add debug commands you can look into [debugMode.js](https://github.com/ozan-tr/SB-Rogue-Like/blob/master/assets/js/debugMode.js).
 
-**Note:** if the game doesn't load properly hit ctrl+r to refresh it until it does (working on fixing it)
+To get a full list of debug commands you can type `debugHelp()`.
 
 ### Creating Content
 
