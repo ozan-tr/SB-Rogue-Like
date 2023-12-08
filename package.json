@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node debug.js",
-    "start": "electron . --inspect=5858"
+    "start": "electron . "
   },
   "author": "",
   "license": "ISC",

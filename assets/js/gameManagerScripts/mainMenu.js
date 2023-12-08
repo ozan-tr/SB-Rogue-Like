@@ -160,9 +160,12 @@ function openSettings(){
     document.getElementsByClassName("settingsContainer")[0].style.display = "block"
 }
 
-if(localStorage.getItem("DebugMode")=="true"){
-    setTimeout(()=>{
-        startGame("OzanGurleyen","BioLab")
+function enableDebug(){
+    console.log("Debug mode enabled \n Refresh to activate")
+    localStorage.setItem("debug",true)
+}
 
-    },100)
+function disableDebug(){
+    console.log("Debug mode disabled \n Refresh to activate")
+    localStorage.removeItem("debug")
 }

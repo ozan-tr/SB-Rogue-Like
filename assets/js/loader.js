@@ -104,8 +104,8 @@ function loadItemsData(paths) {
     });
 }
 
-function loadScripts(paths) {
-    return Promise.all(paths.map((path, index) => {
+async function loadScripts(paths) {
+    const indexes = await Promise.all(paths.map((path, index) => {
         const script = document.createElement('script');
         script.src = path;
         script.defer = true;
@@ -113,28 +113,35 @@ function loadScripts(paths) {
         return new Promise((resolve) => {
             script.onload = () => resolve(index);
         });
-    })).then((indexes) => {
-        indexes.forEach((index) => {
-            updateLoadingProgress(paths);
-        });
+    }));
+    indexes.forEach((index_1) => {
+        updateLoadingProgress(paths);
     });
 }
 
-loader.scripts().then(paths => {
+loader.scripts().then(async paths => {
     totalScripts = paths.length;
 
     const firstLoad = paths.filter(path => path.includes("templateClasses"));
     const nonTemplateLoad = paths.filter(path => !path.includes("templateClasses"));
 
-    return loadScripts(firstLoad).then(() => loadScripts(nonTemplateLoad));
+    await loadScripts(firstLoad);
+    return await loadScripts(nonTemplateLoad);
 }).then(() => {
     loader.characters().then(chars => sortAndLoad(characterContainer, chars));
     loader.maps().then(maps => sortAndLoad(mapsContainer, maps));
     loader.mobs().then(mobs => sortAndLoad(mobsContainer, mobs));
     loader.projectiles().then(projectiles => sortAndLoad(projectilesContainer, projectiles));
     loader.drops().then(drops => sortAndLoad(dropsContainer, drops));
+    if(localStorage.getItem("debug")){
+        const script = document.createElement('script');
+        script.src = "assets/js/debugMode.js";
+        script.defer = true;
+        document.body.appendChild(script);
+    }
 });
 
 function scale(number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
+

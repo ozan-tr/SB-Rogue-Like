@@ -5,6 +5,21 @@ const path = require('node:path')
 
 const {glob} = require("glob");
 
+
+const date = new Date().toISOString().replace(/:/g, '-').replace(/\./g, '-');
+const logFile = path.join(__dirname, '/logs/'+date+".log")
+
+
+fs.writeFile(logFile,"").catch((err) => {
+  if (err.code !== "EEXIST") throw err;
+});
+
+console.log("logging under "+logFile)
+
+app.commandLine.appendSwitch('log-file', logFile);
+app.commandLine.appendSwitch('enable-logging');
+
+
 // Process the CSS content with PostCSS plugins
 
 const createWindow = () => {
@@ -23,7 +38,7 @@ const createWindow = () => {
 
 }
 async function getScripts(){
-  return await glob('assets/js/**/*.js', { ignore: 'assets/js/loader.js' })
+  return await glob('assets/js/**/*.js', { ignore: ['assets/js/loader.js',"assets/js/debugMode.js"] })
 }
 
 async function getCharacters(){
