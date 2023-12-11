@@ -110,7 +110,6 @@ class MobTemplate{
         }
     }
     getDamage(){
-        console.log(this.lastDamageApplied)
         if(new Date() - this.lastDamageApplied > 1000/this.stats.attackSpeed){
             this.lastDamageApplied = new Date()
             return this.stats.damage
@@ -173,8 +172,10 @@ class MobTemplate{
 
 class DamageText {
     constructor(mob,damage){
+        if(damage.damage == 0)return
         this.mob = mob
         this.damage = damage
+        
         this.pos = {x: mob.pos.x, y: mob.pos.y}
         this.render = true
         this.font = "30px PixelFont"
@@ -196,7 +197,16 @@ class DamageText {
         
         ctx.font = this.font
         ctx.strokeStyle = 'black';
-        ctx.fillStyle = this.damage.isCrit ? "red" : "white"
+        if(this.damage.modifier==0){
+            ctx.fillStyle = "white"
+        }else if(this.damage.modifier==1){
+            ctx.fillStyle = "red"
+        }else if(this.damage.modifier==2){
+            ctx.fillStyle = "yellow"
+        }else if(this.damage.modifier==3){
+            ctx.fillStyle = "green"
+        }
+
         ctx.lineWidth = 2
 
         ctx.globalAlpha = this.opacity

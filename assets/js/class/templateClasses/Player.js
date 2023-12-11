@@ -11,6 +11,7 @@ class Player {
             critChance: 0.1,
             critDamage: 0.5,
             knockBack: 1,
+            evasion: 0.05,
         };
 
         this.maxHealth = 100;
@@ -86,16 +87,23 @@ class Player {
         const critDamage = weapon.getStat("critDamage") + this.stats.critDamage
         const crit = Math.random() < critChance
         const multiplier = crit ? critDamage : 1
-        return {damage:damage * multiplier,isCrit:crit,knockBack:knockBack}
+        return {damage:damage * multiplier,modifier:crit,knockBack:knockBack}
     }
     heal(amount){
+        new DamageText(this,{damage:amount,modifier:3}).pos = this.getTruePos()
         this.health += amount
         if(this.health > this.maxHealth){
             this.health = this.maxHealth
         }
     }
     applyDamage(amount){
-        
+        var fakePos = this.getTruePos()
+        fakePos.y -= 50
+        if(this.stats.evasion > Math.random()){
+            new DamageText(this,{damage:"Evaded",modifier:2}).pos = fakePos
+            return
+        }
+        new DamageText(this,{damage:amount,modifier:0}).pos = fakePos
         this.health -= amount
         if(this.health <= 0){
             this.health = 0
