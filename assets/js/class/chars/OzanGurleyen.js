@@ -10,7 +10,7 @@ class OzanGurleyen extends Player {
             pickupRange: 50,
             critChance: 0.1,
             critDamage: 0.5,
-            knockBack: 5,
+            knockBack: 1,
         }
         this.images = Array.from(document.getElementById('OzanGurleyen').children)
         this.images.sort((a,b) => a.id-b.id)

@@ -2,12 +2,13 @@
 const { app, BrowserWindow ,ipcMain} = require('electron')
 const fs = require("fs/promises");
 const path = require('node:path')
-
+const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const {glob} = require("glob");
 
 
-const date = new Date().toISOString().replace(/:/g, '-').replace(/\./g, '-');
+const date = formatDate(new Date())
 const logFile = path.join(__dirname, '/logs/'+date+".log")
+
 
 
 fs.writeFile(logFile,"").catch((err) => {
@@ -68,15 +69,36 @@ app.whenReady().then(() => {
   ipcMain.handle('getMobs', () => getMobs());
   ipcMain.handle('getProjectiles', () => getProjectiles());
   ipcMain.handle('getDrops', () => getDrops());
+
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
+
   createWindow()
-  app.on('activate', () => {  
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+
+
+
+})
+
+app.on('activate', () => {  
+  if (BrowserWindow.getAllWindows().length === 0) createWindow()
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
+
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+}
 
 
 

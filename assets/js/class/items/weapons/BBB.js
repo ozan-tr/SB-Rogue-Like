@@ -16,7 +16,7 @@ class BBB extends WeaponBase {
                 size: 1,
                 critDamage:2,
                 critChance:0.1,
-                knockBack: 10,
+                knockBack: 25,
             },
             {
                 damage: 10,

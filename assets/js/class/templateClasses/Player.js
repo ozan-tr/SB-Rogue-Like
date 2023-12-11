@@ -10,12 +10,14 @@ class Player {
             pickUpRange: 50,
             critChance: 0.1,
             critDamage: 0.5,
-            knockBack: 0.5,
+            knockBack: 1,
         };
 
         this.maxHealth = 100;
         this.health = 100;
 
+
+        this.killCount = 0;
 
         this.level=1
 
@@ -79,14 +81,30 @@ class Player {
 
     getDamage(weapon){
         const damage = weapon.getStat("damage") * this.stats.strength
+        const knockBack = weapon.getStat("knockBack") * this.stats.knockBack
         const critChance = weapon.getStat("critChance") + this.stats.critChance
         const critDamage = weapon.getStat("critDamage") + this.stats.critDamage
-        const knockBack = weapon.getStat("knockBack") + this.stats.knockBack
         const crit = Math.random() < critChance
         const multiplier = crit ? critDamage : 1
         return {damage:damage * multiplier,isCrit:crit,knockBack:knockBack}
     }
-
+    heal(amount){
+        this.health += amount
+        if(this.health > this.maxHealth){
+            this.health = this.maxHealth
+        }
+    }
+    damage(amount){
+        this.health -= amount
+        if(this.health <= 0){
+            this.health = 0
+            this.kill()
+        }
+    }
+    kill(){
+        console.log("dead")
+        endGame(false)
+    }
     drawHealthBar(ctx) {
         const barWidth = 100;
         const healthPercentage = this.health / this.maxHealth;

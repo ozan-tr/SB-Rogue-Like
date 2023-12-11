@@ -68,9 +68,9 @@ function dummyWave(size){
 
 function drawPlayer(){
     ctx.setTransform(1,0,0,1,c.width/2,c.height/2)
+    player.drawHealthBar(ctx)
     if(player.angle){ctx.rotate(player.angle)}
     ctx.drawImage(player.img,-player.size.width/2,-player.size.height/2, player.size.width,player.size.height)
-    player.drawHealthBar(ctx)
     player.attackTick(ctx)
 }
 

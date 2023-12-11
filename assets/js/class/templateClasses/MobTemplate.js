@@ -102,22 +102,26 @@ class MobTemplate{
             ctx.drawImage(this.img,this.pos.x,this.pos.y)
         }
     }
-    applyDamage(damage) {
+    applyDamage(damage,hitbox) {
 
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
             new DamageText(this,damage)
             this.health -= damage.damage
 
-            const dirToPlayer = Math.atan2(player.pos.y-this.pos.y,player.pos.x-this.pos.x)
-            const knockBack = {x:Math.cos(dirToPlayer)*damage.knockBack,y:Math.sin(dirToPlayer)*damage.knockBack}
+            const damagePos = {x:hitbox.x+hitbox.w/2,y:hitbox.y+hitbox.h/2}
+
+            const dirToDamage = Math.atan2(this.pos.y-damagePos.y,this.pos.x-damagePos.x)
+            const knockBack = {x:Math.cos(-dirToDamage)*damage.knockBack,y:Math.sin(-dirToDamage)*damage.knockBack}
+            
             this.pos.x += knockBack.x
             this.pos.y += knockBack.y
+
             this.lastDamage=new Date()
             if(this.health <= 0) {
                 this.kill(true)
             }
             return true
-        }
+        }   
         return false
     }
     shouldRender(){
@@ -145,6 +149,7 @@ class MobTemplate{
         if(giveExp){
             new Experience(this.pos,this.value)
         }
+        player.killCount++
         allMobs.splice(index, 1)
 
     }

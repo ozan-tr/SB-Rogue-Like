@@ -1,3 +1,5 @@
+console.time("Loading time");
+
 const characterContainer = document.getElementById('characterContainer');
 const mapsContainer = document.getElementById('mapsContainer');
 const mobsContainer = document.getElementById('mobsContainer');
@@ -80,6 +82,7 @@ function updateLoadingProgress(paths) {
             loadingCanvas.remove();
             mainMenu();
             loadItemsData(paths.filter((path) => path.includes("weapons")));
+            console.timeEnd("Loading time");
         }, 100);
     }
 }
