@@ -28,6 +28,8 @@ class MobTemplate{
 
         this.lastDamage = new Date()
 
+        this.lastDamageApplied = new Date()
+
         allMobs.push(this)        
     }
     animation(){
@@ -97,10 +99,23 @@ class MobTemplate{
                     }
                 }
             }
+
+            if(this.distToPlayer < player.size.width/2+this.size.width/2){
+                player.applyDamage(this.getDamage())
+            }
+
             this.pos.x += xStep
             this.pos.y += yStep
             ctx.drawImage(this.img,this.pos.x,this.pos.y)
         }
+    }
+    getDamage(){
+        console.log(this.lastDamageApplied)
+        if(new Date() - this.lastDamageApplied > 1000/this.stats.attackSpeed){
+            this.lastDamageApplied = new Date()
+            return this.stats.damage
+        }
+        return 0
     }
     applyDamage(damage,hitbox) {
 

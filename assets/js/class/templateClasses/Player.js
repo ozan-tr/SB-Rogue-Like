@@ -94,7 +94,8 @@ class Player {
             this.health = this.maxHealth
         }
     }
-    damage(amount){
+    applyDamage(amount){
+        
         this.health -= amount
         if(this.health <= 0){
             this.health = 0

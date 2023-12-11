@@ -6,7 +6,9 @@ class Student1 extends MobTemplate {
             {width: 40, height: 60},
             {
                 speed:1,
-                maxHealth:20
+                maxHealth:20,
+                damage:5,
+                attackSpeed:1,
             },
             2
         )

@@ -8,7 +8,8 @@ class LOignon extends MobTemplate {
             {width:128,height:128},
             {
                 speed:10,
-                damage:10000
+                damage:10000,
+                attackSpeed:1,
             },
             0
 
