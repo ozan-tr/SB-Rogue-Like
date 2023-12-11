@@ -29,7 +29,7 @@ To enable debug mode type `enableDebug()` into the console. To disable it type `
 
 To add debug commands you can look into [debugMode.js](https://github.com/ozan-tr/SB-Rogue-Like/blob/master/assets/js/debugMode.js).
 
-To get a full list of debug commands you can type `debugHelp()`.
+To get a full list of debug commands you can type `debug.help()`.
 
 ### Creating Content
 
