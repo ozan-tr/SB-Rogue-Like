@@ -175,13 +175,15 @@ class DamageText {
         if(damage.damage == 0)return
         this.mob = mob
         this.damage = damage
+
+        this.tilt = Math.random() > 0.5 ? 0.2 : -0.2
         
         this.pos = {x: mob.pos.x, y: mob.pos.y}
         this.render = true
         this.font = "30px PixelFont"
         this.lifeTime = 1000
         this.birthTime = new Date()
-        this.speed = 0.1
+        this.speed = 0.3
         this.opacity = 1
         allDamageTexts.push(this)
     }
@@ -192,6 +194,7 @@ class DamageText {
             allDamageTexts.splice(index,1)
         }else{
             this.pos.y -= this.speed
+            this.pos.x += this.tilt
             this.opacity = 1 - (timePassed/this.lifeTime)
         }
         

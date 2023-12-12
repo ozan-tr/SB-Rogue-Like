@@ -90,7 +90,9 @@ class Player {
         return {damage:damage * multiplier,modifier:crit,knockBack:knockBack}
     }
     heal(amount){
-        new DamageText(this,{damage:amount,modifier:3}).pos = this.getTruePos()
+        var fakePos = this.getTruePos()
+        fakePos.y -= 50
+        new DamageText(this,{damage:amount,modifier:3}).pos = fakePos
         this.health += amount
         if(this.health > this.maxHealth){
             this.health = this.maxHealth
