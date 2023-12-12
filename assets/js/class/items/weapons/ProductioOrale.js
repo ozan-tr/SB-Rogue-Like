@@ -15,9 +15,11 @@ class ProductionOrale extends WeaponBase {
                 duration: 1
             },
             {
+                damage: 10,
                 attackSpeed: 5,
                 area: 5,
-                amount: 10
+                amount: 2,
+                duration: 2,
             }
         ];
 

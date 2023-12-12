@@ -12,6 +12,8 @@ class OzanGurleyen extends Player {
             critDamage: 0.5,
             knockBack: 1,
             evasion: 0.05,
+            regenAmount: 1,
+            regenCoolDown: 1000
         }
         this.images = Array.from(document.getElementById('OzanGurleyen').children)
         this.images.sort((a,b) => a.id-b.id)

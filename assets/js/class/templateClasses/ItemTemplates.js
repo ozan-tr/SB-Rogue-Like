@@ -125,7 +125,3 @@ function doesCollide(hitbox, mob) {
         (hitbox.x > mob.x + mob.w)
     );
 }
-const testCanvas = document.createElement("canvas");
-const testContext = testCanvas.getContext("2d");
-
-document.body.appendChild(testCanvas);

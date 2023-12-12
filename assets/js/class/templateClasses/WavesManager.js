@@ -21,7 +21,7 @@ class WavesManager {
     this.timeUntillNextWave = 0;
   }
   drawTimer(ctx){
-    if(gameActive){
+    if(!gamePaused && gameActive){
         const gameDuration = this.waves.reduce((acc,cur)=>acc+cur.duration,0)
 
         this.passedTime = new Date() - this.startTime

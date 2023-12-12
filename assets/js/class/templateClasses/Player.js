@@ -13,11 +13,14 @@ class Player {
             critDamage: 0.5,
             knockBack: 1,
             evasion: 0.05,
+            regenAmount: 1,
+            regenCoolDown: 1000
         };
 
         this.maxHealth = 100;
         this.health = 100;
 
+        this.lastRegen = new Date()
 
         this.killCount = 0;
 
@@ -80,6 +83,16 @@ class Player {
         }
         })
     }
+    regenTimer(){
+        const regenCoolDown = this.getStat("regenCoolDown")
+        if(regenCoolDown||!isNaN(regenCoolDown)){
+            const regenAmount = this.getStat("regenAmount")
+             if(new Date()-this.lastRegen > regenCoolDown){
+                this.heal(regenAmount)
+                this.lastRegen = new Date()
+             }
+        }
+    }
 
     getDamage(weapon){
         const damage = weapon.getStat("damage") * this.getStat("strength")
@@ -102,7 +115,7 @@ class Player {
     applyDamage(amount){
         var fakePos = this.getTruePos()
         fakePos.y -= 50
-        if(this.stats.evasion > Math.random()){
+        if(Math.random() < this.getStat("evasion")){
             new DamageText(this,{damage:"Evaded",modifier:2}).pos = fakePos
             return
         }
@@ -139,11 +152,13 @@ class Player {
         // Draw foreground
         ctx.fillStyle = color;
         ctx.fillRect(-50,this.size.height/1.5, foregroundWidth, 10);
+
+        this.regenTimer()
     }
 
     getStat(stat) {
         var passiveItems = this.inventory.data.items.filter((item) => item.type === "Passive");
-        var statValue = this.stats[stat];
+        var statValue = this.stats[stat] || 0;
 
         if(passiveItems){
             const statItem = passiveItems.find((item) => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());

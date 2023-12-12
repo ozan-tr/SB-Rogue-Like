@@ -186,6 +186,7 @@ function back(){
 
 function startGame(playerName,mapName){
     gameActive=true
+    gamePaused=false
 
     c.style.display = "block"  
 

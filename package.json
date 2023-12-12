@@ -7,7 +7,7 @@
     "start": "electron . ",
     "dist": "electron-builder"
   },
-  "author": "",
+  "author": "ozan-tr",
   "license": "ISC",
   "dependencies": {
     "glob": "^10.3.10"
@@ -17,7 +17,7 @@
     "electron-builder": "^24.9.1"
   },
   "build": {
-    "appId": "ozan-tr.SBRG",
+    "appId": "SBRG",
     "mac": {
       "category": "your.app.category.type"
     }

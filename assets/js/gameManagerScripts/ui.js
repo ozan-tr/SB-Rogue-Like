@@ -2,8 +2,6 @@ const uiContainer = document.querySelector('.uiContainer');
 const levelUpMenu = document.querySelector('.levelUpMenu');
 const levelUpMenuBody = document.querySelector('.levelUpMenuBody');
 
-let uiActive = false;
-let gameActive = false;
 
 const statsList = document.getElementById('statsList');
 
@@ -20,12 +18,14 @@ document.addEventListener('keydown', (e) => {
 
 function activateUI() {
     if(gameActive){
+        gamePaused = true;
         uiContainer.classList.add('activateUi');
         updateStats();
     }
 }
 
 function deactivateUI() {
+    gamePaused = false;
     uiContainer.classList.remove('activateUi');
     document.querySelector('.settingsContainer').style.display = 'none';
 }

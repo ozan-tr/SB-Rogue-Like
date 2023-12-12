@@ -63,6 +63,8 @@ class BBB extends WeaponBase {
 
         attackAnimation = setInterval(() => {
 
+            if(gamePaused) return
+
             const stats = this.stats[this.level];
             const area = 50*stats.area
 

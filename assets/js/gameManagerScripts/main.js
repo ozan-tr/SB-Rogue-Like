@@ -91,7 +91,7 @@ function drawXpBar(){
 
 function gameLoop(timeStamp){
 
-    if(gameActive){
+    if(!gamePaused && gameActive){
           ctx.fillStyle="black"
           ctx.clearRect(0, 0, c.width,c.height)
       

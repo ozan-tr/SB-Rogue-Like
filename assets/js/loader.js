@@ -14,6 +14,10 @@ loader.appVersion().then((version) => {
 })
 
 
+let uiActive = false;
+let gameActive = false;
+let gamePaused = false;
+
 const loadingCanvas = document.createElement('canvas');
 document.body.appendChild(loadingCanvas);
 

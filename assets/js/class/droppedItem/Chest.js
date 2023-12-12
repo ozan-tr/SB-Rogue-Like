@@ -21,7 +21,7 @@ class Chest extends PickUpTemplate{
         ctx.drawImage(this.img,this.pos.x,this.pos.y,this.size.width,this.size.height)
     }
     openUI(){
-        gameActive = false
+        gamePaused = true
 
         const chestUI = document.createElement('div')
         const chestAnimationCanvas = document.createElement('canvas')
@@ -140,7 +140,7 @@ class Chest extends PickUpTemplate{
             allItems.slice(allItems.indexOf(this),1)
             clearInterval(chestAnimation2)
             document.body.removeChild(chestUI)
-            gameActive = true
+            gamePaused = false
         }
 
     }
