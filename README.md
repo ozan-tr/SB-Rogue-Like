@@ -132,7 +132,8 @@ class YourMobName extends MobTemplate {
 <details>
 <summary>Click To Expand</summary>
 
-- [ ] Yeni itemler
+[ ] Yeni itemler
+
 | Done | İsim | Amaç | Code | Asset |
 |------|------|------|------|-------|
 | [ ]  |      | 1 rev veren item | [ ] | [ ] |
