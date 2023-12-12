@@ -132,6 +132,25 @@ class YourMobName extends MobTemplate {
 <details>
 <summary>Click To Expand</summary>
 
+- [ ] Yeni itemler
+| Done | İsim | Amaç | Code | Asset |
+|------|------|------|------|-------|
+| [ ]  |      | 1 rev veren item | [ ] | [ ] |
+| [ ]  |      | attack speed veren item | [ ] | [ ] |
+| [ ]  |      | base damage arttıran item | [ ] | [ ] |
+| [ ]  |      | area arttıran item | [ ] | [ ] |
+| [ ]  |      | size arttıran item | [ ] | [ ] |
+| [ ]  |      | movement speed arttıran item | [ ] | [ ] |
+| [ ]  |      | amount arttıran item | [ ] | [ ] |
+| [ ]  |      | range arttıran item | [ ] | [ ] |
+| [ ]  |      | knockback arttıran item | [ ] | [ ] |
+| [ ]  |      | crit chance arttıran item | [ ] | [ ] |
+| [ ]  |      | crit damage arttıran item | [ ] | [ ] |
+| [ ]  |      | luck arttıran item | [ ] | [ ] |
+| [ ]  |      | health arttıran item | [ ] | [ ] |
+| [ ]  |      | health regen arttıran item | [ ] | [ ] |
+| [ ]  |      | max health arttıran item | [ ] | [ ] |
+
 - [x] resim isimlerinde aynı formatı kullandır
   
 - [ ] base classları daha universal yap
