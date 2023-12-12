@@ -2,13 +2,10 @@
 const { app, BrowserWindow ,ipcMain} = require('electron')
 const fs = require("fs/promises");
 const path = require('node:path')
-const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const {glob} = require("glob");
-
 
 const date = formatDate(new Date())
 const logFile = path.join(__dirname, '/logs/'+date+".log")
-
 
 
 fs.writeFile(logFile,"").catch((err) => {
@@ -69,10 +66,7 @@ app.whenReady().then(() => {
   ipcMain.handle('getMobs', () => getMobs());
   ipcMain.handle('getProjectiles', () => getProjectiles());
   ipcMain.handle('getDrops', () => getDrops());
-
-  installExtension(REDUX_DEVTOOLS)
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
+  ipcMain.handle('getVersion', () => app.getVersion());
 
   createWindow()
 

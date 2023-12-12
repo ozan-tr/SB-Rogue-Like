@@ -135,7 +135,7 @@ class Chest extends PickUpTemplate{
         chestUI.appendChild(confirmButton)
         confirmButton.onclick = ()=>{
             this.rewards.forEach((item)=>{
-                player.inventory.addItem(item.name.replace(" ",""))
+                player.inventory.addItem(item.constructor.name)
             })
             allItems.slice(allItems.indexOf(this),1)
             clearInterval(chestAnimation2)

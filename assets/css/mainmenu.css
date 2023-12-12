@@ -178,7 +178,13 @@
         opacity: 0.8;
     }
 }
-
+#verisonSpan{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.5rem;
+    color: black;
+}
 .mainMenuBtn { 
     grid-area: 1 / 1 / 2 / 2; 
 

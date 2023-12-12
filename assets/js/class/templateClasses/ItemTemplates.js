@@ -5,6 +5,7 @@ class ItemBase {
         this.rarity = rarity;
         this.description = description;
         this.stats = [];
+        this.overLeveling = false;
     }
 
     getStats() {
@@ -24,9 +25,21 @@ class ItemBase {
     getStat(stat) {
         return this.stats[this.level][stat];
     }
+    canLevelUp() {
+        return this.level < this.maxLevel || this.overLeveling;
+    }
 
     levelUp() {
-        this.level += 1;
+        if(this.level >= this.maxLevel){
+            if(this.overLeveling){
+                this.stats[this.level+1] = this.fixedImprovement
+                this.level += 1;
+            }else{
+                return false;
+            }
+        }else{
+            this.level += 1;
+        }
     }
 
     improvementInfo() {
@@ -45,6 +58,21 @@ class ItemBase {
 
         return ret;
     }
+}
+
+class PassiveBase extends ItemBase {
+    constructor(name, description, rarity) {
+        super(name, description, rarity);
+        this.level = 0;
+        this.type = "Passive";
+        this.img = `url(assets/img/weapons/${this.name.replaceAll(" ", "")}.png)`;
+        this.imgElement = new Image(40,40)
+        this.imgElement.src = `assets/img/weapons/${this.name.replaceAll(" ", "")}.png`
+    }
+    getRawStat() {
+        return this.stats[this.level];
+    }
+
 }
 
 class WeaponBase extends ItemBase {

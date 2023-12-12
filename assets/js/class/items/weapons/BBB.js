@@ -10,7 +10,7 @@ class BBB extends WeaponBase {
         this.stats = [
             {
                 damage: 1,
-                attackSpeed: 1,
+                attackSpeed: 0.04,
                 area: 2,
                 amount: 3,
                 size: 1,
@@ -20,7 +20,7 @@ class BBB extends WeaponBase {
             },
             {
                 damage: 10,
-                attackSpeed: 1,
+                attackSpeed: 0.1,
                 area: 2,
                 size: 1.5,
                 amount: 4
@@ -90,7 +90,7 @@ class BBB extends WeaponBase {
             }
 
           
-            rad += 0.01 * stats.attackSpeed;
+            rad += player.getStat("attackSpeed") * stats.attackSpeed;
         }, 10);
     }
     

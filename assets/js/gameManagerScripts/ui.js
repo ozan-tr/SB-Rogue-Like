@@ -40,7 +40,7 @@ function updateStats() {
 
     player.inventory.data.items.forEach((item) => {
         console.log(item)
-        document.getElementById(item.name.replace(" ","")+"Level").innerHTML = item.level + 1
+        document.getElementById(item.constructor.name+"Level").innerHTML = item.level + 1
     })
 
     for (const stat in stats) {
@@ -67,7 +67,7 @@ function createItemSelector(item) {
     itemThumbnail.className = 'levelUpMenuItemThumbnail';
 
     const itemImg = document.createElement('img');
-    itemImg.src=`assets/img/weapons/${item.name.replace(" ","")}.png`
+    itemImg.src=`assets/img/weapons/${item.constructor.name}.png`
     itemImg.className = 'levelUpMenuItemImg';
     itemImg.style.borderColor=rarity[item.rarity].color
 

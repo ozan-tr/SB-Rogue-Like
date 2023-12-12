@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld("loader", {
     mobs: () => ipcRenderer.invoke('getMobs'),
     projectiles: () => ipcRenderer.invoke('getProjectiles'),
     drops: () => ipcRenderer.invoke('getDrops'),
+    appVersion: () => ipcRenderer.invoke('getVersion'),
 });
 
 

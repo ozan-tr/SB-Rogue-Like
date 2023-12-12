@@ -31,15 +31,16 @@ class Debug{
         }
     }
     give(itemName,amount=1){
-        const item = ItemsDict.find((item) => item.name == itemName)
+        const item = ItemsDict.find((item) => item.constructor.name == itemName)
 
+        console.log(item)
         if(item == undefined){
             this.log("Item not found")
             return
         }
 
         for(let i=0;i<amount;i++){
-            player.inventory.addItem(item.name)
+            player.inventory.addItem(item.constructor.name)
         }
 
         this.log(`Gave ${amount} ${itemName}`)

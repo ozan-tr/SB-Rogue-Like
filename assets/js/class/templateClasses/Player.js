@@ -1,3 +1,4 @@
+
 class Player {
     constructor() {
         this.pos = { x: 0, y: 0 };
@@ -81,10 +82,10 @@ class Player {
     }
 
     getDamage(weapon){
-        const damage = weapon.getStat("damage") * this.stats.strength
-        const knockBack = weapon.getStat("knockBack") * this.stats.knockBack
-        const critChance = weapon.getStat("critChance") + this.stats.critChance
-        const critDamage = weapon.getStat("critDamage") + this.stats.critDamage
+        const damage = weapon.getStat("damage") * this.getStat("strength")
+        const knockBack = weapon.getStat("knockBack") * this.getStat("knockBack")
+        const critChance = weapon.getStat("critChance") + this.getStat("critChance")
+        const critDamage = weapon.getStat("critDamage") + this.getStat("critDamage")
         const crit = Math.random() < critChance
         const multiplier = crit ? critDamage : 1
         return {damage:damage * multiplier,modifier:crit,knockBack:knockBack}
@@ -139,13 +140,42 @@ class Player {
         ctx.fillStyle = color;
         ctx.fillRect(-50,this.size.height/1.5, foregroundWidth, 10);
     }
+
+    getStat(stat) {
+        var passiveItems = this.inventory.data.items.filter((item) => item.type === "Passive");
+        var statValue = this.stats[stat];
+
+        if(passiveItems){
+            const statItem = passiveItems.find((item) => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());
+            if(statItem){
+                statValue += statItem.getRawStat()
+            }
+        }
+
+        return statValue;
+    }
     
     getStats() {
         const ret = {};
 
+        var passiveItems = null;
+        if(this.inventory){
+            passiveItems = this.inventory.data.items.filter((item) => item.type === "Passive");
+        }
+
         for (const statIndex in this.stats) {
             if (this.stats.hasOwnProperty(statIndex)) {
-                const statValue = this.stats[statIndex] * 100;
+                var statValue = this.stats[statIndex];
+
+                if(passiveItems){
+                    const statItem = passiveItems.find((item) => item.constructor.name.toLowerCase() === `${statIndex}Item`.toLowerCase());
+                    if(statItem){
+                        statValue += statItem.getRawStat()
+                    }
+                }
+
+                statValue *= 100;
+
                 const statName = statIndex.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
                 ret[statName] = statValue + '%';
             }

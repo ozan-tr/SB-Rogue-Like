@@ -7,6 +7,13 @@ const projectilesContainer = document.getElementById('projectilesContainer');
 const mainContainer = document.querySelector('.mainContainer');
 const dropsContainer = document.querySelector('.dropsContainer');
 
+const versionSpan = document.getElementById('versionSpan');
+
+loader.appVersion().then((version) => {
+    versionSpan.innerHTML = `v${version}`;
+})
+
+
 const loadingCanvas = document.createElement('canvas');
 document.body.appendChild(loadingCanvas);
 
@@ -81,7 +88,7 @@ function updateLoadingProgress(paths) {
         setTimeout(() => {
             loadingCanvas.remove();
             mainMenu();
-            loadItemsData(paths.filter((path) => path.includes("weapons")));
+            loadItemsData(paths.filter((path) => path.includes("items")));
             console.timeEnd("Loading time");
         }, 100);
     }
