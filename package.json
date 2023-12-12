@@ -4,15 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron . "
+    "start": "electron . ",
+    "dist": "electron-builder"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^28.0.0",
     "glob": "^10.3.10"
   },
   "devDependencies": {
+    "electron": "^28.0.0",
     "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "ozan-tr.SBRG",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   }
 }
