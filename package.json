@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "electron . ",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder"
   },
   "author": "ozan-tr",
@@ -19,7 +21,7 @@
   "build": {
     "appId": "SBRG",
     "mac": {
-      "category": "your.app.category.type"
+      "category": "game"
     }
   }
 }
