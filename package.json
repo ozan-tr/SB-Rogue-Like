@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron . ",
-    "dist": "electron-builder"
+    "build": "electron-builder"
   },
   "author": "ozan-tr",
   "license": "ISC",
