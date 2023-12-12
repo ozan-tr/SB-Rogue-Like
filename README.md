@@ -136,21 +136,21 @@ class YourMobName extends MobTemplate {
 
 | Done | İsim | Amaç | Code | Asset |
 |------|------|------|------|-------|
-| [ ]  |      | 1 rev veren item | [ ] | [ ] |
-| [ ]  |      | attack speed veren item | [ ] | [ ] |
-| [ ]  |      | base damage arttıran item | [ ] | [ ] |
-| [ ]  |      | area arttıran item | [ ] | [ ] |
-| [ ]  |      | size arttıran item | [ ] | [ ] |
-| [ ]  |      | movement speed arttıran item | [ ] | [ ] |
-| [ ]  |      | amount arttıran item | [ ] | [ ] |
-| [ ]  |      | range arttıran item | [ ] | [ ] |
-| [ ]  |      | knockback arttıran item | [ ] | [ ] |
-| [ ]  |      | crit chance arttıran item | [ ] | [ ] |
-| [ ]  |      | crit damage arttıran item | [ ] | [ ] |
-| [ ]  |      | luck arttıran item | [ ] | [ ] |
-| [ ]  |      | health arttıran item | [ ] | [ ] |
-| [ ]  |      | health regen arttıran item | [ ] | [ ] |
-| [ ]  |      | max health arttıran item | [ ] | [ ] |
+|      |      | 1 rev veren item |  |  |
+|      |      | attack speed veren item | X |  |
+|      |      | base damage arttıran item | X |  |
+|      |      | area arttıran item |  |  |
+|      |      | size arttıran item |  |  |
+|      |      | movement speed arttıran item |  |  |
+|      |      | amount arttıran item |  |  |
+|      |      | range arttıran item |  |  |
+|      |      | knockback arttıran item |  |  |
+|      |      | crit chance arttıran item | X |  |
+|      |      | crit damage arttıran item | X |  |
+|      |      | luck arttıran item |  |  |
+|      |      | health arttıran item |  |  |
+|      |      | health regen arttıran item |  |  |
+|      |      | max health arttıran item |  |  |
 
 - [x] resim isimlerinde aynı formatı kullandır
   

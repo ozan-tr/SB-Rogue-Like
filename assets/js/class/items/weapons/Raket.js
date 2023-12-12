@@ -11,7 +11,7 @@ class Raket extends WeaponBase {
                 damage: 5,
                 attackSpeed: 1,
                 duration: 1,
-                piercing:2,
+                piercing:20,
                 critChange:0.05,
                 critDamage: 3
             },
@@ -19,7 +19,7 @@ class Raket extends WeaponBase {
                 damage: 5,
                 attackSpeed: 1.1,
                 duration: 1,
-                piercing:4,
+                piercing:25,
                 critChange:0.05,
                 critDamage: 3
             },
