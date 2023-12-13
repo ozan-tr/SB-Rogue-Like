@@ -65,9 +65,9 @@ class PassiveBase extends ItemBase {
         super(name, description, rarity);
         this.level = 0;
         this.type = "Passive";
-        this.img = `url(assets/img/weapons/${this.name.replaceAll(" ", "")}.png)`;
+        this.img = `url(assets/img/weapons/${this.constructor.name}.png)`;
         this.imgElement = new Image(40,40)
-        this.imgElement.src = `assets/img/weapons/${this.name.replaceAll(" ", "")}.png`
+        this.imgElement.src = `assets/img/weapons/${this.constructor.name}.png`
     }
     getRawStat() {
         return this.stats[this.level];

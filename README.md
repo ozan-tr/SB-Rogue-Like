@@ -139,18 +139,18 @@ class YourMobName extends MobTemplate {
 |      |      | 1 rev veren item |  |  |
 |      |      | attack speed veren item | X |  |
 |      |      | base damage arttıran item | X |  |
-|      |      | area arttıran item |  |  |
-|      |      | size arttıran item |  |  |
-|      |      | movement speed arttıran item |  |  |
-|      |      | amount arttıran item |  |  |
-|      |      | range arttıran item |  |  |
-|      |      | knockback arttıran item |  |  |
+|      |      | area arttıran item | X |  |
+|      |      | size arttıran item | X |  |
+|      |      | movement speed arttıran item | X |  |
+|      |      | amount arttıran item | X |  |
+|      |      | range arttıran item | X |  |
+|      |      | knockback arttıran item | X |  |
 |      |      | crit chance arttıran item | X |  |
 |      |      | crit damage arttıran item | X |  |
-|      |      | luck arttıran item |  |  |
-|      |      | health arttıran item |  |  |
-|      |      | health regen arttıran item |  |  |
-|      |      | max health arttıran item |  |  |
+|      |      | luck arttıran item | X |  |
+|      |      | health regen amount arttıran item | X |  |
+|      |      | health regen speed arttıran item | X |  |
+|      |      | max health arttıran item | X |  |
 
 - [x] resim isimlerinde aynı formatı kullandır
   

@@ -1,6 +1,6 @@
-class CritChanceItem extends PassiveBase {
+class RegenCoolDownItem extends PassiveBase {
     constructor() {
-        super("Crit Chance Item", "Increases Crit Chance",2);
+        super("Regen Cool Down Item", "Increases The Speed Of Health Regeneration",2);
 
         this.stats = [
                 0.1,

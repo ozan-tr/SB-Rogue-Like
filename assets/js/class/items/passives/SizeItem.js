@@ -1,6 +1,6 @@
-class CritChanceItem extends PassiveBase {
+class SizeItem extends PassiveBase {
     constructor() {
-        super("Crit Chance Item", "Increases Crit Chance",2);
+        super("Size Item", "Increases Size",2);
 
         this.stats = [
                 0.1,

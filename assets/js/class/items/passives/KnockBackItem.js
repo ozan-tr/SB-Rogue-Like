@@ -1,6 +1,6 @@
 class KnockBackItem extends PassiveBase {
     constructor() {
-        super("Knock Back Item", "Increases Attack Speed",2);
+        super("Knock Back Item", "Increases Knock Back",2);
 
         this.stats = [
                 0.1,

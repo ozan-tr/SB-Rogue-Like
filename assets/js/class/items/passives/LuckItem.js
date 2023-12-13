@@ -1,6 +1,7 @@
-class StrengthItem extends PassiveBase {
+class LuckItem extends PassiveBase {
     constructor() {
-        super("Strength Item", "Increases Strength",2);
+        super("Luck Item", "Increases Player Luck",2);
+
         this.stats = [
             0.1,
             0.2,
@@ -12,7 +13,7 @@ class StrengthItem extends PassiveBase {
             0.8,
             0.9,
             1
-        ];
+    ];
 
         this.maxLevel = 9;
     }
