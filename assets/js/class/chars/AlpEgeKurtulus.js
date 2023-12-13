@@ -1,12 +1,6 @@
 class AlpEgeKurtulus extends Player{
     constructor(){
         super()
-        this.stats={
-            speed: 0.5,
-            strength: 1,
-            defence: 1,
-            luck: 1.5,
-        }
 
         this.size = {width:40,height:120 }
 

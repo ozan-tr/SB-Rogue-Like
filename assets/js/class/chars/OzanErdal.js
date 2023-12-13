@@ -1,14 +1,7 @@
 class OzanErdal extends Player {
     constructor(){
         super()
-        this.stats={
-            speed: 0.5,
-            strength: 1,
-            defence: 1,
-            luck: 1.5,
-            attackSpeed: 1,
-            pickupRange: 50,
-        }
+
 
         this.headOffset = {x: 20, y: 20}
 

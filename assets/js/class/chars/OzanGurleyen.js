@@ -1,20 +1,8 @@
 class OzanGurleyen extends Player {
     constructor(){
         super()
-        this.stats={
-            speed: 0.5,
-            strength: 1,
-            defence: 1,
-            luck: 1.5,
-            attackSpeed: 1,
-            pickupRange: 50,
-            critChance: 0.1,
-            critDamage: 0.5,
-            knockBack: 1,
-            evasion: 0.05,
-            regenAmount: 1,
-            regenCoolDown: 1000
-        }
+
+        
         this.images = Array.from(document.getElementById('OzanGurleyen').children)
         this.images.sort((a,b) => a.id-b.id)
         this.img = this.images[0]

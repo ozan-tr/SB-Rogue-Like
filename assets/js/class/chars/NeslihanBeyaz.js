@@ -1,12 +1,7 @@
 class NeslihanBeyaz extends Player{
     constructor(){
         super()
-        this.stats={
-            speed: 0.2,
-            strength: 1,
-            defence: 2,
-            luck: 1.5,
-        }
+
 
         this.size = {width:120,height:120}
 

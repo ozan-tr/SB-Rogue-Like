@@ -3,10 +3,11 @@ class Player {
     constructor() {
         this.pos = { x: 0, y: 0 };
         this.stats = {
-            speed: 1,
+            speed: 0.5,
             strength: 1,
             defence: 1,
-            luck: 1.5,
+            luck: 1,
+            range: 1,
             attackSpeed: 1,
             pickUpRange: 50,
             critChance: 0.1,
@@ -14,11 +15,11 @@ class Player {
             knockBack: 1,
             evasion: 0.05,
             regenAmount: 1,
-            regenCoolDown: 1000
+            regenCoolDown: 1000,
+            maxHealth: 100,
         };
 
-        this.maxHealth = 100;
-        this.health = 100;
+        this.health = this.stats.maxHealth;
 
         this.lastRegen = new Date()
 
@@ -105,11 +106,12 @@ class Player {
     }
     heal(amount){
         var fakePos = this.getTruePos()
+        const maxHealth = this.getStat("maxHealth")
         fakePos.y -= 50
         new DamageText(this,{damage:amount,modifier:3}).pos = fakePos
         this.health += amount
-        if(this.health > this.maxHealth){
-            this.health = this.maxHealth
+        if(this.health > maxHealth){
+            this.health = maxHealth
         }
     }
     applyDamage(amount){
@@ -132,7 +134,7 @@ class Player {
     }
     drawHealthBar(ctx) {
         const barWidth = 100;
-        const healthPercentage = this.health / this.maxHealth;
+        const healthPercentage = this.health / this.getStat("maxHealth");
         const foregroundWidth = barWidth * healthPercentage;
 
     
@@ -157,20 +159,22 @@ class Player {
     }
 
     getStat(stat) {
-        var passiveItems = this.inventory.data.items.filter((item) => item.type === "Passive");
-        var statValue = this.stats[stat] || 0;
 
-        if(passiveItems){
-            const statItem = passiveItems.find((item) => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());
-            if(statItem){
-                statValue += statItem.getRawStat()
-            }
+
+        const passiveItems = this.inventory.data.items.filter(item => item.type === "Passive");
+        let statValue = this.stats[stat] ?? 0;
+    
+        const matchingItem = passiveItems.find(item => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());
+    
+        if (matchingItem) {
+            statValue += matchingItem.getRawStat() ?? 0;
         }
-
+    
         return statValue;
     }
     
     getStats() {
+
         const ret = {};
 
         var passiveItems = null;
