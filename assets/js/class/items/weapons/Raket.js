@@ -51,8 +51,8 @@ class Raket extends WeaponBase {
         document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
         const anim = animationCanvas.getContext("2d");
 
-        const playerPos = player.getHeadPos();
-        anim.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
+        const playerPos = player.getTruePos();
+       
 
         const stats = this.stats[this.level];
 
@@ -72,14 +72,17 @@ class Raket extends WeaponBase {
         var howManyHits = 0;
         
         const attackAnimation = setInterval(() => {
+            const relativePos = {x:playerPos.x+player.pos.x,y:playerPos.y+player.pos.y}
 
-            pos.x += Math.cos(angle) * stats.attackSpeed *2;
+            anim.setTransform(1, 0, 0, 1, relativePos.x, relativePos.y);
+
+            pos.x += Math.cos(angle) * stats.attackSpeed * 2;
             pos.y += Math.sin(angle) * stats.attackSpeed * 2;
 
             const x = pos.x - sprite.width/2;
             const y = pos.y - sprite.height/2;
 
-            anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
+            anim.clearRect(-relativePos.x, -relativePos.y, c.width, c.height);
 
             anim.save()
 

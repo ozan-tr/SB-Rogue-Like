@@ -13,10 +13,27 @@ class BioLabWaves extends WavesManager{
                 mobs:[]
             },
             {
-                duration: 15000,
+                duration: 1000,
                 mobs: [
                     this.spawnImmovable(immovableMob1),
-                    this.simpleScatter(fodderMob1, 10,20, 400),
+                ]
+            },
+            {
+                duration: 1000,
+                mobs: [
+                    this.spawnImmovable(immovableMob1),
+                ]
+            },
+            {
+                duration: 1000,
+                mobs: [
+                    this.spawnImmovable(immovableMob1),
+                ]
+            },
+            {
+                duration: 1000,
+                mobs: [
+                    this.spawnImmovable(immovableMob1),
                 ]
             },
             {

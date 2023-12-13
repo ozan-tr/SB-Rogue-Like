@@ -35,8 +35,7 @@ class ProductionOrale extends WeaponBase {
         document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
         const anim = animationCanvas.getContext("2d");
 
-        const playerPos = player.getHeadPos();
-        anim.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
+        const playerPos = player.getTruePos();
 
         const stats = this.stats[this.level];
 
@@ -53,7 +52,11 @@ class ProductionOrale extends WeaponBase {
         const attackAnimation = setInterval(() => {
             r+=stats.attackSpeed;
 
-            anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
+            const relativePos = {x:playerPos.x+player.pos.x,y:playerPos.y+player.pos.y}
+
+            anim.setTransform(1, 0, 0, 1, relativePos.x, relativePos.y);
+
+            anim.clearRect(-relativePos.x, -relativePos.y, c.width, c.height);
 
             anim.beginPath();
             anim.strokeStyle = "white";
@@ -82,12 +85,10 @@ class ProductionOrale extends WeaponBase {
                     h: lineLength
                 };   
             } 
-
-            const truePos = player.getTruePos();
             
             this.checkHit({
-                x: truePos.x + hitbox.x,
-                y: truePos.y + hitbox.y,
+                x: hitbox.x,
+                y: hitbox.y,
                 w: hitbox.w,
                 h: hitbox.h
             });

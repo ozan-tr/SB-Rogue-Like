@@ -65,10 +65,10 @@ class MobTemplate{
 
         if(this.render){
             this.animation()
-            const playerPos = player.getCenterPos();
+            const playerPos = player.getTruePos();
     
-            const dx = playerPos.x-player.pos.x-this.pos.x
-            const dy = playerPos.y-player.pos.y-this.pos.y
+            const dx = playerPos.x-this.pos.x
+            const dy = playerPos.y-this.pos.y
             this.distToPlayer = Math.hypot(dx,dy)
     
             const xStep = (dx/this.distToPlayer) * this.stats.speed
@@ -167,6 +167,97 @@ class MobTemplate{
         allMobs.splice(index, 1)
 
     }
+}
+
+
+class ImmovableMob extends MobTemplate {
+    constructor(name,size,stats){
+        var side = Math.random() > 0.5
+        const playerPos = player.getTruePos();
+        super(
+            name,
+            {x: side ? player.pos.x - c.width: player.pos.x + c.width,y:playerPos.y+player.size.height/2},
+            size,
+            stats,
+            0
+        )
+        this.travelDistance = 0
+        this.side=side
+        this.dir = {x: side ? 1 : -1, y:0}
+        this.rotation=0
+        this.immovable=true
+        this.spawnTime = new Date()
+        this.warningTime = 1000
+    }
+    update(ctx){
+
+    const playerPos = player.getTruePos();
+    const timeSinceSpawn = new Date() - this.spawnTime
+    if(timeSinceSpawn > this.warningTime){
+        for (const mob of allMobs) {
+            if (mob !== this && !mob.immovable) {
+                const mobDx = mob.pos.x - this.pos.x;
+                const mobDy = mob.pos.y - this.pos.y;
+                const mobDistance = Math.hypot(mobDx, mobDy);
+                
+                const minDistance = (Math.hypot(this.size.width + this.size.height) + Math.hypot(mob.size.width + mob.size.height))/4  // Assuming mobs have a size property
+
+                if (mobDistance < minDistance) {
+                    // Collision detected, push mobs away from each other
+                    const pushFactor = (minDistance - mobDistance) / mobDistance * 5;
+
+                    const pushX = mobDx * pushFactor;
+                    const pushY = mobDy * pushFactor;
+
+                    mob.pos.x += pushX / 2;
+                    mob.pos.y += pushY / 2;
+                    
+                }
+            }
+        }
+    
+        const dx = playerPos.x-player.pos.x-this.pos.x
+        const dy = playerPos.y-player.pos.y-this.pos.y
+        this.distToPlayer = Math.hypot(dx,dy)
+
+        if(this.distToPlayer < player.size.width/2+this.size.width/2){
+            player.applyDamage(this.getDamage())
+        }
+
+        const travelDist =this.dir.x * this.stats.speed
+
+        this.pos.x += travelDist
+        this.travelDistance += travelDist
+
+        
+        ctx.save()
+        ctx.translate(this.pos.x,this.pos.y)
+        ctx.rotate(this.rotation)
+        ctx.drawImage(this.img,-this.size.width/2,-this.size.height/2)
+        ctx.restore()
+
+        this.rotation += this.dir.x * this.stats.speed * 0.05
+
+        if(Math.abs(this.travelDistance) > (c.width + this.size.width)*2){
+            allMobs.splice(allMobs.indexOf(this),1)
+        }
+    }else{
+            ctx.setTransform(1,0,0,1,Math.random()*2,Math.random()*2)
+
+            const x = this.side ? 100: c.width - 100  
+            const y = c.width/2 - 50
+
+            ctx.font = "80px PixelFont"
+            ctx.fillStyle="black"
+            ctx.fillText("!",x,y)
+
+            ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
+
+        
+
+        this.pos={x: this.side ? playerPos.x - c.width: playerPos.x + c.width,y:playerPos.y+player.size.height/2}
+    }   
+}
 }
 
 
