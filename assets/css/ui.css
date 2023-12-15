@@ -24,6 +24,7 @@
 
 .statsContainer{
     grid-area: 2 / 1 / 4 / 2;
+
 }
 .itemsContainer{
     grid-area: 1 / 1 / 2 / 2;
@@ -49,6 +50,7 @@ h1{
     margin-top: 5px;
 
 }
+
 
 
 .invParts{
