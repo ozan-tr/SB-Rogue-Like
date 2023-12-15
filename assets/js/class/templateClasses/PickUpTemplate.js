@@ -33,7 +33,9 @@ class PickUpTemplate{
 
         const distance = Math.hypot(dx, dy);
 
-        if(distance < player.stats.pickupRange && !this.attraction){
+        console.log(distance)
+
+        if(distance < player.getStat("pickUpRange") && !this.attraction){
             this.startSucking()
         }
 
