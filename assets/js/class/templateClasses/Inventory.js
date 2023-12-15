@@ -109,7 +109,6 @@ class Inventory{
                 }, 1000);
             }
         }
-    
     }
     createLevelPanel(weapon,nextLevel){
         var levelInfo;

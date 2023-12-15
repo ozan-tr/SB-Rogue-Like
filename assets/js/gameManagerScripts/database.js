@@ -15,3 +15,20 @@ const rarity = [
     {name:"Special",color:"red"},
 ]
 
+const statUnits = {
+        speed: "percent",
+        strength: "percent",
+        defence:  "percent",
+        luck:  "percent",
+        range:  "percent",
+        attackSpeed:  "percent",
+        pickUpRange: "float",
+        critChance: "percent",
+        critDamage: "percent",
+        knockBack: "percent",
+        evasion: "percent",
+        regenAmount: "float",
+        regenCoolDown: "seconds",
+        maxHealth: "float",
+    }
+

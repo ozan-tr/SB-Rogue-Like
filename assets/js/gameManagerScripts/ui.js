@@ -30,16 +30,15 @@ function deactivateUI() {
     document.querySelector('.settingsContainer').style.display = 'none';
 }
 
-function formatStatName(stat) {
-    return stat.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
-}
+const formatStatName = str => str.split(/(?=[A-Z])/).filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+
 
 function updateStats() {
     const stats = player.getStats();
     statsList.innerHTML = '';
 
     player.inventory.data.items.forEach((item) => {
-        console.log(item)
         document.getElementById(item.constructor.name+"Level").innerHTML = item.level + 1
     })
 

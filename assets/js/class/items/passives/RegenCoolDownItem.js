@@ -3,16 +3,15 @@ class RegenCoolDownItem extends PassiveBase {
         super("Regen Cool Down Item", "Increases The Speed Of Health Regeneration",2);
 
         this.stats = [
-                0.1,
-                0.2,
-                0.3,
-                0.4,
-                0.5,
-                0.6,
-                0.7,
-                0.8,
-                0.9,
-                1
+                -100,
+                -150,
+                -200,
+                -250,
+                -300,
+                -350,
+                -400,
+                -450,
+                -500,
         ];
 
         this.maxLevel = 9;

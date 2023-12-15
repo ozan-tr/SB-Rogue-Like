@@ -193,10 +193,23 @@ class Player {
                     }
                 }
 
-                statValue *= 100;
-
-                const statName = statIndex.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
-                ret[statName] = statValue + '%';
+                const type = statUnits[statIndex];
+                
+                switch (type) {
+                    case 'percent':
+                        statValue = `${statValue * 100}%`;
+                        break;
+                    case 'float':
+                        statValue =  statValue.toFixed(2);
+                        break;
+                    case 'seconds':
+                        statValue = `${statValue / 1000}s`;
+                        break;
+                    default:
+                        break;
+                }
+                
+                ret[statIndex] = statValue;
             }
         }
 
