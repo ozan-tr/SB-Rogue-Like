@@ -72,9 +72,15 @@ h1{
 }
 
 .statsListItem{
+    list-style: none;
     font-size: 1.25rem;
     margin-top: 5px;
-
+}
+.statsListItem::before{
+    content: '';
+    display: inline-block;
+    height: 16px;
+    width: 16px;
 }
 
 
@@ -375,8 +381,6 @@ h1{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .chestUI{

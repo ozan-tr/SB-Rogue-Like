@@ -6,6 +6,7 @@ class ItemBase {
         this.description = description;
         this.stats = [];
         this.overLeveling = false;
+        this.level = 0;
     }
 
     getStats() {
@@ -63,7 +64,6 @@ class ItemBase {
 class PassiveBase extends ItemBase {
     constructor(name, description, rarity) {
         super(name, description, rarity);
-        this.level = 0;
         this.type = "Passive";
         this.img = `url(assets/img/weapons/${this.constructor.name}.png)`;
         this.imgElement = new Image(40,40)
@@ -78,7 +78,6 @@ class PassiveBase extends ItemBase {
 class WeaponBase extends ItemBase {
     constructor(name, description, type, rarity) {
         super(name, description, rarity);
-        this.level = 0;
         this.lastAttack = new Date();
         this.previousTimeStamp = 0;
         this.baseCooldown = 2000;

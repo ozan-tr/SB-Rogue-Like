@@ -8,7 +8,6 @@ var selectedCharacter=undefined;
 
 var currentMenu = "main"
 
-
 setTimeout(()=>{
     const characters = Array.from(characterContainer.children)
 

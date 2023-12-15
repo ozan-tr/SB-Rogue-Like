@@ -10,8 +10,14 @@ var heldDirKeys = {
     down:false,
 }
 
-c.width = 700
-c.height= 500
+c.width = window.innerWidth - 100
+c.height = window.innerHeight - 100
+
+window.addEventListener("resize", (e) => {
+    c.width = window.innerWidth - 100
+    c.height = window.innerHeight - 100
+})
+
 
 var player;
 var map;

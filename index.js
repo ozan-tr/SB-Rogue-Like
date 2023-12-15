@@ -24,7 +24,6 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    resizable: false,
     name: 'SBRogueLıke',
     autoHideMenuBar: true,
     webPreferences: {
