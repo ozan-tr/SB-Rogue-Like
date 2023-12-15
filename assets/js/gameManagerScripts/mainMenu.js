@@ -187,6 +187,13 @@ function startGame(playerName,mapName){
     gameActive=true
     gamePaused=false
 
+    heldDirKeys = {
+        left: false,
+        right: false,
+        up:false,
+        down:false,
+    }
+
     c.style.display = "block"  
 
     mainContainer.style.display = "block"
