@@ -31,6 +31,8 @@ class MobTemplate{
         this.lastDamageApplied = new Date()
 
         allMobs.push(this)        
+
+        
     }
     animation(){
         const timePassed = new Date()-this.lastFrame
@@ -61,9 +63,7 @@ class MobTemplate{
         }
     }
     update(ctx){
-        this.shouldRender()
 
-        if(this.render){
             this.animation()
             const playerPos = player.getTruePos();
     
@@ -107,7 +107,7 @@ class MobTemplate{
             this.pos.x += xStep
             this.pos.y += yStep
             ctx.drawImage(this.img,this.pos.x,this.pos.y)
-        }
+        
     }
     getDamage(){
         if(new Date() - this.lastDamageApplied > 1000/this.stats.attackSpeed){
@@ -131,13 +131,15 @@ class MobTemplate{
             this.pos.y += knockBack.y
 
             this.lastDamage=new Date()
-            if(this.health <= 0) {
-                this.kill(true)
+            if(this.health <= 0 && !this.dead) {
+                this.dead = true
+                this.kill()
             }
             return true
         }   
         return false
     }
+    /*
     shouldRender(){
         const truePos = player.getTruePos()
         const dx = truePos.x - this.pos.x;
@@ -158,14 +160,12 @@ class MobTemplate{
             }
         }
     }
-    kill(giveExp){
+    */
+    kill(){
         const index = allMobs.indexOf(this)
-        if(giveExp){
-            new Experience(this.pos,this.value)
-        }
-        player.killCount++
         allMobs.splice(index, 1)
-
+        new Experience(this.pos,this.value)
+        player.killCount++
     }
 }
 
@@ -299,6 +299,8 @@ class DamageText {
             ctx.fillStyle = "yellow"
         }else if(this.damage.modifier==3){
             ctx.fillStyle = "green"
+        }else if(this.damage.modifier==4){
+            ctx.fillStyle = "blue"
         }
 
         ctx.lineWidth = 2

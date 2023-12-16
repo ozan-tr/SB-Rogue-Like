@@ -8,7 +8,7 @@ class ZeynepKarademir extends Player {
 
         this.headOffset = {x: 20, y: 20}
 
-        console.log(this.images)
+        this.startingWeapon = "RedBull"
 
         this.inventory = new Inventory(this)
 

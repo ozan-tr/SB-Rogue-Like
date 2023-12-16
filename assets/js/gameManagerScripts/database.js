@@ -29,6 +29,9 @@ const statUnits = {
         evasion: "percent",
         regenAmount: "float",
         regenCoolDown: "seconds",
-        maxHealth: "float",
+        maxHealth: "int",
+        area:"floar",
+        amount: "int",
+        size: "float",
     }
 
