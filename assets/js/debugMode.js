@@ -2,7 +2,7 @@
 
 if(localStorage.getItem("instantStart")){
     setTimeout(()=>{
-        startGame("OzanGurleyen","BioLab")
+        startGame("ZeynepKarademir","BioLab")
     },1000)    
 }
 

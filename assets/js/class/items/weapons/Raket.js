@@ -42,6 +42,8 @@ class Raket extends WeaponBase {
         ];
 
         this.maxLevel = this.stats.length - 1;
+
+        this.sprite = document.getElementById("Raket").children.sort((a,b)=>a.id[0]-b.id[0])
     }
     attack() {
         const animationCanvas = document.createElement("canvas");
@@ -62,8 +64,8 @@ class Raket extends WeaponBase {
 
         const currentDir = player.dir
 
-        const sprite = document.getElementById("Raket.png").children[0];
-        const damagedSprite = document.getElementById("RaketCrushed.png").children[0];
+        const sprite = this.sprite[0]
+        const damagedSprite = this.sprite[1]
 
         const angle = Math.atan2(-currentDir.y, -currentDir.x)
 
