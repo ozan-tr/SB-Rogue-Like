@@ -1,6 +1,6 @@
 class CritDamageItem extends PassiveBase {
     constructor() {
-        super("Crit Damage Item", "Increases Crit Damage",2);
+        super("502 Japon", "İdeal bali itemi, beyaz straforla düşük bütçeli bir napalm için de kullanılabilir. \n increases crit damage",2);
 
         this.stats = [
                 0.1,
