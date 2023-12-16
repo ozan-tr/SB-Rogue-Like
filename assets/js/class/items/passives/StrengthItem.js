@@ -1,6 +1,6 @@
 class StrengthItem extends PassiveBase {
     constructor() {
-        super("Strength Item", "Increases Strength",2);
+        super("TylolHot", "OP item, gribi direkt atlayın \n increases strength",2);
         this.stats = [
             0.1,
             0.2,
