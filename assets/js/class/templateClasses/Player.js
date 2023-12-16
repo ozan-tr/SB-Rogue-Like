@@ -2,6 +2,7 @@
 class Player {
     constructor() {
         this.pos = { x: 0, y: 0 };
+
         this.stats = {
             speed: 0.5,
             strength: 1,
@@ -17,6 +18,8 @@ class Player {
             regenAmount: 1,
             regenCoolDown: 1000,
             maxHealth: 100,
+            amount: 1,
+            size: 1,
         };
 
         this.health = this.stats.maxHealth;
@@ -159,15 +162,11 @@ class Player {
     }
 
     getStat(stat) {
-
-
-        const passiveItems = this.inventory.data.items.filter(item => item.type === "Passive");
+        const passiveItem = this.inventory.data.items.find(item => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());
         let statValue = this.stats[stat] ?? 0;
     
-        const matchingItem = passiveItems.find(item => item.constructor.name.toLowerCase() === `${stat}Item`.toLowerCase());
-    
-        if (matchingItem) {
-            statValue += matchingItem.getRawStat() ?? 0;
+        if (passiveItem) {
+            statValue += passiveItem.getRawStat() ?? 0;
         }
     
         return statValue;
@@ -201,6 +200,9 @@ class Player {
                         break;
                     case 'float':
                         statValue =  statValue.toFixed(2);
+                        break;
+                    case 'int':
+                        statValue =  Math.floor(statValue)
                         break;
                     case 'seconds':
                         statValue = `${statValue / 1000}s`;

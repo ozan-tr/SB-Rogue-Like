@@ -9,9 +9,9 @@ class BBB extends WeaponBase {
         );
         this.stats = [
             {
-                damage: 5,
+                damage: 20,
                 attackSpeed: 0.04,
-                area: 2,
+                range: 2,
                 amount: 3,
                 size: 1,
                 critDamage:2,
@@ -19,24 +19,34 @@ class BBB extends WeaponBase {
                 knockBack: 25,
             },
             {
-                damage: 10,
-                attackSpeed: 0.1,
-                area: 2,
-                size: 1.5,
-                amount: 4
+                damage: 20,
+                attackSpeed: 0.04,
+                range: 2,
+                amount: 3,
+                size: 1,
+                critDamage:2,
+                critChance:0.1,
+                knockBack: 25,
             },
             {
-                damage: 15,
-                attackSpeed: 1.5,
-                area: 3,
-                size: 2,
-                amount: 5
+                damage: 5,
+                attackSpeed: 0.04,
+                range: 2,
+                amount: 3,
+                size: 1,
+                critDamage:2,
+                critChance:0.1,
+                knockBack: 25,
             },
             {
-                damage: 15,
-                attackSpeed: 1.5,
-                area: 3,
-                amount: 6
+                damage: 5,
+                attackSpeed: 0.04,
+                range: 2,
+                amount: 3,
+                size: 1,
+                critDamage:2,
+                critChance:0.1,
+                knockBack: 25,
             }
         ];
         this.maxLevel = this.stats.length - 1;
@@ -66,33 +76,37 @@ class BBB extends WeaponBase {
             if(gamePaused) return
 
             const stats = this.stats[this.level];
-            const area = 50*stats.area
+
+            const area = player.getStat("range") * stats.range * 50;
+            const amount = stats.amount + player.getStat("amount")
+            const size = stats.size * player.getStat("size");
+            const attackSpeed = stats.attackSpeed * player.getStat("attackSpeed");
 
             ctx.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
-            const offset = (Math.PI*2/stats.amount);
+            const offset = (Math.PI*2/amount);
 
             const truePos = player.getTruePos();
 
-            for(var i=0;i<stats.amount;i++){
+            for(var i=0;i<amount;i++){
 
                 const degOffset = rad + offset*i
 
-                const x = Math.cos(degOffset) * area-sprite.height/2*stats.size;
-                const y = Math.sin(degOffset) * area-sprite.width/2*stats.size;
+                const x = Math.cos(degOffset) * area-sprite.height/2*size;
+                const y = Math.sin(degOffset) * area-sprite.width/2*size;
     
-                ctx.drawImage(sprite, x, y, sprite.width*stats.size, sprite.height*stats.size);
+                ctx.drawImage(sprite, x, y, sprite.width*size, sprite.height*size);
     
                 this.checkHit({
                     x: truePos.x+x,
                     y: truePos.y+y,
-                    w: sprite.width*stats.size,
-                    h: sprite.height*stats.size,
+                    w: sprite.width*size,
+                    h: sprite.height*size,
                 })
 
             }
 
           
-            rad += player.getStat("attackSpeed") * stats.attackSpeed;
+            rad += attackSpeed;
         }, 10);
     }
     

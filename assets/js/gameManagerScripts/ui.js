@@ -57,6 +57,8 @@ function updateStats() {
 
 function createItemSelector(item) {
 
+    gamePaused = true;
+
     const stats = getItemStats(item)
 
     const itemDiv = document.createElement('div');
@@ -105,6 +107,7 @@ function createItemSelector(item) {
         player.inventory.addItem(item.constructor.name)
         closeLevelUpMenu()
         updateStats();
+
     };
     return itemDiv;
 }
@@ -116,6 +119,8 @@ function closeLevelUpMenu(){
     uiActive = false;
     if(player.levelUpQueue > 0){
         openLevelUpMenu()
+    }else{
+        gamePaused = false;
     }
 
 }
