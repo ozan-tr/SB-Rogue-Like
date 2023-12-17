@@ -35,6 +35,7 @@ class RedBull extends WeaponBase {
         const attackSpeed = stats.attackSpeed * player.getStat("attackSpeed");
         const posionDuration = stats.duration * player.getStat("effectDuration");
         const area = stats.area * player.getStat("area") * 50;
+        const lifeSpan = 2000
 
         document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
         const anim = animationCanvas.getContext("2d");
@@ -43,7 +44,6 @@ class RedBull extends WeaponBase {
 
         const timeOut = new Date();
 
-        const lifeSpan = 3000 * this.stats[this.level];
 
         const totalSprites = this.sprites.length
 
@@ -112,19 +112,33 @@ class RedBull extends WeaponBase {
 
             howManyHits = this.checkHit(hitbox);
 
-            if (howManyHits) {
+            if (howManyHits > 0) {
                 anim.clearRect(-relativePos.x, -relativePos.y, c.width, c.height);
-                posionAttack(x,y)
+                posionAttack(x,y,this)
             }
 
             if (new Date() - timeOut > lifeSpan) {
                 anim.clearRect(-relativePos.x, -relativePos.y, c.width, c.height);
-                posionAttack(x,y)
+                posionAttack(x,y,this)
             }
         }, 10);
 
-        function posionAttack(x,y){
+        function posionAttack(x,y,weapon){
             clearInterval(attackAnimation);
+
+            const bubbleTime = 200;
+            var lastBubble = new Date();
+
+            const bubbleNum = 20;
+            
+            var bubblePos = []
+
+            const bubbleRange = area*0.75
+
+            for(let i = 0; i < bubbleNum; i++){
+                bubblePos.push({x:Math.floor(Math.random()*bubbleRange*2-bubbleRange),y:Math.floor(Math.random()*bubbleRange*2-bubbleRange)})
+            }
+
             attackAnimation = setInterval(() => {
 
                 const relativePos = { x: playerPos.x + player.pos.x, y: playerPos.y + player.pos.y }
@@ -139,19 +153,33 @@ class RedBull extends WeaponBase {
                 anim.fillStyle = "rgba(0,200,100,0.2)"; 
                 anim.fill();
 
-                for(let i = 0; i < 20; i++){
+                for(let i = 0; i < bubbleNum; i++){
                     anim.beginPath();
-                    const angle = Math.random() * Math.PI * 2;
-                    const dist = Math.random() * area;
-                    anim.arc(Math.cos(angle) * dist, Math.sin(angle) * dist, 2, Math.PI, Math.PI)
+                    anim.arc(bubblePos[i].x,bubblePos[i].y, 2, -Math.PI, 0)
                     anim.strokeStyle = "black"; 
                     anim.stroke();
                 }
 
                 anim.restore()
 
+                if(new Date()-lastBubble > bubbleTime){
+                    lastBubble = new Date();
+                    bubblePos=[]
+                    for(let i = 0; i < bubbleNum; i++){
+                        bubblePos.push({x:Math.floor(Math.random()*bubbleRange*2-bubbleRange),y:Math.floor(Math.random()*bubbleRange*2-bubbleRange)})
+                    }
+                }
 
-            }, 500);
+                console.log(playerPos.x + x, playerPos.y + y, area)
+
+                weapon.checkHitCircular({
+                    x: playerPos.x + x,
+                    y: playerPos.y + y,
+                    r: area
+                })
+
+
+            }, 10);
             setTimeout(() => {
                 clearInterval(attackAnimation);
                 animationCanvas.remove();

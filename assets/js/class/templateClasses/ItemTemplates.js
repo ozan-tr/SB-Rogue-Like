@@ -114,6 +114,31 @@ class WeaponBase extends ItemBase {
         return howManyHits;
 
     }
+
+    /**checkHitCircular(hitbox)
+    *   @param {Object} hitbox
+    *   @param {Number} hitbox.x
+    *   @param {Number} hitbox.y
+    *   @param {Number} hitbox.r
+    **/
+    checkHitCircular(hitbox) {
+        var howManyHits = 0;
+
+        allMobs.forEach((mob) => {
+            const dx = hitbox.x - mob.pos.x;
+            const dy = hitbox.y - mob.pos.y;
+            const distance = Math.hypot(dx, dy);
+            
+            if (distance < hitbox.r) {
+                    if(mob.applyDamage(player.getDamage(this),hitbox)){
+                        howManyHits++
+                    };
+            }
+        });
+
+        return howManyHits;
+
+    }
 }
 
 function doesCollide(hitbox, mob) {

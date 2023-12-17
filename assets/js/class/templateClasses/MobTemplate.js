@@ -122,7 +122,7 @@ class MobTemplate{
             new DamageText(this,damage)
             this.health -= damage.damage
 
-            const damagePos = {x:hitbox.x+hitbox.w/2,y:hitbox.y+hitbox.h/2}
+            const damagePos = hitbox.r ? {x:hitbox.x,y:hitbox.y} : {x:hitbox.x+hitbox.w/2,y:hitbox.y+hitbox.h/2}
 
             const dirToDamage = Math.atan2(this.pos.y-damagePos.y,this.pos.x-damagePos.x)
             const knockBack = {x:Math.cos(-dirToDamage)*damage.knockBack,y:Math.sin(-dirToDamage)*damage.knockBack}
