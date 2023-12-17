@@ -15,6 +15,7 @@ class RedBull extends WeaponBase {
                 duration: 1,
                 critChange: 0.05,
                 critDamage: 3,
+                knockBack:0,
             }
         ];
 
