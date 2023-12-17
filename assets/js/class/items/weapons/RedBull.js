@@ -66,8 +66,6 @@ class RedBull extends WeaponBase {
 
         var howManyHits = 0;
 
-        console.log(area)
-
         var attackAnimation = setInterval(() => {
 
 
@@ -170,8 +168,6 @@ class RedBull extends WeaponBase {
                     }
                 }
 
-                console.log(playerPos.x + x, playerPos.y + y, area)
-
                 weapon.checkHitCircular({
                     x: playerPos.x + x,
                     y: playerPos.y + y,
@@ -183,7 +179,7 @@ class RedBull extends WeaponBase {
             setTimeout(() => {
                 clearInterval(attackAnimation);
                 animationCanvas.remove();
-            }, posionDuration * 3000);
+            }, posionDuration * 1000);
         }
     }
 }
