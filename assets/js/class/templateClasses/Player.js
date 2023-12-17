@@ -20,6 +20,8 @@ class Player {
             maxHealth: 100,
             amount: 1,
             size: 1,
+            effectDuration: 1,
+            area:1
         };
 
         this.health = this.stats.maxHealth;

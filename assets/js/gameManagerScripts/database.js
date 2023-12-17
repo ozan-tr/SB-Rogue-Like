@@ -3,6 +3,7 @@ const startingWeapons = {
     "NeslihanBeyaz" : "ProductionOrale",
     "AlpEgeKurtulus" : "Raket",
     "OzanGurleyen" : "BBB",
+    "ZeynepKaradmir" : "RedBull",
 }
 
 const rarity = [
