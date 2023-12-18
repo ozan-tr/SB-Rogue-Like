@@ -1,6 +1,6 @@
 class CritChanceItem extends PassiveBase {
     constructor() {
-        super("Crit Chance Item", "Increases Crit Chance",2);
+        super("Orta Boy Pense", "Diş söker, kablo soyar, sucuk pişirir. \n Increases crit damage chance",2);
 
         this.stats = [
                 0.1,
