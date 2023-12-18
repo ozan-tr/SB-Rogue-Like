@@ -67,7 +67,9 @@ class BBB extends WeaponBase {
 
         ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
-        const sprite = document.getElementById("BBB").children[0];
+        const sprite = document.getElementById("BBB_P").children[0];
+
+        console.log(sprite)
 
         var rad = 0;
 

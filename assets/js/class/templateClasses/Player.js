@@ -6,8 +6,8 @@ class Player {
         this.stats = {
             speed: 0.5,
             strength: 1,
-            defence: 1,
-            luck: 1,
+            defence: 0.05,
+            luck: 0,
             range: 1,
             attackSpeed: 1,
             pickUpRange: 50,
@@ -47,7 +47,8 @@ class Player {
 
         this.levelUpQueue = 0
 
-        console.log(this.getStats());
+        this.dps = 0
+
     }
 
     suckXp() {
@@ -62,7 +63,6 @@ class Player {
         this.level+=1
         this.levelUpReq *= 2
         this.levelUpQueue+=1
-        console.log(this.levelUpQueue)
         if(this.levelUpQueue == 1){
             openLevelUpMenu()
         }
@@ -122,6 +122,10 @@ class Player {
     applyDamage(amount){
         var fakePos = this.getTruePos()
         fakePos.y -= 50
+
+        amount = amount - (amount * this.getStat("defence"))
+        if(amount < 0){amount = 0}
+
         if(Math.random() < this.getStat("evasion")){
             new DamageText(this,{damage:"Evaded",modifier:2}).pos = fakePos
             return
@@ -260,6 +264,8 @@ class Player {
     move(elapsed) {
 
         if (uiActive) return;
+
+
 
         const angle = Math.atan2(this.dir.y, this.dir.x);
         const playerPos = this.getCenterPos();

@@ -3,6 +3,9 @@ window.scroll(0,0)
 const c = document.getElementById('c')
 const ctx = c.getContext("2d")
 
+const dpsIndicator = document.getElementsByClassName('dpsIndicator')[0];
+const performanceIndicator = document.getElementsByClassName('performanceIndicator')[0];
+
 var heldDirKeys = {
     left: false,
     right: false,
@@ -59,6 +62,13 @@ function keyUp(e) {
 }
 
 
+function updateDps(){
+    const regenAmount = player.getStat("regenAmount")
+    const regenRate = player.getStat("regenCoolDown") / 1000
+    dpsIndicator.innerHTML = `DPS: ${player.dps/10}\nHPS: ${regenAmount/regenRate}`
+}
+
+
 function dummyWave(size){
     const playerPos = player.getCenterPos()
     var incr = 360/size
@@ -80,7 +90,6 @@ function drawPlayer(){
     player.attackTick(ctx)
 }
 
-let start,previousTimeStamp;
 
 function drawXpBar(){
     ctx.setTransform(1,0,0,1,0,0)
@@ -95,48 +104,70 @@ function drawXpBar(){
     ctx.fillText(`Level: ${player.level} XP: ${player.inventory.data.xp}/${player.levelUpReq}`,c.width/2,30)
 }
 
-function gameLoop(timeStamp){
+let fps = 60;
+let interval = 1000 / fps;
+let then = performance.now();
+let previousTimeStamp;
 
-    if(!gamePaused && gameActive){
-          ctx.fillStyle="black"
-          ctx.clearRect(0, 0, c.width,c.height)
-      
-          ctx.setTransform(1,0,0,1,player.pos.x,player.pos.y)
-      
-          map.drawMap(ctx)
-      
-          allItems.forEach((item)=>{
-              item.update(ctx)
-          })
-          allMobs.forEach((mob)=>{
-              mob.update(ctx)
-          })
-          allDamageTexts.forEach((text)=>{
-              text.update(ctx)
-          })
-      
-          drawPlayer()
-      
-          drawXpBar()    
-
-
-          
-          wave.drawTimer(ctx)
-          
-    }
+function gameLoop(timeStamp) {
     
     if (previousTimeStamp === undefined) {
         previousTimeStamp = timeStamp;
-      }
+    }
 
     const elapsed = timeStamp - previousTimeStamp;
-    var shouldMove = false
-    for(var dir in heldDirKeys){
-        if(heldDirKeys[dir]){shouldMove = true}
+    var shouldMove = false;
+    for (var dir in heldDirKeys) {
+        if (heldDirKeys[dir]) {
+            shouldMove = true;
+        }
     }
-    if(shouldMove){player.move(elapsed)}else{player.setIdle()}
+    if (shouldMove) {
+        player.move(elapsed);
+    } else {
+        player.setIdle();
+    }
 
     previousTimeStamp = timeStamp;
 
-    requestAnimationFrame(gameLoop)
+    const now = performance.now();
+    const delta = now - then;
+
+    if (delta > interval) {
+        then = now - (delta % interval);
+    }
+        if (!gamePaused && gameActive) {
+            ctx.fillStyle = "black";
+            ctx.clearRect(0, 0, c.width, c.height);
+    
+            ctx.setTransform(1, 0, 0, 1, player.pos.x, player.pos.y);
+    
+            map.drawMap(ctx);
+    
+            allItems.forEach((item) => {
+                item.update(ctx);
+            });
+            allMobs.forEach((mob) => {
+                mob.update(ctx);
+            });
+            allDamageTexts.forEach((text) => {
+                text.update(ctx);
+            });
+    
+            drawPlayer();
+    
+            updateDps();
+    
+            drawXpBar();
+    
+            wave.drawTimer(ctx);
+        }
+    
+
+        // Display the actual fps
+        performanceIndicator.innerHTML = "FPS: "+Math.round(1000 / delta);
+
+    
+
+    requestAnimationFrame(gameLoop);
 }

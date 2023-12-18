@@ -43,7 +43,6 @@ setTimeout(()=>{
             }
             selectedCharacter=name;
             element.classList.add("selectedChar")
-            console.log(selectedCharacter)
         }
         element.appendChild(img)
         element.appendChild(startingItem)
@@ -72,7 +71,6 @@ setTimeout(()=>{
             }
             selectedMap=name.split(".")[0];
             element.classList.add("selectedMap")
-            console.log(selectedMap)
         }
         element.appendChild(mapName)
         mapSelectorMenu.appendChild(element)
@@ -202,7 +200,7 @@ function startGame(playerName,mapName){
     mapSelectorMenu.style.display = 'none' 
     selectorUiHolder.style.display = "none";
     postGameMenu.style.display = "none"
-    postGameMenu.innerHTML = ""   
+    postGameMenu.innerHTML = "" 
 
     player = eval(`new ${playerName}()`)
     map = eval(`new ${mapName}()`)

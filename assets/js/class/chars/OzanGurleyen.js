@@ -13,8 +13,6 @@ class OzanGurleyen extends Player {
 
         this.startingWeapon = "BBB"
 
-        console.log(this.images)
-
         this.inventory = new Inventory(this)
 
         this.frame = true;

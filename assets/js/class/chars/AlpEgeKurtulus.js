@@ -8,8 +8,6 @@ class AlpEgeKurtulus extends Player{
         this.images.sort((a,b) => a.id-b.id)
         this.img = this.images[0]
 
-        console.log(this.images)
-
         this.frame = true;
 
         this.lastFrame = new Date()

@@ -68,7 +68,6 @@ class ProductionOrale extends WeaponBase {
 
             const lineLength =  r*2 / Math.sqrt(2)
 
-            //console.log(Math.cos(angle), Math.sin(angle))
 
             if(currentDir.y != 0)
                 var hitbox = {

@@ -46,7 +46,6 @@ class WavesManager {
   spawnWave(){
     this.timeUntillNextWave += this.waves[this.currentWave].duration
     const playerPos = player.getTruePos()
-    console.log("spawned wave "+this.currentWave)  
     const wave = this.waves[this.currentWave].mobs
         wave.forEach((part)=>{
             part.forEach((mob)=>{

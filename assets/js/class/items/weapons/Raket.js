@@ -43,7 +43,7 @@ class Raket extends WeaponBase {
 
         this.maxLevel = this.stats.length - 1;
 
-        this.sprite = Array.from(document.getElementById("Raket").children).sort((a,b)=>a.id[0]-b.id[0])
+        this.sprite = Array.from(document.getElementById("Raket_P").children).sort((a,b)=>a.id[0]-b.id[0])
     }
     attack() {
         const animationCanvas = document.createElement("canvas");

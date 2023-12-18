@@ -39,3 +39,22 @@ canvas{
     width: 100%;
     height: 100%;
 }
+
+
+.dpsIndicator{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5rem;
+    height: 2.5rem;
+    border-style: solid;
+}
+
+.performanceIndicator{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5rem;
+    height: 2.5rem;
+    border-style: solid;
+}

@@ -22,7 +22,7 @@ class RedBull extends WeaponBase {
         this.maxLevel = this.stats.length - 1;
 
 
-        this.sprites = Array.from(document.getElementById("RedBull").children).sort((a, b) => { a.id[0] - b.id[0] })
+        this.sprites = Array.from(document.getElementById("RedBull_P").children).sort((a, b) => { a.id[0] - b.id[0] })
     }
     attack() {
         const animationCanvas = document.createElement("canvas");
@@ -54,13 +54,15 @@ class RedBull extends WeaponBase {
 
         var angle;
 
-        if (allMobs.length > 0) {
-            var nearestMob = allMobs.sort((a, b) => { return a.distToPlayer - b.distToPlayer })[0]
+        const nearMobs = allMobs.filter(mob => {
+            return Math.sqrt(Math.pow(mob.pos.x - playerPos.x, 2) + Math.pow(mob.pos.y - playerPos.y, 2)) < 1000
+        })
+
+        if (nearMobs.length > 0) {
+            var nearestMob = nearMobs.sort((a, b) => { return a.distToPlayer - b.distToPlayer })[0]
             angle = Math.atan2(playerPos.y - nearestMob.pos.y, playerPos.x - nearestMob.pos.x)
-            console.log("mobFound:" + angle)
         } else {
-            angle = Math.atan2(Math.floor((Math.random() * 2) - 1), Math.floor(Math.random() * 3) - 1)
-            console.log("noMob:" + angle)
+            angle = Math.atan2(Math.floor((Math.random() * 3) - 1), Math.floor(Math.random() * 3) - 1)
         }
 
         var pos = { x: 0, y: 0 }

@@ -64,49 +64,56 @@ class MobTemplate{
     }
     update(ctx){
 
-            this.animation()
+
             const playerPos = player.getTruePos();
     
             const dx = playerPos.x-this.pos.x
             const dy = playerPos.y-this.pos.y
             this.distToPlayer = Math.hypot(dx,dy)
+
+            if(this.distToPlayer < c.width*2){
+                const xStep = (dx/this.distToPlayer) * this.stats.speed
+                const yStep = (dy/this.distToPlayer) * this.stats.speed
     
-            const xStep = (dx/this.distToPlayer) * this.stats.speed
-            const yStep = (dy/this.distToPlayer) * this.stats.speed
-    
-            this.dir = {x: xStep > 0 ? 1 : -1, y: yStep > 0 ? 1 : -1}
-    
-            for (const mob of allMobs) {
-                if (mob !== this && !mob.immovable && mob.render) {
-                    const mobDx = mob.pos.x - this.pos.x;
-                    const mobDy = mob.pos.y - this.pos.y;
-                    const mobDistance = Math.hypot(mobDx, mobDy);
-                    
-                    const minDistance = (this.size.width + mob.size.width) / 2;
-    
-                    if (mobDistance < minDistance) {
-                        const pushFactor = (minDistance - mobDistance) / mobDistance;
-    
-                        const pushX = mobDx * pushFactor;
-                        const pushY = mobDy * pushFactor;
-    
-                        this.pos.x -= pushX / 2;
-                        this.pos.y -= pushY / 2;
-    
-                        mob.pos.x += pushX / 2;
-                        mob.pos.y += pushY / 2;
+                this.animation()
+        
+                this.dir = {x: xStep > 0 ? 1 : -1, y: yStep > 0 ? 1 : -1}
+        
+                for (const mob of allMobs) {
+                    if (mob !== this && !mob.immovable && mob.render) {
+                        const mobDx = mob.pos.x - this.pos.x;
+                        const mobDy = mob.pos.y - this.pos.y;
+                        const mobDistance = Math.hypot(mobDx, mobDy);
                         
+                        const minDistance = (this.size.width + mob.size.width) / 2;
+        
+                        if (mobDistance < minDistance) {
+                            const pushFactor = (minDistance - mobDistance) / mobDistance;
+        
+                            const pushX = mobDx * pushFactor;
+                            const pushY = mobDy * pushFactor;
+        
+                            this.pos.x -= pushX / 2;
+                            this.pos.y -= pushY / 2;
+        
+                            mob.pos.x += pushX / 2;
+                            mob.pos.y += pushY / 2;
+                            
+                        }
                     }
                 }
-            }
+    
+                if(this.distToPlayer < player.size.width/2+this.size.width/2){
+                    player.applyDamage(this.getDamage())
+                }
+    
+                this.pos.x += xStep
+                this.pos.y += yStep
+                ctx.drawImage(this.img,this.pos.x,this.pos.y)
 
-            if(this.distToPlayer < player.size.width/2+this.size.width/2){
-                player.applyDamage(this.getDamage())
+            }else{
+                this.kill(false)
             }
-
-            this.pos.x += xStep
-            this.pos.y += yStep
-            ctx.drawImage(this.img,this.pos.x,this.pos.y)
         
     }
     getDamage(){
@@ -119,16 +126,28 @@ class MobTemplate{
     applyDamage(damage,hitbox) {
 
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
+
+            if(this.health - damage.damage <= 0){
+                damage.damage = this.health
+            }
+
             new DamageText(this,damage)
             this.health -= damage.damage
 
-            const damagePos = hitbox.r ? {x:hitbox.x,y:hitbox.y} : {x:hitbox.x+hitbox.w/2,y:hitbox.y+hitbox.h/2}
+            player.dps += damage.damage
 
+            setTimeout(() => {
+                player.dps -= damage.damage
+            },10000)
+
+            /*
+            const damagePos = hitbox.r ? {x:hitbox.x,y:hitbox.y} : {x:hitbox.x+hitbox.w/2,y:hitbox.y+hitbox.h/2}
             const dirToDamage = Math.atan2(this.pos.y-damagePos.y,this.pos.x-damagePos.x)
             const knockBack = {x:Math.cos(-dirToDamage)*damage.knockBack,y:Math.sin(-dirToDamage)*damage.knockBack}
             
             this.pos.x += knockBack.x
             this.pos.y += knockBack.y
+            */
 
             this.lastDamage=new Date()
             if(this.health <= 0 && !this.dead) {
@@ -161,11 +180,14 @@ class MobTemplate{
         }
     }
     */
-    kill(){
+    kill(dropXp=true){
         const index = allMobs.indexOf(this)
         allMobs.splice(index, 1)
-        new Experience(this.pos,this.value)
-        player.killCount++
+        if(dropXp){
+            new Experience(this.pos,this.value)
+            player.killCount++
+        }
+
     }
 }
 

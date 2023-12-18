@@ -2,8 +2,8 @@ const uiContainer = document.querySelector('.uiContainer');
 const levelUpMenu = document.querySelector('.levelUpMenu');
 const levelUpMenuBody = document.querySelector('.levelUpMenuBody');
 
-
 const statsList = document.getElementById('statsList');
+const calculatedStatsList = document.getElementsByClassName('calculatedStatsList')[0];
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Escape') {
@@ -54,6 +54,8 @@ function updateStats() {
         }
     }
 }
+
+
 
 function createItemSelector(item) {
 

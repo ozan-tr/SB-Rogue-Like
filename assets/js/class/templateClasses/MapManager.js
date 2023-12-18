@@ -23,7 +23,6 @@ class MapManager {
 
     updateSections() {
         this.drawTiles = [];
-        console.log("change");
         this.indicesToDrawOn.forEach((index) => {
             this.drawTiles.push({
                 x: index.x * this.dimensions.width - this.viewPortOffset.x,

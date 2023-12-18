@@ -43,7 +43,6 @@ class Chest extends PickUpTemplate{
             }
         }
 
-        console.log(this.rewards)
 
         this.value = this.rewards.length
 
