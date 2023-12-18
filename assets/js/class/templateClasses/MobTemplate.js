@@ -1,4 +1,4 @@
-var allDamageTexts = []
+var renderedTexts = []
 
 class MobTemplate{
     constructor(name,pos,size,stats,value){
@@ -30,7 +30,7 @@ class MobTemplate{
 
         this.lastDamageApplied = new Date()
 
-        allMobs.push(this)        
+        renderedMobs.push(this)        
 
         
     }
@@ -63,8 +63,6 @@ class MobTemplate{
         }
     }
     update(ctx){
-
-
             const playerPos = player.getTruePos();
     
             const dx = playerPos.x-this.pos.x
@@ -79,8 +77,8 @@ class MobTemplate{
         
                 this.dir = {x: xStep > 0 ? 1 : -1, y: yStep > 0 ? 1 : -1}
         
-                for (const mob of allMobs) {
-                    if (mob !== this && !mob.immovable && mob.render) {
+                for (const mob of renderedMobs) {
+                    if (mob !== this && !mob.immovable) {
                         const mobDx = mob.pos.x - this.pos.x;
                         const mobDy = mob.pos.y - this.pos.y;
                         const mobDistance = Math.hypot(mobDx, mobDy);
@@ -127,17 +125,17 @@ class MobTemplate{
 
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
 
-            if(this.health - damage.damage <= 0){
-                damage.damage = this.health
+            if(this.health - damage.value <= 0){
+                damage.value = this.health
             }
 
-            new DamageText(this,damage)
-            this.health -= damage.damage
+            new Text(damage.value,this.pos,damage.modifier)
+            this.health -= damage.value
 
-            player.dps += damage.damage
+            player.dps += damage.value
 
             setTimeout(() => {
-                player.dps -= damage.damage
+                player.dps -= damage.value
             },10000)
 
             /*
@@ -181,8 +179,8 @@ class MobTemplate{
     }
     */
     kill(dropXp=true){
-        const index = allMobs.indexOf(this)
-        allMobs.splice(index, 1)
+        const index = renderedMobs.indexOf(this)
+        renderedMobs.splice(index, 1)
         if(dropXp){
             new Experience(this.pos,this.value)
             player.killCount++
@@ -216,7 +214,7 @@ class ImmovableMob extends MobTemplate {
     const playerPos = player.getTruePos();
     const timeSinceSpawn = new Date() - this.spawnTime
     if(timeSinceSpawn > this.warningTime){
-        for (const mob of allMobs) {
+        for (const mob of renderedMobs) {
             if (mob !== this && !mob.immovable) {
                 const mobDx = mob.pos.x - this.pos.x;
                 const mobDy = mob.pos.y - this.pos.y;
@@ -261,7 +259,7 @@ class ImmovableMob extends MobTemplate {
         this.rotation += this.dir.x * this.stats.speed * 0.05
 
         if(Math.abs(this.travelDistance) > (c.width + this.size.width)*2){
-            allMobs.splice(allMobs.indexOf(this),1)
+            renderedMobs.splice(renderedMobs.indexOf(this),1)
         }
     }else{
             ctx.setTransform(1,0,0,1,Math.random()*2,Math.random()*2)
@@ -282,55 +280,4 @@ class ImmovableMob extends MobTemplate {
 }
 }
 
-
-class DamageText {
-    constructor(mob,damage){
-        if(damage.damage == 0)return
-        this.mob = mob
-        this.damage = damage
-
-        this.tilt = Math.random() > 0.5 ? 0.2 : -0.2
-        
-        this.pos = {x: mob.pos.x, y: mob.pos.y}
-        this.render = true
-        this.font = "30px PixelFont"
-        this.lifeTime = 1000
-        this.birthTime = new Date()
-        this.speed = 0.3
-        this.opacity = 1
-        allDamageTexts.push(this)
-    }
-    update(ctx){
-        const timePassed = new Date() - this.birthTime
-        if(timePassed >= this.lifeTime){
-            const index = allDamageTexts.indexOf(this)
-            allDamageTexts.splice(index,1)
-        }else{
-            this.pos.y -= this.speed
-            this.pos.x += this.tilt
-            this.opacity = 1 - (timePassed/this.lifeTime)
-        }
-        
-        ctx.font = this.font
-        ctx.strokeStyle = 'black';
-        if(this.damage.modifier==0){
-            ctx.fillStyle = "white"
-        }else if(this.damage.modifier==1){
-            ctx.fillStyle = "red"
-        }else if(this.damage.modifier==2){
-            ctx.fillStyle = "yellow"
-        }else if(this.damage.modifier==3){
-            ctx.fillStyle = "green"
-        }else if(this.damage.modifier==4){
-            ctx.fillStyle = "blue"
-        }
-
-        ctx.lineWidth = 2
-
-        ctx.globalAlpha = this.opacity
-        ctx.fillText(this.damage.damage,this.pos.x,this.pos.y)
-        ctx.strokeText(this.damage.damage,this.pos.x,this.pos.y)
-        ctx.globalAlpha = 1
-    }
-}
 

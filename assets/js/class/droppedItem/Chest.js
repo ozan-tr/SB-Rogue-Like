@@ -14,7 +14,7 @@ class Chest extends PickUpTemplate{
         this.speed = 0
     }
     pickup(){
-        allItems.splice(allItems.indexOf(this),1)
+        renderedItems.splice(renderedItems.indexOf(this),1)
         this.openUI()
     }
     draw(ctx){
@@ -136,7 +136,7 @@ class Chest extends PickUpTemplate{
             this.rewards.forEach((item)=>{
                 player.inventory.addItem(item.constructor.name)
             })
-            allItems.slice(allItems.indexOf(this),1)
+            renderedItems.slice(renderedItems.indexOf(this),1)
             clearInterval(chestAnimation2)
             document.body.removeChild(chestUI)
             gamePaused = false

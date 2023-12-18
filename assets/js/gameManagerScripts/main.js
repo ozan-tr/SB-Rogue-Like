@@ -25,8 +25,8 @@ window.addEventListener("resize", (e) => {
 var player;
 var map;
 var wave
-var allMobs = []
-var allItems = []
+var renderedMobs = []
+var renderedItems = []
 
 var isMoving = false
 
@@ -144,13 +144,13 @@ function gameLoop(timeStamp) {
     
             map.drawMap(ctx);
     
-            allItems.forEach((item) => {
+            renderedItems.forEach((item) => {
                 item.update(ctx);
             });
-            allMobs.forEach((mob) => {
+            renderedMobs.forEach((mob) => {
                 mob.update(ctx);
             });
-            allDamageTexts.forEach((text) => {
+            renderedTexts.forEach((text) => {
                 text.update(ctx);
             });
     

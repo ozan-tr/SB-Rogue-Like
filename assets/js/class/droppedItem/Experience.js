@@ -11,12 +11,12 @@ class Experience extends PickUpTemplate{
 
         this.speed = 0
 
-        allItems.push(this)
+        renderedItems.push(this)
     }
     pickup(){
-        allItems.splice(allItems.indexOf(this),1)
+        renderedItems.splice(renderedItems.indexOf(this),1)
         player.inventory.addXp(this.value)
-        new DamageText(this,{damage:"+"+this.value+"xp",modifier:   4})
+        new Text("+"+this.value+"xp",this.pos,4)
     }
     draw(ctx){
         ctx.fillStyle= `hsl(${this.value},100%,50%)`
@@ -41,7 +41,7 @@ class Experience extends PickUpTemplate{
                 this.pickup()
             }
         }else{
-            var allXp = [...allItems].filter(item => item.vaccumable && item != this && item.constructor.name == "Experience")
+            var allXp = [...renderedItems].filter(item => item.vaccumable && item != this && item.constructor.name == "Experience")
             var nearXp = allXp.filter(item => {
                 const dx = this.pos.x - item.pos.x;
                 const dy = this.pos.y - item.pos.y;
@@ -51,9 +51,9 @@ class Experience extends PickUpTemplate{
 
             if(nearXp.length > 10){
                 const valueOfNearXp = nearXp.reduce((acc,item) => acc+item.value,0)
-                nearXp.forEach(x => allItems.splice(allItems.indexOf(x),1))
+                nearXp.forEach(x => renderedItems.splice(renderedItems.indexOf(x),1))
                 new Experience(this.pos,valueOfNearXp+this.value)
-                allItems.splice(allItems.indexOf(this),1)
+                renderedItems.splice(renderedItems.indexOf(this),1)
 
             }
 

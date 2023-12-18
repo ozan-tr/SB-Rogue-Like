@@ -170,7 +170,7 @@ class WeaponBase extends ItemBase {
 
         var howManyHits = 0;
 
-        allMobs.forEach((mob) => {
+        renderedMobs.forEach((mob) => {
             const dx = truePos.x - mob.pos.x;
             const dy = truePos.y - mob.pos.y;
             const distance = Math.hypot(dx, dy);
@@ -199,7 +199,7 @@ class WeaponBase extends ItemBase {
     checkHitCircular(hitbox) {
         var howManyHits = 0;
 
-        allMobs.forEach((mob) => {
+        renderedMobs.forEach((mob) => {
             const dx = hitbox.x - mob.pos.x;
             const dy = hitbox.y - mob.pos.y;
             const distance = Math.hypot(dx, dy);

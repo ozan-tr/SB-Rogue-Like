@@ -54,7 +54,7 @@ class RedBull extends WeaponBase {
 
         var angle;
 
-        const nearMobs = allMobs.filter(mob => {
+        const nearMobs = renderedMobs.filter(mob => {
             return Math.sqrt(Math.pow(mob.pos.x - playerPos.x, 2) + Math.pow(mob.pos.y - playerPos.y, 2)) < 1000
         })
 

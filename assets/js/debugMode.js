@@ -102,9 +102,9 @@ class Debug{
         }
     }
     clearMobs(drops=true){
-        console.log("Cleared "+allMobs.length+" mobs")
+        console.log("Cleared "+renderedMobs.length+" mobs")
 
-        var reverseArray = allMobs.slice().reverse();
+        var reverseArray = renderedMobs.slice().reverse();
 
         reverseArray.forEach((mob)=>{
             mob.kill(drops)

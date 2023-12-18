@@ -105,9 +105,9 @@ function endRun(win){
     postGameMenu.style.display = "none"
     postGameMenu.innerHTML = ""
     
-    allItems=[]
-    allMobs=[]
-    allDamageTexts=[]
+    renderedItems=[]
+    renderedMobs=[]
+    renderedTexts=[]
 
     var auxCanvases = Array.from(mainContainer.children)
     auxCanvases.forEach((canvas)=>{

@@ -8,7 +8,7 @@ class PickUpTemplate{
 
         this.speed = 0
 
-        allItems.push(this)
+        renderedItems.push(this)
     }
     pickup(){
         return false

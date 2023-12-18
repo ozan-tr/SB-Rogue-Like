@@ -113,8 +113,8 @@ class YourMobName extends MobTemplate {
     applyDamage(damage) {
       damage *= 2 // make this mob take double the amount of damage
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
-            new DamageText(this,damage)
-            this.health -= damage.damage
+            new Text(damage.value,this.pos,damage.modifier)
+            this.health -= damage.value
             this.lastDamage=new Date()
             if(this.health <= 0) {
                 this.kill(true)

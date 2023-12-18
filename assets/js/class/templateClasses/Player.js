@@ -18,7 +18,7 @@ class Player {
             regenAmount: 1,
             regenCoolDown: 1000,
             maxHealth: 100,
-            amount: 1,
+            amount: 0,
             size: 1,
             effectDuration: 1,
             area:1
@@ -52,7 +52,7 @@ class Player {
     }
 
     suckXp() {
-        allItems.forEach((item) => {
+        renderedItems.forEach((item) => {
             if (item.vaccumable) {
                 item.startSucking();
             }
@@ -107,13 +107,13 @@ class Player {
         const critDamage = weapon.getStat("critDamage") + this.getStat("critDamage")
         const crit = Math.random() < critChance
         const multiplier = crit ? critDamage : 1
-        return {damage:damage * multiplier,modifier:crit,knockBack:knockBack}
+        return {value:damage * multiplier,modifier:crit,knockBack:knockBack}
     }
     heal(amount){
         var fakePos = this.getTruePos()
         const maxHealth = this.getStat("maxHealth")
         fakePos.y -= 50
-        new DamageText(this,{damage:amount,modifier:3}).pos = fakePos
+        new Text(amount,fakePos,3)
         this.health += amount
         if(this.health > maxHealth){
             this.health = maxHealth
@@ -127,10 +127,10 @@ class Player {
         if(amount < 0){amount = 0}
 
         if(Math.random() < this.getStat("evasion")){
-            new DamageText(this,{damage:"Evaded",modifier:2}).pos = fakePos
+            new Text("Evaded",fakePos,2)
             return
         }
-        new DamageText(this,{damage:amount,modifier:0}).pos = fakePos
+        new Text(amount,fakePos,0)
         this.health -= amount
         if(this.health <= 0){
             this.health = 0
@@ -202,16 +202,16 @@ class Player {
                 
                 switch (type) {
                     case 'percent':
-                        statValue = `${statValue * 100}%`;
+                        statValue = `${(statValue * 100).toFixed(2)}%`;
                         break;
                     case 'float':
                         statValue =  statValue.toFixed(2);
                         break;
                     case 'int':
-                        statValue =  Math.floor(statValue)
+                        statValue =  "+"+Math.floor(statValue)
                         break;
                     case 'seconds':
-                        statValue = `${statValue / 1000}s`;
+                        statValue = `${(statValue / 1000).toFixed(2)}s`;
                         break;
                     default:
                         break;
