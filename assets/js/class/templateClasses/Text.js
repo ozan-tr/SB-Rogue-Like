@@ -2,7 +2,7 @@
 class Text {
     constructor(value,pos,modifier){
         if(value == 0)return
-        this.pos = pos
+        this.pos = JSON.parse(JSON.stringify(pos))
         this.value = value
         
         if(modifier==0){
