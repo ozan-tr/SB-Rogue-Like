@@ -28,12 +28,8 @@ class ProductionOrale extends WeaponBase {
     }
 
     attack() {
-        const animationCanvas = document.createElement("canvas");
-        animationCanvas.width = c.width;
-        animationCanvas.height = c.height;
+        const {anim, animationCanvas} = this.createAnimationCanvas();
 
-        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        const anim = animationCanvas.getContext("2d");
 
         const playerPos = player.getTruePos();
 

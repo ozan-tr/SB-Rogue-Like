@@ -33,16 +33,11 @@ class Biyique extends WeaponBase {
     }
 
     attack() {
-        const animationCanvas = document.createElement("canvas");
-        animationCanvas.width = c.width;
-        animationCanvas.height = c.height;
-
-        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        const ctx = animationCanvas.getContext("2d");
+        const {anim, animationCanvas} = this.createAnimationCanvas();
 
         const playerPos = player.getHeadPos();
 
-        ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
+        anim.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
         const stats = this.stats[this.level];
         const baseHeight = 10;
@@ -78,7 +73,7 @@ class Biyique extends WeaponBase {
                 clearInterval(attackAnimation);
             }
 
-            ctx.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
+            anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
 
             const truePos = player.getTruePos();
 
@@ -89,16 +84,16 @@ class Biyique extends WeaponBase {
                 h: hitBox.h
             });
 
-            ctx.fillStyle = "#3A200F";
+            anim.fillStyle = "#3A200F";
 
             dots.forEach((dot, i) => {
-                ctx.beginPath();
-                ctx.arc(dot.x, dot.y, hitBox.h / (i + 20) * 5, 0, Math.PI * 2);
-                ctx.fill();
+                anim.beginPath();
+                anim.arc(dot.x, dot.y, hitBox.h / (i + 20) * 5, 0, Math.PI * 2);
+                anim.fill();
 
-                ctx.beginPath();
-                ctx.arc(-dot.x, dot.y, hitBox.h / (i + 20) * 5, 0, Math.PI * 2);
-                ctx.fill();
+                anim.beginPath();
+                anim.arc(-dot.x, dot.y, hitBox.h / (i + 20) * 5, 0, Math.PI * 2);
+                anim.fill();
             });
         }, 10);
     }

@@ -105,32 +105,29 @@ class Player {
         const knockBack = weapon.getStat("knockBack") * this.getStat("knockBack")
         const critChance = weapon.getStat("critChance") + this.getStat("critChance")
         const critDamage = weapon.getStat("critDamage") + this.getStat("critDamage")
-        const crit = Math.random() < critChance
+        const crit = proc(critChance)
         const multiplier = crit ? critDamage : 1
         return {value:damage * multiplier,modifier:crit,knockBack:knockBack}
     }
     heal(amount){
-        var fakePos = this.getTruePos()
         const maxHealth = this.getStat("maxHealth")
-        fakePos.y -= 50
-        new Text(amount,fakePos,3)
+        new Text(amount,this.getTextPos(),3)
         this.health += amount
         if(this.health > maxHealth){
             this.health = maxHealth
         }
     }
     applyDamage(amount){
-        var fakePos = this.getTruePos()
-        fakePos.y -= 50
-
         amount = amount - (amount * this.getStat("defence"))
         if(amount < 0){amount = 0}
 
-        if(Math.random() < this.getStat("evasion")){
-            new Text("Evaded",fakePos,2)
+        const textPos = this.getTextPos()
+
+        if(proc(this.getStat("evasion"))){
+            new Text("Evaded",textPos,2)
             return
         }
-        new Text(amount,fakePos,0)
+        new Text(amount,textPos,0)
         this.health -= amount
         if(this.health <= 0){
             this.health = 0
@@ -140,6 +137,10 @@ class Player {
     kill(){
         console.log("dead")
         endGame(false)
+    }
+    getTextPos(){
+        const truePos = this.getTruePos()
+        return {x:truePos.x,y:truePos.y-this.size.height/2}
     }
     drawHealthBar(ctx) {
         const barWidth = 100;

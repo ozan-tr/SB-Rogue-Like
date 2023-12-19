@@ -56,16 +56,11 @@ class BBB extends WeaponBase {
 
         var attackAnimation = undefined
 
-        const animationCanvas = document.createElement("canvas");
-        animationCanvas.width = c.width;
-        animationCanvas.height = c.height;
-
-        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        const ctx = animationCanvas.getContext("2d");
+        const {anim, animationCanvas} = this.createAnimationCanvas();
 
         const playerPos = player.getHeadPos();
 
-        ctx.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
+        anim.setTransform(1, 0, 0, 1, playerPos.x, playerPos.y);
 
         const sprite = document.getElementById("BBB_P").children[0];
 
@@ -84,7 +79,7 @@ class BBB extends WeaponBase {
             const size = stats.size * player.getStat("size");
             const attackSpeed = stats.attackSpeed * player.getStat("attackSpeed");
 
-            ctx.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
+            anim.clearRect(-playerPos.x, -playerPos.y, c.width, c.height);
             const offset = (Math.PI*2/amount);
 
             const truePos = player.getTruePos();
@@ -96,7 +91,7 @@ class BBB extends WeaponBase {
                 const x = Math.cos(degOffset) * area-sprite.height/2*size;
                 const y = Math.sin(degOffset) * area-sprite.width/2*size;
     
-                ctx.drawImage(sprite, x, y, sprite.width*size, sprite.height*size);
+                anim.drawImage(sprite, x, y, sprite.width*size, sprite.height*size);
     
                 this.checkHit({
                     x: truePos.x+x,

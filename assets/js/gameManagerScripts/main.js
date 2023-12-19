@@ -27,6 +27,7 @@ var map;
 var wave
 var renderedMobs = []
 var renderedItems = []
+var renderedTexts = []
 
 var isMoving = false
 
@@ -171,3 +172,9 @@ function gameLoop(timeStamp) {
 
     requestAnimationFrame(gameLoop);
 }
+
+function proc(chance) {
+    const threshold = Math.random() < chance;
+    return threshold
+}
+

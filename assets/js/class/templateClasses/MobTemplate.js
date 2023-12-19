@@ -1,4 +1,4 @@
-var renderedTexts = []
+
 
 class MobTemplate{
     constructor(name,pos,size,stats,value){
@@ -29,6 +29,8 @@ class MobTemplate{
         this.lastDamage = new Date()
 
         this.lastDamageApplied = new Date()
+
+        this.chestChance = 0.01  
 
         renderedMobs.push(this)        
 
@@ -181,6 +183,12 @@ class MobTemplate{
     kill(dropXp=true){
         const index = renderedMobs.indexOf(this)
         renderedMobs.splice(index, 1)
+
+        if(proc(this.chestChance+player.getStat("luck"))){
+            const chestNum = Math.floor(Math.random()*5)+1
+            new Chest(this.pos,chestNum)
+        }
+
         if(dropXp){
             new Experience(this.pos,this.value)
             player.killCount++
@@ -236,8 +244,8 @@ class ImmovableMob extends MobTemplate {
             }
         }
     
-        const dx = playerPos.x-player.pos.x-this.pos.x
-        const dy = playerPos.y-player.pos.y-this.pos.y
+        const dx = playerPos.x-this.pos.x
+        const dy = playerPos.y-this.pos.y
         this.distToPlayer = Math.hypot(dx,dy)
 
         if(this.distToPlayer < player.size.width/2+this.size.width/2){
@@ -255,6 +263,8 @@ class ImmovableMob extends MobTemplate {
         ctx.rotate(this.rotation)
         ctx.drawImage(this.img,-this.size.width/2,-this.size.height/2)
         ctx.restore()
+
+        console.log(this.distToPlayer)
 
         this.rotation += this.dir.x * this.stats.speed * 0.05
 

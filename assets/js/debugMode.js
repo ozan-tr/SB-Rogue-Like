@@ -110,6 +110,63 @@ class Debug{
             mob.kill(drops)
         })
     }
+    testProc(chance,testRuns=100){
+        var trueReturns = 0;
+        var falseReturns = 0;
+
+        for(let i=0;i<testRuns;i++){
+            var procRes = proc(chance)
+            if(procRes){
+                trueReturns++
+            }else{
+                falseReturns++
+            }
+        }
+
+        this.log(`Proc test with ${chance*100}% chance: ${trueReturns} true returns, ${falseReturns} false returns, success rate: ${trueReturns/testRuns*100}%`)
+    }
+    testJsRandom(amount=100){
+        var col = amount/10
+        var row = amount/col
+
+        var table = []
+        var results = []
+        for(let i=0;i<row;i++){
+            table.push([])
+            for(let j=0;j<col;j++){
+                const val = Math.random()
+                table[i].push(val)
+                results.push(val)
+            }
+        }
+
+        const maxRes = Math.max(...results)
+        const minRes = Math.min(...results)
+
+        this.log(`Random test with ${amount} random numbers: ${minRes} min, ${maxRes} max`)
+
+
+        var rowString = ""
+        var rowColorData = []
+
+        this.log("Spread Pattern")
+
+        table.forEach((row)=>{
+            row.forEach((val)=>{
+                rowString += `%c  `
+                rowColorData.push(`background-color: hsl(${val*100},100%,50%)`)
+            })
+            rowString += "\n"
+        })
+
+        console.log(rowString,...rowColorData)
+
+        results.forEach((res)=>{
+            closestSnap = Math.floor(res*10)
+            
+        })
+
+    }
 }
 
 

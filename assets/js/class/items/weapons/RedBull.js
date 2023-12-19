@@ -25,10 +25,7 @@ class RedBull extends WeaponBase {
         this.sprites = Array.from(document.getElementById("RedBull_P").children).sort((a, b) => { a.id[0] - b.id[0] })
     }
     attack() {
-        const animationCanvas = document.createElement("canvas");
-        animationCanvas.width = c.width;
-        animationCanvas.height = c.height;
-
+        const {anim, animationCanvas} = this.createAnimationCanvas();
         
         const stats = this.stats[this.level];
 
@@ -38,8 +35,6 @@ class RedBull extends WeaponBase {
         const area = stats.area * player.getStat("area") * 50;
         const lifeSpan = 2000
 
-        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        const anim = animationCanvas.getContext("2d");
 
         const playerPos = player.getTruePos()
 

@@ -171,15 +171,17 @@ class WeaponBase extends ItemBase {
         var howManyHits = 0;
 
         renderedMobs.forEach((mob) => {
-            const dx = truePos.x - mob.pos.x;
-            const dy = truePos.y - mob.pos.y;
-            const distance = Math.hypot(dx, dy);
-
-            if (distance < 500) {
-                const mobPos = { x: mob.pos.x, y: mob.pos.y, w: mob.size.width, h: mob.size.height };
-                if (doesCollide(hitbox, mobPos)) {
-                    if (mob.applyDamage(player.getDamage(this), hitbox)) {
-                        howManyHits++;
+            if(!mob.immovable){
+                const dx = truePos.x - mob.pos.x;
+                const dy = truePos.y - mob.pos.y;
+                const distance = Math.hypot(dx, dy);
+    
+                if (distance < 500) {
+                    const mobPos = { x: mob.pos.x, y: mob.pos.y, w: mob.size.width, h: mob.size.height };
+                    if (doesCollide(hitbox, mobPos)) {
+                        if (mob.applyDamage(player.getDamage(this), hitbox)) {
+                            howManyHits++;
+                        }
                     }
                 }
             }
@@ -200,18 +202,31 @@ class WeaponBase extends ItemBase {
         var howManyHits = 0;
 
         renderedMobs.forEach((mob) => {
-            const dx = hitbox.x - mob.pos.x;
-            const dy = hitbox.y - mob.pos.y;
-            const distance = Math.hypot(dx, dy);
-
-            if (distance < hitbox.r) {
-                if (mob.applyDamage(player.getDamage(this), hitbox)) {
-                    howManyHits++;
+            if(!mob.immovable){
+                const dx = hitbox.x - mob.pos.x;
+                const dy = hitbox.y - mob.pos.y;
+                const distance = Math.hypot(dx, dy);
+    
+                if (distance < hitbox.r) {
+                    if (mob.applyDamage(player.getDamage(this), hitbox)) {
+                        howManyHits++;
+                    }
                 }
             }
         });
 
         return howManyHits;
+    }
+    createAnimationCanvas(){
+        const animationCanvas = document.createElement("canvas");
+        animationCanvas.width = c.width;
+        animationCanvas.height = c.height;
+
+        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
+        const anim = animationCanvas.getContext("2d");
+
+        return {anim:anim, animationCanvas:animationCanvas}
+
     }
 }
 

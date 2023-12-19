@@ -46,12 +46,8 @@ class Raket extends WeaponBase {
         this.sprite = Array.from(document.getElementById("Raket_P").children).sort((a,b)=>a.id[0]-b.id[0])
     }
     attack() {
-        const animationCanvas = document.createElement("canvas");
-        animationCanvas.width = c.width;
-        animationCanvas.height = c.height;
+        const {anim, animationCanvas} = this.createAnimationCanvas();
 
-        document.getElementsByClassName("mainContainer")[0].appendChild(animationCanvas);
-        const anim = animationCanvas.getContext("2d");
 
         const playerPos = player.getTruePos();
        
