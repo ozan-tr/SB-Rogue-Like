@@ -173,8 +173,5 @@ function gameLoop(timeStamp) {
     requestAnimationFrame(gameLoop);
 }
 
-function proc(chance) {
-    const threshold = Math.random() < chance;
-    return threshold
-}
+
 

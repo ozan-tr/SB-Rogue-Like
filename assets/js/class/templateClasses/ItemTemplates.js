@@ -230,25 +230,3 @@ class WeaponBase extends ItemBase {
     }
 }
 
-/**
- * Checks if two objects collide.
- * @param {Object} hitbox - The hitbox of the first object.
- * @param {number} hitbox.x - The x-coordinate of the hitbox.
- * @param {number} hitbox.y - The y-coordinate of the hitbox.
- * @param {number} hitbox.w - The width of the hitbox.
- * @param {number} hitbox.h - The height of the hitbox.
- * @param {Object} mob - The hitbox of the second object.
- * @param {number} mob.x - The x-coordinate of the mob.
- * @param {number} mob.y - The y-coordinate of the mob.
- * @param {number} mob.w - The width of the mob.
- * @param {number} mob.h - The height of the mob.
- * @returns {boolean} - True if the objects collide, false otherwise.
- */
-function doesCollide(hitbox, mob) {
-    return !(
-        (hitbox.y + hitbox.h < mob.y) ||
-        (hitbox.y > mob.y + mob.h) ||
-        (hitbox.x + hitbox.w < mob.x) ||
-        (hitbox.x > mob.x + mob.w)
-    );
-}

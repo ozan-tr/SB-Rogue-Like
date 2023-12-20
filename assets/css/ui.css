@@ -25,14 +25,19 @@
 .statsContainer{
     grid-area: 2 / 1 / 4 / 2;
     overflow-y: scroll;
-
-
 }
 .itemsContainer{
     grid-area: 1 / 1 / 2 / 2;
 }
 .mapContainer{
     grid-area: 1 / 2 / 3 / 3;
+    padding: 0;
+    margin: 0;
+}
+
+#mapCanvas{
+    background-color: burlywood;
+    position: absolute;
 }
 
 .runStatsContainer{

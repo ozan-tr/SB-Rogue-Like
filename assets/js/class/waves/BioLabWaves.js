@@ -9,6 +9,12 @@ class BioLabWaves extends WavesManager{
         super()
         this.waves = [
             {
+                duration:1000000,
+                mobs:[
+                   
+                ]
+            },
+            {
                 duration: 1000,
                 mobs: [
                     this.spawnImmovable(immovableMob1),

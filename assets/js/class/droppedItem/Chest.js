@@ -9,9 +9,12 @@ class Chest extends PickUpTemplate{
         this.size = {width:50,height:50};
         this.img = document.getElementById("Chest")
         this.openImg = document.getElementById("ChestOpen")
+        this.pointer = document.getElementById("Pointer")
         this.attraction = false
 
         this.speed = 0
+
+        this.displayOnMap = true
     }
     pickup(){
         renderedItems.splice(renderedItems.indexOf(this),1)
@@ -19,6 +22,7 @@ class Chest extends PickUpTemplate{
     }
     draw(ctx){
         ctx.drawImage(this.img,this.pos.x,this.pos.y,this.size.width,this.size.height)
+        this.drawPointer()
     }
     openUI(){
         gamePaused = true
@@ -28,8 +32,6 @@ class Chest extends PickUpTemplate{
 
         chestAnimationCanvas.width = 600
         chestAnimationCanvas.height = 600
-
-        
 
         this.rewards = []
 
@@ -140,6 +142,25 @@ class Chest extends PickUpTemplate{
             clearInterval(chestAnimation2)
             document.body.removeChild(chestUI)
             gamePaused = false
+        }
+
+    }
+    drawPointer(){
+        const wobble = Math.sin(Date.now()/100)*5
+        if(onScreen(this)){
+            ctx.drawImage(this.pointer,this.pos.x,this.pos.y-60-wobble)
+        }else{
+            const playerPos = player.getTruePos()
+            const angle = Math.atan2(playerPos.y-this.pos.y,playerPos.x-this.pos.x)
+
+            var innerX = playerPos.x-(c.width / 2 - this.size.width/2) * Math.cos(angle);
+            var innerY = playerPos.y-(c.height / 2) * Math.sin(angle);
+
+            ctx.save()
+            ctx.translate(innerX-Math.cos(angle)*wobble,innerY-Math.sin(angle)*wobble)
+            ctx.rotate(angle+Math.PI/2)
+            ctx.drawImage(this.pointer,-this.size.width/2,-this.size.height/2)
+            ctx.restore()
         }
 
     }

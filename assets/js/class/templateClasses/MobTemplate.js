@@ -264,7 +264,6 @@ class ImmovableMob extends MobTemplate {
         ctx.drawImage(this.img,-this.size.width/2,-this.size.height/2)
         ctx.restore()
 
-        console.log(this.distToPlayer)
 
         this.rotation += this.dir.x * this.stats.speed * 0.05
 

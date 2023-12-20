@@ -5,6 +5,11 @@ const levelUpMenuBody = document.querySelector('.levelUpMenuBody');
 const statsList = document.getElementById('statsList');
 const calculatedStatsList = document.getElementsByClassName('calculatedStatsList')[0];
 
+const mapContainer = document.querySelector('.mapContainer');
+const mapCanvas = document.querySelector('#mapCanvas');
+const mapCtx = mapCanvas.getContext('2d');
+
+
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Escape') {
         uiActive = !uiActive;
@@ -21,6 +26,7 @@ function activateUI() {
         gamePaused = true;
         uiContainer.classList.add('activateUi');
         updateStats();
+        updateMap();
     }
 }
 
@@ -30,9 +36,52 @@ function deactivateUI() {
     document.querySelector('.settingsContainer').style.display = 'none';
 }
 
-const formatStatName = str => str.split(/(?=[A-Z])/).filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
+function updateMap() {
+    mapCanvas.width = mapContainer.clientWidth;
+    mapCanvas.height = mapContainer.clientHeight;
 
+    mapCanvas.style.top = `${mapCanvas.height/2}px`;
+
+    mapCtx.fillStyle = 'black';
+
+    mapCtx.setTransform(1,0,0,1,mapCanvas.width/2,mapCanvas.height/2)
+
+    mapCtx.clearRect(-mapCanvas.width/2,-mapCanvas.height/2,mapCanvas.width,mapCanvas.height)
+
+    mapCtx.drawImage(player.img,-player.size.width/4,-player.size.height/4,player.size.width/2,player.size.height/2)
+
+    const mapItems = [...renderedItems].filter((item)=>item.displayOnMap)
+
+    const threshold = 5000;
+
+    mapItems.forEach((item) => {
+
+        const pos = {
+            x:item.pos.x+player.pos.x,
+            y:item.pos.y+player.pos.y
+        }
+
+        if(pos.x > threshold/2){
+            pos.x = threshold/2
+        }
+        if(pos.x < -threshold/2){
+            pos.x = -threshold/2
+        }
+        if(pos.y > threshold/2){
+            pos.y = threshold/2
+        }
+        if(pos.y < -threshold/2){
+            pos.y = -threshold/2
+        }
+
+        const relX = mapNumRange(pos.x,-threshold/2,threshold/2, -mapCanvas.width*0.45, mapCanvas.width*0.45)
+        const relY = mapNumRange(pos.y,-threshold/2,threshold/2, -mapCanvas.height*0.45, mapCanvas.height*0.45)
+
+        mapCtx.drawImage(item.img, relX - item.img.width / 4, relY - item.img.height / 4, item.size.width / 2, item.size.height / 2);
+    })
+
+}
 
 function updateStats() {
     const stats = player.getStats();

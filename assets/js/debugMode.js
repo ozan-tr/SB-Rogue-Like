@@ -167,6 +167,22 @@ class Debug{
         })
 
     }
+    spawnNearbyChest(items=3){
+        const chestPos = {
+            x:player.pos.x+Math.random()*1000-500,
+            y:player.pos.y+Math.random()*1000-500
+        }
+        new Chest(chestPos,items)
+    }
+    spawnRandomChests(maxDist=5000,amount=10,items=3){
+        for(let i=0;i<amount;i++){
+            const chestPos = {
+                x:player.pos.x+Math.random()*maxDist-maxDist/2,
+                y:player.pos.y+Math.random()*maxDist-maxDist/2
+            }
+            new Chest(chestPos,items)
+        }
+    }
 }
 
 
