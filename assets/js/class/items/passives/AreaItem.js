@@ -1,6 +1,6 @@
 class AreaItem extends PassiveBase {
     constructor() {
-        super("Area Item", "Increases Area",2);
+        super("Proplan Mama", "Mlem mlem mlem chomp \n increases item area",2);
 
         this.stats = [
                 0.1,
