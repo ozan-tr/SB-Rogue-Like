@@ -35,10 +35,8 @@ if(ID){
             localStorage.removeItem("ID")
         }else{
             IDinput.value = ID
-
-                userName = userData.username
-                console.log(userName)
-            
+            userName = userData.username
+            document.querySelector(".userName").innerHTML = userName
         }
     }).catch((err) => {
         console.log(err)

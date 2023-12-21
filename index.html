@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="parentContainer">
-
+        <div class="userName">Not Connected</div>
         <div class="settingsContainer">
             <div class="settingsMenu">
                 <button class="closeSettings" onclick="closeSettings()">X</button>
@@ -32,12 +32,13 @@
                                 <input type="range" min="0" max="100" value="100" class="slider" id="soundVolume">
                             </div>
                         </div>
-                    </div>
-                    <div class="settingsMenuBodyItemContent">
-                        <div class="settingsMenuBodyItemContentItem">
-                            <h3>Player ID</h3>
-                            <input type="text" id="IDinput">
-                            <input type="button" value="Confirm" onclick="setUserID()">
+                        <h2>Player ID</h2>
+                        <div class="settingsMenuBodyItemContent">
+                            <div class="settingsMenuBodyItemContentItem">
+                                <input type="text" id="IDinput">
+                                <input type="button" value="Confirm" onclick="setUserID()">
+                                <div class="connectionStatus">Not Connected</div>
+                            </div>
                         </div>
                     </div>
                     <div class="settingsMenuBodyItem">
@@ -71,7 +72,7 @@
             <button class="mainMenuButtonGlobal quit" onclick="window.close()">Quit</button>
             <button class="mainMenuButtonGlobal settings" onclick="openSettings()"></button>
             <button class="mainMenuButtonGlobal runHistory"></button>
-            <a target="_blank" href="https://github.com/ozan-tr/SB-Rogue-Like/wiki" width="32" height="32" class="mainMenuButtonGlobal github"></a>
+            <a target="_blank" href="https://ozan-tr.github.io/SB-Rogue-Like/" width="32" height="32" class="mainMenuButtonGlobal github"></a>
             <button class="mainMenuButtonGlobal credits"></button>
             <span id="versionSpan"></span>
         </div>

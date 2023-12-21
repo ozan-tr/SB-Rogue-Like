@@ -3,26 +3,34 @@ const characterSelectorMenu = document.querySelector('.characterSelectorMenu');
 const mapSelectorMenu = document.querySelector('.mapSelectorMenu');
 const selectorUiHolder = document.querySelector('.selectorUiHolder');
 const postGameMenu = document.querySelector('.postGameMenu');
+const connectionStatus = document.querySelector('.connectionStatus');
+const userNameDiv = document.querySelector('.userName');
+
 var selectedMap=undefined;
 var selectedCharacter=undefined;
 
 var currentMenu = "main"
 
 
-
 function setUserID(){
+    connectionStatus.innerHTML = "Connecting..."
+    connectionStatus.style.color = "white"
     axios.get(`${endpoint}${dataid}/latest`, {headers:{
         "X-Master-Key": masterkey,
     }}).then((res) => {
         if(res.data.record[IDinput.value]){
             localStorage.setItem("ID",IDinput.value)
-            console.log("ID set")
-            window.location.reload()
+            connectionStatus.innerHTML = `Connected as ${res.data.record[IDinput.value].username}`
+            connectionStatus.style.color = "green"
         }else{
+            connectionStatus.innerHTML = "Invalid ID"
+            connectionStatus.style.color = "red"
             console.log("invalid ID")
             return
         }
     }).catch((err) => {
+        connectionStatus.innerHTML = "Connection error"
+        connectionStatus.style.color = "red"
         console.log(err)
     })
 }

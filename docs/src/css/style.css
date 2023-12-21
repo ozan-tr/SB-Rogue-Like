@@ -216,28 +216,29 @@ html,body{
 .titleBar{
     width: 100%;
     height: var(--title-bar-height);
+    min-height: 3rem;
     background-color: var(--accent-color);
     color: var(--text-color);
     display: flex;
     flex-direction: row;
     padding: 10px;
+    margin: 0;
 }
 
 .titleBarItem{
+    margin: 0;
     flex-grow: 1;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
-    width: calc((33% - 8rem)/8);
+    font-size: 2.5vw;
     text-decoration: none;
     color: var(--text-color);
 }
 
 .title{
-    flex-grow: 1.5;
-    width: calc(8rem / 2.5);
+    flex-grow: 0;
     justify-content: left;
     align-items: center;
     padding-left: calc(8rem/10);
@@ -251,8 +252,7 @@ html,body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
-
+    font-size: 2.5vw;
 }
 
 .userOptItem{
@@ -263,8 +263,52 @@ html,body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2.5vw;
     width: 40%;
+}
+
+@media screen and (max-width: 800px) {
+    .titleBar{
+        flex-wrap:wrap;
+        height: auto;
+        justify-content: flex-start;
+    }
+    .titleBarItem{
+        flex-grow: 1;
+        height: 50%;
+        display: flex;
+        font-size: 2rem;
+        text-decoration: none;
+        color: var(--text-color);
+    }
+    .title{
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0;
+        font-size: 4rem;
+        height: 50%;
+    }
+    .userOpt{
+        flex-grow: 1;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+    .userOptItem{
+        flex-grow: 1;
+        gap: 5px;
+        padding: 5px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+
+    }
 }
 
 
