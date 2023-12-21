@@ -1,3 +1,4 @@
+
 /*
   METHODS:
 
@@ -27,12 +28,10 @@ class WavesManager {
         this.passedTime = new Date() - this.startTime
         this.remainingTime = gameDuration - this.passedTime
 
-        if(this.passedTime > gameDuration){
+        if(this.passedTime >= gameDuration){
             gameActive = false
             endGame(true)
-        }
-
-        if(this.passedTime > this.timeUntillNextWave){
+        }else if(this.passedTime > this.timeUntillNextWave){
             this.currentWave++
             this.spawnWave()
         }

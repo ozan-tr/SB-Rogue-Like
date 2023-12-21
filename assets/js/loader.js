@@ -6,12 +6,49 @@ const mobsContainer = document.getElementById('mobsContainer');
 const projectilesContainer = document.getElementById('projectilesContainer');
 const mainContainer = document.querySelector('.mainContainer');
 const dropsContainer = document.querySelector('.dropsContainer');
+const IDinput = document.querySelector("#IDinput")
 
 const versionSpan = document.getElementById('versionSpan');
 
 loader.appVersion().then((version) => {
     versionSpan.innerHTML = `v${version}`;
 })
+
+
+const dataid="65840f7edc7465401886c09e"
+
+const endpoint = ` https://api.jsonbin.io/v3/b/`
+
+const accsseskey = "$2a$10$BOCd7sUiR1IudA4lkCc8uul23M7caOUpLfMmTJidPh4ZN4C3szMp6"
+const masterkey = "$2a$10$LaGLyqtL0K26RV5JCsk0yuo4jgy3I788InSgqfiv.w6nE74ltaFLy"
+
+var ID = JSON.parse(localStorage.getItem("ID"))
+var userData = undefined
+var userName = "anonim"
+
+if(ID){
+    axios.get(`${endpoint}${dataid}/latest`, {headers:{
+        "X-Master-Key": masterkey,
+    }}).then((res) => {
+        userData = res.data.record[ID]
+        if(userData == undefined){
+            localStorage.removeItem("ID")
+        }else{
+            IDinput.value = ID
+
+                userName = userData.username
+                console.log(userName)
+            
+        }
+    }).catch((err) => {
+        console.log(err)
+        if(userData == undefined){
+            localStorage.removeItem("ID")
+        }
+    })
+}
+
+
 
 
 let uiActive = false;

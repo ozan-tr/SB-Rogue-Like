@@ -3,9 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SBRG</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    
+    <div class="process"></div>
+    <div class="mainContainer">
+        <div class="titleBar">
+            <div class="title titleBarItem" onclick="main()">SBRG</div>
+            <div class="titleBarItem mark" onclick="leaderboard()">Leader Board</div>
+            <a class="titleBarItem mark" href="https://github.com/ozan-tr/SB-Rogue-Like/wiki" target="_blank">Wiki</a>
+            <a class="titleBarItem mark" href="https://github.com/ozan-tr/SB-Rogue-Like " target="_blank">Github</a>
+            <a class="titleBarItem mark" href="https://github.com/ozan-tr/SB-Rogue-Like/releases">Downloads</a>
+            <div class="titleBarItem userOpt">
+                <div class="userOptItem mark" onclick="signUp()">Sign Up</div>
+                <div class="userOptItem mark" onclick="login()">Login</div>
+            </div>
+        </div>
+        <div class="contentContainer">
+            <div class="mainPage contentPage">
+                main placeholder
+            </div>
+            <div class="profilePage contentPage hidden">
+                <div class="profileContainer">
+                    <div class="profileTitle">Profile</div>
+                    <div class="profileInfo">
+                        <div class="profileInfoItem">Username: <span id="usernameInfo"></span></div>
+                        <div class="profileInfoItem">Email: <span id="emailInfo"></span></div>
+                        <div class="profileInfoItem">ID: <span id="idInfo"></span></div>
+                    </div>
+                    <div class="profileButtonContainer">
+                        <div class="profileButton" onclick="logoutUser()">Logout</div>
+                    </div>
+                </div>
+            </div>
+            <div class="loginPage contentPage hidden">
+                <div class="loginInfo">
+                    <input class="email formText" type="text" placeholder="Email" name="email">
+                    <input class="password formText" type="password" placeholder="Password" name="password">
+                    <div class="loginButton formButton" onclick="loginUser()">Login</div>
+                </div>
+            </div>
+            <div class="signupPage contentPage hidden">
+                <div class="signupInfo">
+                    <input class="email formText" type="text" placeholder="Email" name="email">
+                    <input class="username formText" type="text" placeholder="Username" name="username">
+                    <input class="password formText" type="password" placeholder="Password" name="password">
+                    <input class="passwordConfirm formText" type="password" placeholder="Confirm Password" name="passwordConfirm">
+                    <div class="signupButton formButton" onclick="signUpUser()">Sign Up</div>
+                </div>
+            </div>
+            <div class="leaderboardPage contentPage hidden">
+                <div class="leaderboardContainer">
+                    <div class="leaderboardTitle">Leader Board</div>
+                    <div class="leaderboardTable">
+                        <div class="leaderboardRow leaderboardTableHeader">
+                            <div class="leaderboardCollumn">Rank</div>
+                            <div class="leaderboardCollumn">Name</div>
+                            <div class="leaderboardCollumn">Score</div>
+                        </div>
+                        <div class="leaderboardRow">
+                            <div class="leaderboardCollumn">1</div>
+                            <div class="leaderboardCollumn">2</div>
+                            <div class="leaderboardCollumn">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+<script src="src/js/pagesManager.js"></script>
+<script src="src/js/leaderboard.js"></script>
+<script src="src/js/userManager.js"></script>
 </html>

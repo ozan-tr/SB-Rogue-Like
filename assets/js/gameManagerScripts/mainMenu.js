@@ -8,6 +8,25 @@ var selectedCharacter=undefined;
 
 var currentMenu = "main"
 
+
+
+function setUserID(){
+    axios.get(`${endpoint}${dataid}/latest`, {headers:{
+        "X-Master-Key": masterkey,
+    }}).then((res) => {
+        if(res.data.record[IDinput.value]){
+            localStorage.setItem("ID",IDinput.value)
+            console.log("ID set")
+            window.location.reload()
+        }else{
+            console.log("invalid ID")
+            return
+        }
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
 setTimeout(()=>{
     const characters = Array.from(characterContainer.children)
 
@@ -97,6 +116,20 @@ function mainMenu(){
 
 function endRun(win){
     cancelAnimationFrame(gameLoop)
+
+    const items = player.inventory.data.items.map((item)=>{return {name:item.name,level:item.level}})
+
+    const runStats = {
+        map: map.constructor.name,
+        player: player.constructor.name,
+        items: items,
+        level: player.level,
+        timeSurvived: wave.passedTime,
+        completed: win,
+        killCount: player.killCount,
+        completionTime: new Date(),
+        debugEnabled: JSON.parse(localStorage.getItem("debug"))
+    }
     gameActive=false
     selectedMap=undefined;
     selectedCharacter=undefined;
@@ -116,16 +149,9 @@ function endRun(win){
         }
     })
 
-    const runStats = {
-        map: map.name,
-        player: player.constructor.name,
-        level: player.level,
-        timeSurvived: wave.passedTime,
-        completed: win,
-        killCount: player.killCount,
-        completionTime: new Date(),
-        debugEnabled: localStorage.getItem("debug")
-    }
+
+    console.log(runStats)
+
     localStorage.setItem("lastRun",JSON.stringify(runStats))
     var runHistory = JSON.parse(localStorage.getItem("runHistory"))
     if(runHistory == null){
@@ -135,7 +161,7 @@ function endRun(win){
         runHistory.push(runStats)
         localStorage.setItem("runHistory",JSON.stringify(runHistory))
     }
-
+    postScore(runStats)
     mainMenu()
 }
 
