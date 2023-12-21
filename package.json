@@ -12,9 +12,7 @@
   "author": "ozan-tr",
   "license": "ISC",
   "dependencies": {
-    "glob": "^10.3.10",
-    "mongodb": "^6.3.0",
-    "node-os-utils": "^1.3.7"
+    "glob": "^10.3.10"
   },
   "devDependencies": {
     "electron": "^28.0.0",
