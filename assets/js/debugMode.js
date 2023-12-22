@@ -109,7 +109,7 @@ class Debug{
         this.log(`Gave ${amount} xp`)
     }
     god(){
-        if(player.stats.maxHealth == 99999999){
+        if(this.activeCheats.god){
             player.stats.maxHealth = this.oldHealthVal
             player.health = this.oldHealthVal
             this.activeCheats.god=false

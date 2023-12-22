@@ -152,8 +152,6 @@ class Player {
 
         ctx.setTransform(1,0,0,1,0,0)
 
-
-
         let color;
 
         if(debug && debug.activeCheats.god){
