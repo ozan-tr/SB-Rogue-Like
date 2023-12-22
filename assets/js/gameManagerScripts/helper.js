@@ -34,6 +34,14 @@ function onScreen(obj) {
     return doesCollide(screenPosHitbox, objHitbox)
 }
 
+function homeTowards(obj, coef) {
+    const dist = Math.sqrt(Math.pow(obj.pos.x, 2) + Math.pow(obj.pos.y, 2));
+    const angle = Math.atan2(obj.pos.y, obj.pos.x);
+    const x = Math.cos(angle) * dist * coef;
+    const y = Math.sin(angle) * dist * coef;
+    return { x, y };
+}
+
 function generateSmoothRainbowColors(timestamp, numColors = 360, baseColor = 25) {
     return Array.from({ length: numColors }, (_, index) => {
         const hue = ((timestamp / 1000) + (index / numColors)) % 1;
