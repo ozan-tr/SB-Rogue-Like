@@ -39,6 +39,7 @@ setTimeout(()=>{
     const characters = Array.from(characterContainer.children)
 
     characters.forEach((character)=>{
+        if(character.hidden) return
         const name = character.id
         const element = document.createElement("div")
         element.className = "characterSelector"

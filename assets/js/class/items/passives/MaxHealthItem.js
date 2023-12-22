@@ -1,6 +1,6 @@
 class MaxHealthItem extends PassiveBase {
     constructor() {
-        super("Max Health Item", "Increases Max Health",2);
+        super("Max health Item", "Increases Max Health",2);
 
         this.stats = [
                 10,

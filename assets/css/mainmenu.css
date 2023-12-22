@@ -1,5 +1,18 @@
 
-
+.devWorldButton{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 5em;
+    height: 2.5em;
+    background-color: red;
+    z-index: 100;
+    border-style: none;
+    font-size: 2em;
+    color: white;
+    border-radius: 10px;
+}
 
 .mainMenuButtonGlobal{
     height: 100%;

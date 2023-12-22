@@ -6,9 +6,13 @@ if(localStorage.getItem("instantStart")){
     },1000)    
 }
 
+
+
+
 class Debug{
     constructor(){
         this.log("Started with debug enabled")
+        this.createDevWorld()
     }
     help(){
         this.log("Commands:")
@@ -34,6 +38,15 @@ class Debug{
             localStorage.setItem("instantStart",true)
             this.log("Instant start enabled")
         }
+    }
+    createDevWorld(){
+        const devWorldButton = document.createElement("button")
+        devWorldButton.innerHTML = "Dev World"
+        devWorldButton.classList.add("devWorldButton")
+        devWorldButton.addEventListener("click",()=>{
+            startGame("DevChar","DevWorld")
+        })
+        document.querySelector(".mainMenu").appendChild(devWorldButton)
     }
     give(itemName,amount=1){
         const item = ItemsDict.find((item) => item.constructor.name == itemName)
