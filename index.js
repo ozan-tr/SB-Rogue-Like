@@ -19,8 +19,6 @@ app.commandLine.appendSwitch('log-file', logFile);
 app.commandLine.appendSwitch('enable-logging');
 
 
-// Process the CSS content with PostCSS plugins
-
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,

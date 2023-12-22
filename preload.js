@@ -11,4 +11,3 @@ contextBridge.exposeInMainWorld("loader", {
     appVersion: () => ipcRenderer.invoke('getVersion'),
 });
 
-

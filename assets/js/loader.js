@@ -36,6 +36,9 @@ if(ID){
         }else{
             IDinput.value = ID
             userName = userData.username
+            const status = document.querySelector(".connectionStatus")
+            status.style.color="green"
+            status.innerHTML = userName
             document.querySelector(".userName").innerHTML = userName
         }
     }).catch((err) => {

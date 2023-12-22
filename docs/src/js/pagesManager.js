@@ -49,3 +49,14 @@ function profile(){
     loginPage.classList.add("hidden");
     profilePage.classList.remove("hidden");
 }
+
+function copyID(){
+    var copyText = document.getElementById("idInfo");
+    var textArea = document.createElement("textarea");
+    textArea.value = copyText.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    navigator.clipboard.writeText(textArea.value);
+    textArea.remove();
+    alert("Copied to clipboard")
+}

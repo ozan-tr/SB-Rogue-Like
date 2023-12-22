@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SBRG</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <script src="https://kit.fontawesome.com/0b3ef1961f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -29,29 +30,32 @@
                 <div class="profileContainer">
                     <div class="profileTitle">Profile</div>
                     <div class="profileInfo">
-                        <div class="profileInfoItem">Username: <span id="usernameInfo"></span></div>
-                        <div class="profileInfoItem">Email: <span id="emailInfo"></span></div>
-                        <div class="profileInfoItem">ID: <span id="idInfo"></span></div>
+                        <div class="profileInfoItem"><i class="fa-solid fa-user"></i>  <span id="usernameInfo"></span></div>
+                        <div class="profileInfoItem"><i class="fa-solid fa-envelope"></i>  <span id="emailInfo"></span></div>
+                        <div class="profileInfoItem">ID:  <span id="idInfo"></span>  <i onclick="copyID()" class="fa-solid fa-copy copyToClipboard"></i> </div>
+                    </div>
+                    <div class="connectionHelp">
+                        In order to connect your game with your account go to settings and paste your id into the id field.
                     </div>
                     <div class="profileButtonContainer">
-                        <div class="profileButton" onclick="logoutUser()">Logout</div>
+                        <div class="profileButton mark" onclick="logoutUser()">Logout</div>
                     </div>
                 </div>
             </div>
             <div class="loginPage contentPage hidden">
                 <div class="loginInfo">
-                    <input class="email formText" type="text" placeholder="Email" name="email">
-                    <input class="password formText" type="password" placeholder="Password" name="password">
-                    <div class="loginButton formButton" onclick="loginUser()">Login</div>
+                    <div class="formElement"><i class="fa-solid fa-envelope"></i><input class="email formText" type="text" placeholder="Email" name="email"></div>
+                    <div class="formElement"><i class="fa-solid fa-lock"></i><input class="password formText" type="password" placeholder="Password" name="password"></div>                    
+                    <div class="loginButton formButton mark" onclick="loginUser()">Login</div>
                 </div>
             </div>
             <div class="signupPage contentPage hidden">
                 <div class="signupInfo">
-                    <input class="email formText" type="text" placeholder="Email" name="email">
-                    <input class="username formText" type="text" placeholder="Username" name="username">
-                    <input class="password formText" type="password" placeholder="Password" name="password">
-                    <input class="passwordConfirm formText" type="password" placeholder="Confirm Password" name="passwordConfirm">
-                    <div class="signupButton formButton" onclick="signUpUser()">Sign Up</div>
+                    <div class="formElement"><i class="fa-solid fa-user"></i><input class="username formText" type="text" placeholder="Username" name="username"></div>
+                    <div class="formElement"><i class="fa-solid fa-lock"></i><input class="password formText" type="password" placeholder="Password" name="password"></div>
+                    <div class="formElement"><i class="fa-solid fa-lock"></i><input class="passwordConfirm formText" type="password" placeholder="Confirm Password" name="passwordConfirm"></div>
+                    <div class="formElement"><i class="fa-solid fa-envelope"></i><input class="email formText" type="text" placeholder="Email" name="email"></div>                    
+                    <div class="signupButton formButton mark" onclick="signUpUser()">Sign Up</div>
                 </div>
             </div>
             <div class="leaderboardPage contentPage hidden">
