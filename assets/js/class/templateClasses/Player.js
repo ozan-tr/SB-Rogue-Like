@@ -49,6 +49,9 @@ class Player {
 
         this.dps = 0
 
+        this._godbar = 0
+
+
     }
 
     suckXp() {
@@ -142,28 +145,45 @@ class Player {
         const truePos = this.getTruePos()
         return {x:truePos.x,y:truePos.y-this.size.height/2}
     }
-    drawHealthBar(ctx) {
+    drawHealthBar(timestamp) {
         const barWidth = 100;
         const healthPercentage = this.health / this.getStat("maxHealth");
-        const foregroundWidth = barWidth * healthPercentage;
+        var foregroundWidth = barWidth * healthPercentage;
 
-    
-        ctx.fillStyle = 'gray';
-        ctx.fillRect(-50,this.size.height/1.5, barWidth, 10);
-    
-        // Calculate color
+        ctx.setTransform(1,0,0,1,0,0)
+
+
+
         let color;
-        if (healthPercentage > 0.5) {
-            color = 'green';
-        } else if (healthPercentage > 0.2) {
-            color = 'yellow';
-        } else {
-            color = 'red';
+
+        if(debug && debug.activeCheats.god){
+            foregroundWidth = barWidth
+           
+            const colors = generateSmoothRainbowColors(timestamp);
+
+            color = ctx.createLinearGradient(c.width/2 - barWidth,0, c.width/2+barWidth,0);
+            for (let i = 0; i < colors.length; i++) {
+                color.addColorStop( i / (colors.length - 1), colors[i]);
+            }
+
+        }else{
+            if (healthPercentage >= 0.5) {
+                color = 'green';
+            } else if (healthPercentage >= 0.2) {
+                color = 'yellow';
+            } else {
+                color = 'red';
+            }
+            
+
         }
+
+        ctx.fillStyle = 'gray';
+        ctx.fillRect(c.width/2-50,c.height/2+this.size.height/1.5, barWidth, 10);
     
-        // Draw foreground
+
         ctx.fillStyle = color;
-        ctx.fillRect(-50,this.size.height/1.5, foregroundWidth, 10);
+        ctx.fillRect(c.width/2-50,c.height/2+this.size.height/1.5, foregroundWidth, 10);
 
         this.regenTimer()
     }

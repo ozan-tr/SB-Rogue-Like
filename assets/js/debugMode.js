@@ -2,7 +2,7 @@
 
 if(localStorage.getItem("instantStart")){
     setTimeout(()=>{
-        startGame("OzanGurleyen","BioLab")
+        startGame("DevChar","DevWorld")
     },1000)    
 }
 
@@ -13,6 +13,10 @@ class Debug{
     constructor(){
         this.log("Started with debug enabled")
         this.createDevWorld()
+
+        this.activeCheats={
+            god:false,
+        }
     }
     help(){
         this.log("Commands:")
@@ -105,12 +109,16 @@ class Debug{
         this.log(`Gave ${amount} xp`)
     }
     god(){
-        if(player.maxHealth == Infinity){
-            player.maxHealth = this.oldHealthVal
+        if(player.stats.maxHealth == 99999999){
+            player.stats.maxHealth = this.oldHealthVal
+            player.health = this.oldHealthVal
+            this.activeCheats.god=false
             this.log("God mode disabled")
         }else{
-            this.oldHealthVal = player.maxHealth
-            player.maxHealth = Infinity
+            this.oldHealthVal = player.stats.maxHealth
+            player.stats.maxHealth = 99999999
+            player.health = this.oldHealthVal
+            this.activeCheats.god=true
             this.log("God mode enabled")
         }
     }

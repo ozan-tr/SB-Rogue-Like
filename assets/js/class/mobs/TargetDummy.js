@@ -18,9 +18,21 @@ class TargetDummy extends MobTemplate {
     }
     applyDamage(damage){
         if(new Date()-this.lastDamage > this.invincibiltyFrame){
+            this.lastDamage=new Date()
+
             new Text(damage.value,this.pos,damage.modifier)
+
+            player.dps += damage.value
+
+            setTimeout(() => {
+                player.dps -= damage.value
+            },10000)
+
+
             return true
         }
+
+
 
         return false
     }
