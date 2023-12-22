@@ -150,7 +150,7 @@ class YourMobName extends MobTemplate {
 |      |      | luck arttıran item | X |  |
 |      |      | health regen amount arttıran item | X |  |
 |      |      | health regen speed arttıran item | X |  |
-|      |      | max health arttıran item | X |  |
+|      |  X    | max health arttıran item | X | X |
 
 - [x] resim isimlerinde aynı formatı kullandır
   
