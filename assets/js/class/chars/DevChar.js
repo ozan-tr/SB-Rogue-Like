@@ -1,9 +1,6 @@
-class Dev extends Player {
+class DevChar extends Player {
     constructor(){
         super()
-        this.images = Array.from(document.getElementById('OzanGurleyen').children)
-        this.images.sort((a,b) => a.id-b.id)
-        this.img = this.images[0]
 
         this.size={width:60,height:80}
 
