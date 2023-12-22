@@ -1,15 +1,4 @@
 
-/*
-  METHODS:
-
-  spawnSingle(mobType,dist) - spawns a single mob of type mobType at a distance of dist from the player
-  simpleScatter(mobType, amount, dist) - spawns a group of scattered mobs of type mobType at a distance of dist from the player, amount is the amount of mobs in the group
-  mixedGroup(dist,...group) - spawns a group of mobs at a distance of dist from the player, group is an array of objects with the following structure: {type:"mobType",amount:amountOfMobs}
-  simpleGroup(mobType, amount, dist) - spawns a group of mobs of type mobType at a distance of dist from the player, amount is the amount of mobs in the group
-  mixedEncerlement(dist,...group) - spawns a group of mobs circling the player, group is an array of objects with the following structure: {type:"mobType",amount:amountOfMobs}
-  simpleEncerlement(mobType, amount,dist) - spawns a group of mobs of type mobType circling the player, amount is the amount of mobs in the group
-
-*/
 
 
 class WavesManager {
@@ -56,15 +45,33 @@ class WavesManager {
             })
         })
   }
-
+  /**
+   * Spawn an immovable mob.
+   * @param {string} mobType - The type of the mob to spawn.
+   * @returns {Array} - An array containing the spawned mob.
+   */
   spawnImmovable(mobType){
     return [{type:mobType}]
   }
+  /**
+   * Spawn a single mob at a specific distance from the player.
+   * @param {string} mobType - The type of the mob to spawn.
+   * @param {number} dist - The distance from the player.
+   * @returns {Array} - An array containing the spawned mob.
+   */
   spawnSingle(mobType,dist){
     const x = Math.cos(Math.random()*Math.PI*2)*dist
     const y = Math.sin(Math.random()*Math.PI*2)*dist
     return [{type:mobType,x:x,y:y}]
   }
+    /**
+   * Scatter mobs randomly around the player.
+   * @param {string} mobType - The type of the mobs to scatter.
+   * @param {number} amount - The number of mobs to scatter.
+   * @param {number} rand - The maximum random distance from the minimum distance.
+   * @param {number} minDist - The minimum distance from the player.
+   * @returns {Array} - An array containing the scattered mobs.
+   */
   simpleScatter(mobType, amount, rand,minDist) {
     var simpleScatter = []
     for(var i=0;i<amount;i++){
@@ -74,6 +81,12 @@ class WavesManager {
     }
     return simpleScatter
   }
+    /**
+   * Create a mixed group of mobs.
+   * @param {number} dist - The distance from the player.
+   * @param {...{type: string, amount: number}} group - The mobs to include in the group.
+   * @returns {Array} - An array containing the mixed group of mobs.
+   */
   mixedGroup(dist,...group){
     const x = Math.cos(Math.random()*Math.PI*2)*dist
     const y = Math.sin(Math.random()*Math.PI*2)*dist
@@ -106,6 +119,13 @@ class WavesManager {
 
     return mixedGroup
   }
+    /**
+   * Create a simple group of mobs.
+   * @param {string} mobType - The type of the mobs to include in the group.
+   * @param {number} amount - The number of mobs in the group.
+   * @param {number} dist - The distance from the player.
+   * @returns {Array} - An array containing the simple group of mobs.
+   */
   simpleGroup(mobType, amount, dist) {
     const x = Math.cos(Math.random()*Math.PI*2)*dist
     const y = Math.sin(Math.random()*Math.PI*2)*dist
@@ -125,6 +145,12 @@ class WavesManager {
     }
     return group
   }
+    /**
+   * Create a mixed encerlement of mobs.
+   * @param {number} dist - The distance from the player.
+   * @param {...{type: string, amount: number}} group - The mobs to include in the encerlement.
+   * @returns {Array} - An array containing the mixed encerlement of mobs.
+   */
   mixedEncerlement(dist,...group){  
       var nameDesginator = []
   
@@ -148,6 +174,13 @@ class WavesManager {
       }
       return mixedEncerlement
   }
+    /**
+   * Create a simple encerlement of mobs.
+   * @param {string} mobType - The type of the mobs to include in the encerlement.
+   * @param {number} amount - The number of mobs in the encerlement.
+   * @param {number} dist - The distance from the player.
+   * @returns {Array} - An array containing the simple encerlement of mobs.
+   */
   simpleEncerlement(mobType, amount,dist) {
     var simpleEncerlement = []
 
