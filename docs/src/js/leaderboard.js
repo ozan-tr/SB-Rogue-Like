@@ -59,7 +59,14 @@ function constructLeaderBoard(inverse = false){
         orderOfLeaderboard.forEach((item) => {
             const cell = document.createElement("div")
             cell.classList="leaderboardCollumn"
-            cell.innerHTML = formatWord(item)
+
+
+            var diplayName = item
+            if(item=="player"){
+                diplayName="Character"
+            }
+
+            cell.innerHTML = formatWord(diplayName)
 
             if(sortingMethod == item){
                 const arrow = document.createElement("div")
@@ -83,7 +90,7 @@ function constructLeaderBoard(inverse = false){
             row.classList="leaderboardRow"
     
             orderOfLeaderboard.forEach((item) => {
-
+ 
                 const cell = document.createElement("div")
                 cell.classList="leaderboardCollumn"
                 cell.innerHTML = data[item]
@@ -123,10 +130,8 @@ function constructLeaderBoard(inverse = false){
 
 }
 
-
-
-
 const orderOfLeaderboard = ["userName","level","player","map","killCount","completed","debugEnabled",]
 
 const formatWord = str => str.split(/(?=[A-Z])/).filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
 
