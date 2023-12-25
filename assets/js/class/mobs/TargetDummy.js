@@ -13,7 +13,7 @@ class TargetDummy extends MobTemplate {
             0
         )
     }
-    update(ctx){
+    update(){
         ctx.drawImage(this.img,this.pos.x,this.pos.y)
     }
     applyDamage(damage){

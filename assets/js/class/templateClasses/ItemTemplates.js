@@ -110,9 +110,12 @@ class PassiveBase extends ItemBase {
     constructor(name, description, rarity) {
         super(name, description, rarity);
         this.type = "Passive";
-        this.img = `url(assets/img/weapons/${this.constructor.name}.png)`;
+        this.img = `url(assets/img/passives/${this.constructor.name}.png)`;
         this.imgElement = new Image(40, 40);
-        this.imgElement.src = `assets/img/weapons/${this.constructor.name}.png`;
+        this.imgElement.src = `assets/img/passives/${this.constructor.name}.png`;
+        this.imgElement.onerror = () =>{
+            this.imgElement.src="assets/img/placeholder.png"
+        }
     }
 
     /**

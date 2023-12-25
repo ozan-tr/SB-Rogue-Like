@@ -391,7 +391,6 @@ html,body{
     box-shadow: none;
     border: var(--accent-border-color) solid 1px;
 
-    overflow-hidden;
 }
 .formElement>i{
     flex-grow: 1;

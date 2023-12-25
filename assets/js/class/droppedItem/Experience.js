@@ -18,11 +18,7 @@ class Experience extends PickUpTemplate{
         player.inventory.addXp(this.value)
         new Text("+"+this.value+"xp",this.pos,4)
     }
-    draw(ctx){
-        ctx.fillStyle= `hsl(${this.value},100%,50%)`
-        ctx.fillRect(this.pos.x,this.pos.y,10,10)
-    }
-    update(ctx){
+    update(){
         const playerPos=player.getTruePos()
         const dx = playerPos.x - this.pos.x;
         const dy = playerPos.y - this.pos.y;
@@ -58,6 +54,8 @@ class Experience extends PickUpTemplate{
             }
 
         }
-        this.draw(ctx)
+        
+        ctx.fillStyle= `hsl(${this.value},100%,50%)`
+        ctx.fillRect(this.pos.x,this.pos.y,10,10)
     }
 }

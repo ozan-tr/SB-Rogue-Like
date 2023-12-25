@@ -64,7 +64,7 @@ class MobTemplate{
     
         }
     }
-    update(ctx){
+    update(elapsed){
             const playerPos = player.getTruePos();
     
             const dx = playerPos.x-this.pos.x
@@ -72,8 +72,8 @@ class MobTemplate{
             this.distToPlayer = Math.hypot(dx,dy)
 
             if(this.distToPlayer < c.width*2){
-                const xStep = (dx/this.distToPlayer) * this.stats.speed
-                const yStep = (dy/this.distToPlayer) * this.stats.speed
+                const xStep = (dx/this.distToPlayer) * this.stats.speed * elapsed * 0.1
+                const yStep = (dy/this.distToPlayer) * this.stats.speed * elapsed * 0.1
     
                 this.animation()
         
@@ -217,7 +217,7 @@ class ImmovableMob extends MobTemplate {
         this.spawnTime = new Date()
         this.warningTime = 1000
     }
-    update(ctx){
+    update(){
 
     const playerPos = player.getTruePos();
     const timeSinceSpawn = new Date() - this.spawnTime

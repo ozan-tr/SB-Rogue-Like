@@ -146,13 +146,13 @@ function gameLoop(timeStamp) {
             map.drawMap(ctx);
     
             renderedItems.forEach((item) => {
-                item.update(ctx);
+                item.update(elapsed);
             });
             renderedMobs.forEach((mob) => {
-                mob.update(ctx);
+                mob.update(elapsed);
             });
             renderedTexts.forEach((text) => {
-                text.update(ctx);
+                text.update();
             });
     
             drawPlayer(timeStamp);

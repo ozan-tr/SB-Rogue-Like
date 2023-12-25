@@ -30,7 +30,8 @@ class Text {
         
         renderedTexts.push(this)
     }
-    update(ctx){
+    update(){
+        console.log(ctx)
         const timePassed = new Date() - this.birthTime
         if(timePassed >= this.lifeTime){
             const index = renderedTexts.indexOf(this)

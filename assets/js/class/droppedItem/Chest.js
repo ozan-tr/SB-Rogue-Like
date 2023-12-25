@@ -20,7 +20,7 @@ class Chest extends PickUpTemplate{
         renderedItems.splice(renderedItems.indexOf(this),1)
         this.openUI()
     }
-    draw(ctx){
+    draw(){
         ctx.drawImage(this.img,this.pos.x,this.pos.y,this.size.width,this.size.height)
         this.drawPointer()
     }
